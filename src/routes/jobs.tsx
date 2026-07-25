@@ -9,6 +9,7 @@ import { getJobMatches, type JobMatch } from "~/server/matching";
 import { getProfile } from "~/server/profile";
 import type { Profile } from "~/server/profile";
 import { MatchScoreBadge } from "~/components/MatchScoreBadge";
+import { useEmployerPreview } from "~/components/EmployerPreviewContext";
 
 export const Route = createFileRoute("/jobs")({
   component: JobListings,
@@ -62,6 +63,7 @@ function parseSalary(salary: string): number {
 
 function JobListings() {
   const { matches, profile } = Route.useLoaderData();
+  const { openModal } = useEmployerPreview();
   const isFreeUser = profile?.plan === "free";
   const [search, setSearch] = useState("");
   const [selectedProvince, setSelectedProvince] = useState("");
@@ -466,14 +468,13 @@ function JobListings() {
                         </h3>
 
                         {employer && (
-                          <a
-                            href={employer.website}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-1.5 text-[15px] font-medium text-[#2563EB] transition-colors hover:text-[#1D4ED8]"
+                          <button
+                            type="button"
+                            onClick={() => openModal(employer)}
+                            className="mt-1.5 text-left text-[15px] font-medium text-[#2563EB] transition-colors hover:text-[#1D4ED8] cursor-pointer"
                           >
                             {employer.name}
-                          </a>
+                          </button>
                         )}
 
                         <div className="mt-4 flex flex-wrap items-center gap-2">

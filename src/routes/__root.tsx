@@ -6,6 +6,8 @@ import {
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { ClerkAuthProvider } from "~/providers/clerk";
+import { EmployerPreviewProvider } from "~/components/EmployerPreviewContext";
+import { EmployerPreviewModal } from "~/components/EmployerPreviewModal";
 
 import appCss from "~/styles/app.css?url";
 
@@ -66,9 +68,12 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <ClerkAuthProvider>
-      <RootDocument>
-        <Outlet />
-      </RootDocument>
+      <EmployerPreviewProvider>
+        <RootDocument>
+          <Outlet />
+          <EmployerPreviewModal />
+        </RootDocument>
+      </EmployerPreviewProvider>
     </ClerkAuthProvider>
   );
 }

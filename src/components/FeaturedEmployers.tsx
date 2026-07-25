@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { employers as allEmployers } from "~/data/employers";
+import { useEmployerPreview } from "~/components/EmployerPreviewContext";
 
 const featuredSlugs = [
   "maple-leaf-foods",
@@ -15,6 +16,7 @@ const featuredEmployers = featuredSlugs
   .filter(Boolean) as typeof allEmployers;
 
 export function FeaturedEmployers() {
+  const { openModal } = useEmployerPreview();
   return (
     <section id="employers" className="bg-[#FAFAFA] px-6 py-32 sm:py-40">
       <div className="mx-auto max-w-6xl">
@@ -55,14 +57,13 @@ export function FeaturedEmployers() {
                   {initials}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <a
-                    href={employer.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-lg font-bold text-[#0A0A0B] transition-colors hover:text-[#2563EB]"
+                  <button
+                    type="button"
+                    onClick={() => openModal(employer)}
+                    className="text-left text-lg font-bold text-[#0A0A0B] transition-colors hover:text-[#2563EB] cursor-pointer"
                   >
                     {employer.name}
-                  </a>
+                  </button>
                   <div className="mt-2 flex flex-wrap items-center gap-2">
                     <span className="rounded-full bg-[#F0F0F0] px-3 py-1 text-xs font-medium text-[#4B5563]">
                       {employer.industry}

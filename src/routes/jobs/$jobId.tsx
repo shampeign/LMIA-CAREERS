@@ -9,6 +9,7 @@ import { getProfile } from "~/server/profile";
 import { getJobMatch } from "~/server/matching";
 import type { JobMatch } from "~/server/matching";
 import { MatchScoreBadge, MatchBreakdownBar } from "~/components/MatchScoreBadge";
+import { useEmployerPreview } from "~/components/EmployerPreviewContext";
 
 export const Route = createFileRoute("/jobs/$jobId")({
   loader: async ({ params }) => {
@@ -81,14 +82,13 @@ function JobDetailPage() {
                   {job.title}
                 </h1>
                 {employer && (
-                  <a
-                    href={employer.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 inline-block text-[18px] font-medium text-[#2563EB] transition-colors hover:text-[#1D4ED8]"
+                  <button
+                    type="button"
+                    onClick={() => openModal(employer)}
+                    className="mt-3 inline-block text-left text-[18px] font-medium text-[#2563EB] transition-colors hover:text-[#1D4ED8] cursor-pointer"
                   >
                     {employer.name}
-                  </a>
+                  </button>
                 )}
                 <div className="mt-5 flex flex-wrap items-center gap-3">
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-[#F0F0F0] px-4 py-1.5 text-sm font-medium text-[#4B5563]">

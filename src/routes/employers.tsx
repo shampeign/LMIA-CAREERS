@@ -4,6 +4,7 @@ import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 import { employers, provinces, industries } from "~/data/employers";
 import type { EmployerLMIA } from "~/data/employer-lmia";
+import { useEmployerPreview } from "~/components/EmployerPreviewContext";
 
 export const Route = createFileRoute("/employers")({
   component: EmployerDirectory,
@@ -105,6 +106,8 @@ function getAllNocCodes() {
 // ── Component ──────────────────────────────────────────────
 
 function EmployerDirectory() {
+  const { openModal } = useEmployerPreview();
+
   // Basic filters
   const [search, setSearch] = useState("");
   const [selectedProvince, setSelectedProvince] = useState("");
@@ -924,14 +927,13 @@ function EmployerDirectory() {
                             {initials}
                           </Link>
                           <div className="min-w-0 flex-1">
-                            <a
-                              href={employer.website}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-lg font-bold text-[#0A0A0B] leading-tight transition-colors hover:text-[#2563EB]"
+                            <button
+                              type="button"
+                              onClick={() => openModal(employer)}
+                              className="text-left text-lg font-bold text-[#0A0A0B] leading-tight transition-colors hover:text-[#2563EB] cursor-pointer"
                             >
                               {employer.name}
-                            </a>
+                            </button>
                             <div className="mt-2 flex flex-wrap items-center gap-2">
                               <span className="inline-flex items-center rounded-full bg-[#F0F0F0] px-2.5 py-0.5 text-[11px] font-medium text-[#4B5563]">
                                 {employer.industry}

@@ -8,6 +8,7 @@ import { getProfile } from "~/server/profile";
 import { employers } from "~/data/employers";
 import { provinces } from "~/data/jobs";
 import { MatchScoreBadge, MatchBreakdownBar } from "~/components/MatchScoreBadge";
+import { useEmployerPreview } from "~/components/EmployerPreviewContext";
 import type { Profile } from "~/server/profile";
 
 const industries = [
@@ -47,6 +48,7 @@ function MatchesPage() {
 
 function MatchesContent() {
   const { user } = useUser();
+  const { openModal } = useEmployerPreview();
   const { profile, matches: initialMatches } = Route.useLoaderData();
   const isFreeUser = profile?.plan === "free";
   const [selectedProvince, setSelectedProvince] = useState("");
@@ -191,7 +193,7 @@ function MatchesContent() {
                             </Link>
                           )}
                           <div className="mt-2 flex flex-wrap items-center gap-2 text-[15px] text-[#6B7280]">
-                            {emp && <a href={emp.website} target="_blank" rel="noopener noreferrer" className="font-medium text-[#2563EB] hover:text-[#1D4ED8]">{emp.name}</a>}
+                            {emp && <button type="button" onClick={() => openModal(emp)} className="font-medium text-[#2563EB] hover:text-[#1D4ED8] cursor-pointer">{emp.name}</button>}
                             {emp && <span>·</span>}
                             <span>{match.job.location}</span>
                             <span>·</span>
