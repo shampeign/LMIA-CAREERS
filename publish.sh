@@ -15,6 +15,11 @@ mkdir -p .run
 # the image's pre-built copy), so the first publish installs deps here. No-op
 # once node_modules is current.
 bun install
+
+# Auto-forward Clerk publishable key from Next.js convention to Vite convention.
+# Vite requires VITE_CLERK_PUBLISHABLE_KEY; some environments set NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY.
+export VITE_CLERK_PUBLISHABLE_KEY="${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:-${VITE_CLERK_PUBLISHABLE_KEY:-}}"
+
 bun run build
 setsid nohup bun run start > .run/server.log 2>&1 < /dev/null &
 
