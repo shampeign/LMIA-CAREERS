@@ -4,6 +4,38 @@ import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 import { saveProfile } from "~/server/profile";
 import { useState, useRef } from "react";
+
+const WORK_AUTHORIZATIONS = ["Canadian Citizen", "Permanent Resident", "Work Permit", "Student Visa", "Other"];
+const EDUCATION_LEVELS = ["High School", "Diploma", "Bachelor's", "Master's", "PhD"];
+const EXPERIENCE_LEVELS = ["0-1", "1-3", "3-5", "5-10", "10+"];
+const CANADIAN_PROVINCES = ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Nova Scotia", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Northwest Territories", "Nunavut", "Yukon"];
+const SALARY_RANGES = ["$30K-$50K", "$50K-$70K", "$70K-$90K", "$90K-$120K", "$120K+"];
+const COMMON_SKILLS = ["JavaScript", "Python", "Project Management", "Data Analysis", "Nursing", "Welding", "Truck Driving", "Accounting", "Sales", "Customer Service", "Java", "C#", "SQL", "AWS", "Azure", "Construction", "Electrical", "Plumbing", "Carpentry", "Marketing", "Graphic Design", "Human Resources", "Supply Chain", "Logistics", "Food Service", "Hospitality", "Agriculture", "Mechanical Engineering", "Civil Engineering", "Teaching"];
+const TOTAL_STEPS = 4;
+
+interface OnboardingData {
+  full_name: string;
+  linkedin_url: string;
+  work_authorization: string;
+  education: string;
+  experience: string;
+  skills: string[];
+  preferred_province: string;
+  preferred_salary: string;
+  resume_text: string;
+  resume_filename: string;
+}
+
+const EMPTY_DATA: OnboardingData = {
+  full_name: "", linkedin_url: "", work_authorization: "", education: "", experience: "",
+  skills: [], preferred_province: "", preferred_salary: "", resume_text: "", resume_filename: "",
+};
+
+function computeCompleteness(data: OnboardingData): number {
+  const fields = [!!data.full_name, !!data.work_authorization, !!data.education, !!data.experience, data.skills.length > 0, !!data.preferred_province, !!data.preferred_salary, !!data.resume_text];
+  return Math.round((fields.filter(Boolean).length / fields.length) * 100);
+}
+
 export default function OnboardingPage() {
   return (
     <>

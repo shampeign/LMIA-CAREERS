@@ -5,6 +5,87 @@ import { Footer } from "~/components/Footer";
 import { employers, provinces, industries } from "~/data/employers";
 import type { EmployerLMIA } from "~/data/employer-lmia";
 import { useEmployerPreview } from "~/components/EmployerPreviewContext";
+
+const WAGE_RANGES = [
+  { label: "Any", min: 0, max: Infinity },
+  { label: "$15–20/hr", min: 15, max: 20 },
+  { label: "$20–30/hr", min: 20, max: 30 },
+  { label: "$30–40/hr", min: 30, max: 40 },
+  { label: "$40–50/hr", min: 40, max: 50 },
+  { label: "$50+/hr", min: 50, max: Infinity },
+];
+const APPROVAL_COUNT_RANGES = [
+  { label: "Any", min: 0, max: Infinity },
+  { label: "1–50", min: 1, max: 50 },
+  { label: "50–200", min: 50, max: 200 },
+  { label: "200–500", min: 200, max: 500 },
+  { label: "500+", min: 500, max: Infinity },
+];
+const APPROVAL_RATE_OPTIONS = [
+  { label: "Any", value: 0 },
+  { label: "85%+", value: 85 },
+  { label: "90%+", value: 90 },
+  { label: "95%+", value: 95 },
+];
+const SPONSORSHIP_SCORE_OPTIONS = [
+  { label: "Any", value: 0 },
+  { label: "60+", value: 60 },
+  { label: "70+", value: 70 },
+  { label: "80+", value: 80 },
+  { label: "90+", value: 90 },
+];
+const PROGRAM_STREAMS = [
+  { key: "highWage", label: "High Wage" },
+  { key: "lowWage", label: "Low Wage" },
+  { key: "prStream", label: "PR Stream" },
+  { key: "agriculture", label: "Agriculture" },
+  { key: "globalTalent", label: "Global Talent" },
+  { key: "caregiver", label: "Caregiver" },
+] as const;
+const TEER_LEVELS = [0, 1, 2, 3, 4, 5] as const;
+const SORT_OPTIONS = [
+  { value: "relevance", label: "Default (Relevance)" },
+  { value: "approvals", label: "Most LMIA Approvals" },
+  { value: "approvalRate", label: "Highest Approval Rate" },
+  { value: "sponsorshipScore", label: "Highest Sponsorship Score" },
+  { value: "avgWage", label: "Highest Average Wage" },
+  { value: "name", label: "Company Name (A–Z)" },
+];
+
+// ── Helpers ────────────────────────────────────────────────
+function getSponsorshipColor(score: number | undefined): string {
+  if (score === undefined) return "#9CA3AF";
+  if (score >= 80) return "#16A34A";
+  if (score >= 60) return "#2563EB";
+  if (score >= 40) return "#F59E0B";
+  return "#DC2626";
+}
+function getApprovalRateColor(rate: number | undefined): string {
+  if (rate === undefined) return "#9CA3AF";
+  if (rate >= 95) return "#16A34A";
+  if (rate >= 90) return "#2563EB";
+  if (rate >= 85) return "#F59E0B";
+  return "#DC2626";
+}
+function formatApprovals(n: number | undefined): string {
+  if (n === undefined) return "—";
+  if (n >= 1000) return `${(n / 1000).toFixed(1)}k`;
+  return n.toString();
+}
+function getAllNocCodes() {
+  const codes = new Map<string, string>();
+  for (const e of employers) {
+    if (e.lmia?.topOccupations) {
+      for (const occ of e.lmia.topOccupations) {
+        if (!codes.has(occ.nocCode)) {
+          codes.set(occ.nocCode, occ.nocName);
+        }
+      }
+    }
+  }
+  return Array.from(codes.entries()).map(([code, name]) => ({ code, name }));
+}
+
 export default function EmployerDirectory() {
   const { openModal } = useEmployerPreview();
 

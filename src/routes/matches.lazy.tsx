@@ -8,6 +8,13 @@ import { provinces } from "~/data/jobs";
 import { MatchScoreBadge, MatchBreakdownBar } from "~/components/MatchScoreBadge";
 import { useEmployerPreview } from "~/components/EmployerPreviewContext";
 import type { Profile } from "~/server/profile";
+
+const industries = [
+  "Food Processing", "Oil & Gas", "Technology", "Construction",
+  "Agriculture", "Mining", "Manufacturing", "Transportation",
+  "Retail", "Finance", "Telecommunications",
+] as const;
+
 export default function MatchesPage() {
   return (
     <>

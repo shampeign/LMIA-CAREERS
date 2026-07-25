@@ -6,7 +6,30 @@ import { employers } from "~/data/employers";
 import { jobs as allJobs } from "~/data/jobs";
 import { useState, useEffect } from "react";
 import type { Profile } from "~/server/profile";
+import type { JobMatch } from "~/server/matching";
 import { MatchScoreBadge } from "~/components/MatchScoreBadge";
+
+function computeCompleteness(profile: Profile | null): number {
+  if (!profile) return 0;
+  const fields = [!!profile.full_name, !!profile.work_authorization, !!profile.education, !!profile.experience, (profile.skills?.length ?? 0) > 0, !!profile.preferred_province, !!profile.preferred_salary, !!profile.resume_text];
+  return Math.round((fields.filter(Boolean).length / fields.length) * 100);
+}
+function getMissingFields(profile: Profile | null): string {
+  if (!profile) return "complete your profile";
+  const missing: string[] = [];
+  if (!profile.full_name) missing.push("your name");
+  if (!profile.work_authorization) missing.push("work authorization");
+  if (!profile.education) missing.push("education");
+  if (!profile.experience) missing.push("experience");
+  if (!(profile.skills?.length)) missing.push("skills");
+  if (!profile.preferred_province) missing.push("preferred province");
+  if (!profile.preferred_salary) missing.push("salary range");
+  if (!profile.resume_text) missing.push("resume");
+  if (missing.length === 0) return "";
+  if (missing.length === 1) return `add ${missing[0]}`;
+  return `add ${missing.slice(0, -1).join(", ")} and ${missing[missing.length - 1]}`;
+}
+
 export default function DashboardPage() {
   return (
     <>
