@@ -6,18 +6,26 @@ import { Footer } from "~/components/Footer";
 import { jobs, provinces, jobTypes } from "~/data/jobs";
 import { employers } from "~/data/employers";
 import { getJobMatches, type JobMatch } from "~/server/matching";
+import { getProfile } from "~/server/profile";
+import type { Profile } from "~/server/profile";
 import { MatchScoreBadge } from "~/components/MatchScoreBadge";
 
 export const Route = createFileRoute("/jobs")({
   component: JobListings,
   loader: async () => {
     let matches: JobMatch[] = [];
+    let profile: Profile | null = null;
     try {
       matches = await getJobMatches();
     } catch {
       // Not signed in or no profile
     }
-    return { matches };
+    try {
+      profile = await getProfile();
+    } catch {
+      // Not signed in
+    }
+    return { matches, profile };
   },
 });
 
@@ -53,7 +61,8 @@ function parseSalary(salary: string): number {
 }
 
 function JobListings() {
-  const { matches } = Route.useLoaderData();
+  const { matches, profile } = Route.useLoaderData();
+  const isFreeUser = profile?.plan === "free";
   const [search, setSearch] = useState("");
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedIndustry, setSelectedIndustry] = useState("");
@@ -516,27 +525,50 @@ function JobListings() {
                         </p>
 
                         <div className="mt-6 flex items-center gap-3">
-                          <Link
-                            to="/jobs/$jobId"
-                            params={{ jobId: job.id }}
-                            className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-5 py-2.5 text-[15px] font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
-                          >
-                            View Details
-                            <svg
-                              className="h-4 w-4"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth={2.5}
-                              stroke="currentColor"
-                              aria-hidden="true"
+                          {isFreeUser ? (
+                            <a
+                              href="/#pricing"
+                              className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-5 py-2.5 text-[15px] font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
                             >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                              />
-                            </svg>
-                          </Link>
+                              View Details
+                              <svg
+                                className="h-4 w-4"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={2.5}
+                                stroke="currentColor"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                                />
+                              </svg>
+                            </a>
+                          ) : (
+                            <Link
+                              to="/jobs/$jobId"
+                              params={{ jobId: job.id }}
+                              className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-5 py-2.5 text-[15px] font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
+                            >
+                              View Details
+                              <svg
+                                className="h-4 w-4"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={2.5}
+                                stroke="currentColor"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                                />
+                              </svg>
+                            </Link>
+                          )}
                         </div>
                       </div>
                     );

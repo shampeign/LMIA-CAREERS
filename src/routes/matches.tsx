@@ -48,6 +48,7 @@ function MatchesPage() {
 function MatchesContent() {
   const { user } = useUser();
   const { profile, matches: initialMatches } = Route.useLoaderData();
+  const isFreeUser = profile?.plan === "free";
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedIndustry, setSelectedIndustry] = useState("");
   const [scoreFilter, setScoreFilter] = useState<"all" | "strong" | "good" | "low">("all");
@@ -180,9 +181,15 @@ function MatchesContent() {
                       <div className="flex items-start gap-5">
                         <MatchScoreBadge score={match.matchScore} size="md" />
                         <div>
-                          <Link to="/jobs/$jobId" params={{ jobId: match.job.id }} className="text-xl font-bold text-[#0A0A0B] transition-colors hover:text-[#2563EB]">
-                            {match.job.title}
-                          </Link>
+                          {isFreeUser ? (
+                            <a href="/#pricing" className="text-xl font-bold text-[#0A0A0B] transition-colors hover:text-[#2563EB]">
+                              {match.job.title}
+                            </a>
+                          ) : (
+                            <Link to="/jobs/$jobId" params={{ jobId: match.job.id }} className="text-xl font-bold text-[#0A0A0B] transition-colors hover:text-[#2563EB]">
+                              {match.job.title}
+                            </Link>
+                          )}
                           <div className="mt-2 flex flex-wrap items-center gap-2 text-[15px] text-[#6B7280]">
                             {emp && <Link to="/employers/$slug" params={{ slug: emp.slug }} className="font-medium text-[#2563EB] hover:text-[#1D4ED8]">{emp.name}</Link>}
                             {emp && <span>·</span>}
@@ -194,7 +201,11 @@ function MatchesContent() {
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Link to="/jobs/$jobId" params={{ jobId: match.job.id }} className="rounded-2xl bg-[#2563EB] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1D4ED8]">View Job</Link>
+                        {isFreeUser ? (
+                          <a href="/#pricing" className="rounded-2xl bg-[#2563EB] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1D4ED8]">View Job</a>
+                        ) : (
+                          <Link to="/jobs/$jobId" params={{ jobId: match.job.id }} className="rounded-2xl bg-[#2563EB] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1D4ED8]">View Job</Link>
+                        )}
                         <button onClick={() => setExpandedMatch(isExpanded ? null : match.job.id)} className="rounded-2xl border border-[#E5E7EB] bg-white px-5 py-2.5 text-sm font-medium text-[#0A0A0B] transition-colors hover:bg-[#F8F9FA]">
                           {isExpanded ? "Hide" : "Details"}
                         </button>

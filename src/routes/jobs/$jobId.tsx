@@ -1,54 +1,57 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { SignedIn, SignedOut, useUser } from "@clerk/tanstack-start";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
+import { SignedIn } from "@clerk/tanstack-start";
+import { useState, useEffect } from "react";
 import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 import { jobs } from "~/data/jobs";
 import { employers } from "~/data/employers";
-import { getProfile, type PlanTier } from "~/server/profile";
+import { getProfile } from "~/server/profile";
 import { getJobMatch } from "~/server/matching";
 import type { JobMatch } from "~/server/matching";
 import { MatchScoreBadge, MatchBreakdownBar } from "~/components/MatchScoreBadge";
-import { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/jobs/$jobId")({
   loader: async ({ params }) => {
     const job = jobs.find((j) => j.id === params.jobId);
     if (!job) throw notFound();
-    let match: JobMatch | null = null;
+
+    // Auth & plan check: redirect if not signed in or on free plan
     let profile = null;
-    try {
-      match = await getJobMatch(params.jobId);
-    } catch {
-      // Not signed in or no match data
-    }
     try {
       profile = await getProfile();
     } catch {
       // Not signed in
     }
+
+    if (!profile) {
+      throw redirect({ to: "/sign-in" });
+    }
+
+    if (profile.plan === "free") {
+      throw redirect({ to: "/#pricing" });
+    }
+
+    let match: JobMatch | null = null;
+    try {
+      match = await getJobMatch(params.jobId);
+    } catch {
+      // No match data
+    }
+
     return { job, match, profile };
   },
   component: JobDetailPage,
 });
 
 function JobDetailPage() {
-  const { user } = useUser();
-  const { job, match: initialMatch, profile: initialProfile } = Route.useLoaderData();
+  const { job, match: initialMatch, profile } = Route.useLoaderData();
   const [match, setMatch] = useState<JobMatch | null>(initialMatch);
-  const [plan, setPlan] = useState<PlanTier>("free");
 
   useEffect(() => {
     setMatch(initialMatch);
   }, [initialMatch]);
 
-  useEffect(() => {
-    if (initialProfile) {
-      setPlan(initialProfile.plan || "free");
-    }
-  }, [initialProfile]);
-
   const employer = employers.find((e) => e.slug === job.employerSlug);
-  const hasPaidPlan = plan === "professional" || plan === "premium";
 
   return (
     <>
@@ -105,7 +108,7 @@ function JobDetailPage() {
                 </p>
               </div>
 
-              {/* Sidebar - Match score / CTA */}
+              {/* Sidebar - Match score */}
               <div className="space-y-5">
                 <SignedIn>
                   {match ? (
@@ -146,25 +149,6 @@ function JobDetailPage() {
                     </div>
                   )}
                 </SignedIn>
-                <SignedOut>
-                  <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
-                    <div className="flex items-center gap-2">
-                      <svg className="h-5 w-5 text-[#9CA3AF]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
-                      </svg>
-                      <h3 className="text-sm font-semibold text-[#0A0A0B]">AI Match Score</h3>
-                    </div>
-                    <p className="mt-3 text-sm text-[#6B7280]">
-                      Sign in to see how well your profile matches this job and get personalized recommendations.
-                    </p>
-                    <Link to="/sign-up" className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-[#2563EB] transition-colors hover:text-[#1D4ED8]">
-                      Sign Up to See Your Score
-                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                      </svg>
-                    </Link>
-                  </div>
-                </SignedOut>
 
                 <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
                   <h3 className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">Job Details</h3>
@@ -236,52 +220,19 @@ function JobDetailPage() {
               )}
             </div>
 
-            {/* Apply button - conditionally rendered based on auth + plan */}
+            {/* Apply button — all users reaching this page are on a paid plan */}
             <div className="mt-8 text-center">
-              {/* Signed-out: prompt to sign in */}
-              <SignedOut>
-                <Link
-                  to="/sign-in"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white shadow-sm transition-all hover:bg-[#1D4ED8]"
-                >
-                  Sign in to Apply
-                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
-                  </svg>
-                </Link>
-              </SignedOut>
-
-              {/* Signed-in: plan-gated */}
-              <SignedIn>
-                {hasPaidPlan ? (
-                  <a
-                    href={employer?.careerPage || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white shadow-sm transition-all hover:bg-[#1D4ED8]"
-                  >
-                    Apply on Company Site
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                    </svg>
-                  </a>
-                ) : (
-                  <div className="space-y-4">
-                    <a
-                      href="/#pricing"
-                      className="inline-flex items-center gap-2 rounded-2xl border-2 border-[#D4A853] bg-gradient-to-r from-[#FFF9ED] to-[#FFF3D6] px-8 py-4 text-[16px] font-semibold text-[#8B6914] shadow-sm transition-all hover:from-[#FFF3D6] hover:to-[#FFEDC2] hover:shadow-md"
-                    >
-                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                      </svg>
-                      Upgrade to Apply
-                    </a>
-                    <p className="text-sm text-[#6B7280]">
-                      Free plan lets you browse jobs. Upgrade to Professional ($19/mo) or Premium ($39/mo) to access application links.
-                    </p>
-                  </div>
-                )}
-              </SignedIn>
+              <a
+                href={employer?.careerPage || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white shadow-sm transition-all hover:bg-[#1D4ED8]"
+              >
+                Apply on Company Site
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                </svg>
+              </a>
             </div>
           </div>
         </section>
