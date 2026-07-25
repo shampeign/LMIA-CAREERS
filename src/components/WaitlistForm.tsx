@@ -33,20 +33,20 @@ export function WaitlistForm({ variant = "hero" }: WaitlistFormProps) {
   };
 
   const inputClasses =
-    "w-full rounded-xl border border-gray-200 bg-white px-4 py-3.5 text-gray-900 placeholder-gray-400 shadow-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 dark:focus:border-blue-400";
+    "w-full rounded-2xl border border-[#E5E7EB] bg-white px-5 py-4 text-[16px] text-[#0A0A0B] placeholder-[#9CA3AF] transition-all focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10";
 
   const buttonClasses =
-    "inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-60 dark:focus:ring-offset-gray-900";
+    "inline-flex items-center justify-center rounded-2xl bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white transition-all hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 focus:ring-offset-2 disabled:opacity-60";
 
   if (submitted) {
     return (
       <div
-        className="rounded-2xl border border-green-200 bg-green-50 p-6 text-center dark:border-green-800 dark:bg-green-900/30"
+        className="rounded-3xl border border-green-200 bg-green-50/50 px-8 py-8 text-center"
         role="alert"
       >
-        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-800/50">
+        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-green-100">
           <svg
-            className="h-6 w-6 text-green-600 dark:text-green-400"
+            className="h-7 w-7 text-green-600"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={2}
@@ -56,10 +56,10 @@ export function WaitlistForm({ variant = "hero" }: WaitlistFormProps) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <p className="text-base font-semibold text-green-800 dark:text-green-200">
+        <p className="text-lg font-semibold text-green-800">
           You're on the list!
         </p>
-        <p className="mt-1 text-sm text-green-600 dark:text-green-400">
+        <p className="mt-2 text-[15px] text-green-600">
           We'll notify you when we launch. Stay tuned!
         </p>
       </div>
@@ -88,7 +88,7 @@ export function WaitlistForm({ variant = "hero" }: WaitlistFormProps) {
           {loading ? (
             <span className="flex items-center gap-2">
               <svg
-                className="h-4 w-4 animate-spin"
+                className="h-5 w-5 animate-spin"
                 viewBox="0 0 24 24"
                 fill="none"
                 aria-hidden="true"
@@ -115,11 +115,11 @@ export function WaitlistForm({ variant = "hero" }: WaitlistFormProps) {
         </button>
       </div>
       {error && (
-        <p className="mt-2 text-xs text-red-500 dark:text-red-400" role="alert">
+        <p className="mt-3 text-sm text-red-500" role="alert">
           {error}
         </p>
       )}
-      <p className="mt-2 text-xs text-gray-400 dark:text-gray-500">
+      <p className="mt-3 text-sm text-[#9CA3AF]">
         No spam, ever. We'll only email you when we launch.
       </p>
     </form>

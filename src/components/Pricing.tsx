@@ -49,57 +49,57 @@ const tiers = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="bg-white px-4 py-20 dark:bg-gray-950 sm:py-28">
-      <div className="mx-auto max-w-7xl">
+    <section id="pricing" className="bg-[#FAFAFA] px-6 py-32 sm:py-40">
+      <div className="mx-auto max-w-6xl">
         {/* Section heading */}
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
+          <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
             Pricing
           </span>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+          <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
             Plans for every stage of your{" "}
-            <span className="text-blue-600 dark:text-blue-400">career journey</span>
+            <span className="text-[#2563EB]">career journey</span>
           </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+          <p className="mt-6 text-[18px] leading-relaxed text-[#6B7280]">
             Start free, upgrade when you're ready to accelerate.
           </p>
         </div>
 
         {/* Pricing cards */}
-        <div className="mt-14 grid gap-8 lg:grid-cols-3">
+        <div className="mt-20 grid gap-8 lg:grid-cols-3">
           {tiers.map((tier) => (
             <div
               key={tier.name}
-              className={`relative flex flex-col rounded-2xl border bg-white p-8 shadow-sm transition-all hover:shadow-md dark:bg-gray-800 ${
+              className={`relative flex flex-col rounded-3xl border bg-white p-10 shadow-sm transition-all hover:border-[#E5E7EB] hover:shadow-md ${
                 tier.featured
-                  ? "border-blue-500 shadow-blue-100 ring-2 ring-blue-500 dark:border-blue-400 dark:shadow-blue-900/30 dark:ring-blue-400"
-                  : "border-gray-200 dark:border-gray-700"
+                  ? "border-[#2563EB] ring-1 ring-[#2563EB]"
+                  : "border-[#F0F0F0]"
               }`}
             >
               {tier.featured && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-blue-600 px-4 py-1 text-xs font-semibold text-white shadow-sm">
+                <span className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-[#2563EB] px-5 py-1.5 text-sm font-semibold text-white shadow-sm">
                   Most Popular
                 </span>
               )}
 
               {/* Plan name */}
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white">{tier.name}</h3>
-              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{tier.description}</p>
+              <h3 className="text-xl font-bold text-[#0A0A0B]">{tier.name}</h3>
+              <p className="mt-2 text-[15px] text-[#6B7280]">{tier.description}</p>
 
               {/* Price */}
-              <div className="mt-6">
-                <span className="text-4xl font-bold text-gray-900 dark:text-white">
+              <div className="mt-8">
+                <span className="text-5xl font-bold text-[#0A0A0B]">
                   {tier.price}
                 </span>
-                <span className="text-sm text-gray-500 dark:text-gray-400">{tier.period}</span>
+                <span className="text-[15px] text-[#6B7280]">{tier.period}</span>
               </div>
 
               {/* Features */}
-              <ul className="mt-8 flex-1 space-y-3" role="list">
+              <ul className="mt-10 flex-1 space-y-4" role="list">
                 {tier.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
                     <svg
-                      className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-600 dark:text-blue-400"
+                      className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#2563EB]"
                       fill="none"
                       viewBox="0 0 24 24"
                       strokeWidth={2}
@@ -108,7 +108,7 @@ export function Pricing() {
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">{feature}</span>
+                    <span className="text-[15px] text-[#4B5563]">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -116,10 +116,10 @@ export function Pricing() {
               {/* CTA */}
               <a
                 href="#waitlist"
-                className={`mt-8 block rounded-xl px-6 py-3 text-center text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 ${
+                className={`mt-10 block rounded-2xl px-8 py-4 text-center text-[16px] font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 focus:ring-offset-2 ${
                   tier.featured
-                    ? "bg-blue-600 text-white shadow-sm hover:bg-blue-700 hover:shadow-md"
-                    : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+                    ? "bg-[#2563EB] text-white hover:bg-[#1D4ED8] shadow-sm"
+                    : "border border-[#E5E7EB] bg-white text-[#0A0A0B] hover:bg-[#F8F9FA]"
                 }`}
               >
                 {tier.cta}

@@ -7,15 +7,15 @@ interface MatchScoreBadgeProps {
 }
 
 function getScoreColor(score: number): string {
-  if (score >= 80) return "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400";
-  if (score >= 50) return "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400";
-  return "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400";
+  if (score >= 80) return "bg-[#F0FDF4] text-[#16A34A]";
+  if (score >= 50) return "bg-[#FFFBEB] text-[#D97706]";
+  return "bg-[#FEF2F2] text-[#DC2626]";
 }
 
 function getScoreBorder(score: number): string {
-  if (score >= 80) return "border-green-300 dark:border-green-700";
-  if (score >= 50) return "border-amber-300 dark:border-amber-700";
-  return "border-red-300 dark:border-red-700";
+  if (score >= 80) return "border-[#BBF7D0]";
+  if (score >= 50) return "border-[#FDE68A]";
+  return "border-[#FECACA]";
 }
 
 export function MatchScoreBadge({ score, size = "md", showLabel = false }: MatchScoreBadgeProps) {
@@ -37,58 +37,17 @@ export function MatchScoreBadge({ score, size = "md", showLabel = false }: Match
     <div className="relative inline-flex items-center gap-2">
       <div className={`relative ${sizeClasses[size]} flex-shrink-0`}>
         <svg className="h-full w-full -rotate-90" viewBox="0 0 48 48" aria-hidden="true">
-          {/* Background circle */}
-          <circle
-            cx="24"
-            cy="24"
-            r={radius}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={strokeWidth}
-            className="text-gray-200 dark:text-gray-700"
-          />
-          {/* Progress circle */}
-          <circle
-            cx="24"
-            cy="24"
-            r={radius}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={strokeWidth}
-            strokeLinecap="round"
-            strokeDasharray={circumference}
-            strokeDashoffset={offset}
-            className={
-              score >= 80
-                ? "text-green-500"
-                : score >= 50
-                  ? "text-amber-500"
-                  : "text-red-500"
-            }
-            style={{ transition: "stroke-dashoffset 0.6s ease" }}
-          />
+          <circle cx="24" cy="24" r={radius} fill="none" stroke="currentColor" strokeWidth={strokeWidth} className="text-[#F0F0F0]" />
+          <circle cx="24" cy="24" r={radius} fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={offset}
+            className={score >= 80 ? "text-[#16A34A]" : score >= 50 ? "text-[#D97706]" : "text-[#DC2626]"}
+            style={{ transition: "stroke-dashoffset 0.6s ease" }} />
         </svg>
-        <span
-          className={`absolute inset-0 flex items-center justify-center font-bold ${sizeClasses[size]}`}
-          style={{ color: "currentColor" }}
-        >
-          <span
-            className={
-              score >= 80
-                ? "text-green-700 dark:text-green-400"
-                : score >= 50
-                  ? "text-amber-700 dark:text-amber-400"
-                  : "text-red-700 dark:text-red-400"
-            }
-          >
-            {score}%
-          </span>
+        <span className={`absolute inset-0 flex items-center justify-center font-bold ${sizeClasses[size]}`}>
+          <span className={score >= 80 ? "text-[#16A34A]" : score >= 50 ? "text-[#D97706]" : "text-[#DC2626]"}>{score}%</span>
         </span>
       </div>
       {showLabel && (
-        <span
-          className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${color} ${borderColor}`}
-        >
+        <span className={`rounded-full border px-3 py-0.5 text-xs font-semibold ${color} ${borderColor}`}>
           {score >= 80 ? "Strong Match" : score >= 50 ? "Good Match" : "Low Match"}
         </span>
       )}
@@ -96,35 +55,16 @@ export function MatchScoreBadge({ score, size = "md", showLabel = false }: Match
   );
 }
 
-export function MatchBreakdownBar({
-  label,
-  score,
-  max,
-}: {
-  label: string;
-  score: number;
-  max: number;
-}) {
+export function MatchBreakdownBar({ label, score, max }: { label: string; score: number; max: number }) {
   const pct = max > 0 ? (score / max) * 100 : 0;
   return (
-    <div className="space-y-1">
+    <div className="space-y-1.5">
       <div className="flex items-center justify-between text-xs">
-        <span className="font-medium text-gray-600 dark:text-gray-400">{label}</span>
-        <span className="text-gray-500 dark:text-gray-500">
-          {Math.round(score)}/{max}
-        </span>
+        <span className="font-medium text-[#4B5563]">{label}</span>
+        <span className="text-[#9CA3AF]">{Math.round(score)}/{max}</span>
       </div>
-      <div className="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
-        <div
-          className={`h-1.5 rounded-full transition-all duration-500 ${
-            pct >= 80
-              ? "bg-green-500"
-              : pct >= 50
-                ? "bg-amber-500"
-                : "bg-red-500"
-          }`}
-          style={{ width: `${pct}%` }}
-        />
+      <div className="h-1.5 w-full rounded-full bg-[#F0F0F0]">
+        <div className={`h-1.5 rounded-full transition-all duration-500 ${pct >= 80 ? "bg-[#16A34A]" : pct >= 50 ? "bg-[#D97706]" : "bg-[#DC2626]"}`} style={{ width: `${pct}%` }} />
       </div>
     </div>
   );

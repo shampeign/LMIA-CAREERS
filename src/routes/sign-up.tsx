@@ -11,13 +11,13 @@ function SignUpPage() {
   return (
     <>
       <Navbar />
-      <main className="flex min-h-[calc(100dvh-61px)] items-center justify-center bg-gray-50 px-4 py-12 dark:bg-gray-950">
+      <main className="flex min-h-[calc(100dvh-73px)] items-center justify-center bg-[#FAFAFA] px-6 py-16">
         <div className="w-full max-w-md">
-          <div className="mb-8 text-center">
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+          <div className="mb-10 text-center">
+            <h1 className="text-[32px] font-bold tracking-[-0.03em] text-[#0A0A0B]">
               Create Your Account
             </h1>
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+            <p className="mt-3 text-[16px] text-[#6B7280]">
               Join LMIA Career AI and accelerate your Canadian job search
             </p>
           </div>
@@ -29,15 +29,17 @@ function SignUpPage() {
             appearance={{
               elements: {
                 rootBox: "mx-auto w-full",
-                card: "rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800",
-                headerTitle: "text-gray-900 dark:text-white",
-                headerSubtitle: "text-gray-500 dark:text-gray-400",
+                card: "rounded-3xl shadow-sm border border-[#F0F0F0] bg-white p-8",
+                headerTitle: "text-[#0A0A0B]",
+                headerSubtitle: "text-[#6B7280]",
                 socialButtonsBlockButton:
-                  "border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200",
+                  "border-[#E5E7EB] text-[#0A0A0B] rounded-2xl",
                 formButtonPrimary:
-                  "bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold",
+                  "bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-sm font-semibold rounded-2xl px-6 py-3",
                 footerActionLink:
-                  "text-blue-600 hover:text-blue-700 dark:text-blue-400",
+                  "text-[#2563EB] hover:text-[#1D4ED8]",
+                formFieldInput:
+                  "rounded-2xl border-[#E5E7EB] text-[#0A0A0B] focus:border-[#2563EB] focus:ring-[#2563EB]/10",
               },
             }}
           />

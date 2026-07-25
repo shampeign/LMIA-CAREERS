@@ -45,7 +45,6 @@ const salaryRanges = [
 ];
 
 function parseSalary(salary: string): number {
-  // Extract the first number (e.g., "$52,000 - $65,000" → 52000)
   const match = salary.match(/\$?([\d,]+)/);
   if (match) {
     return parseInt(match[1].replace(/,/g, ""), 10);
@@ -65,7 +64,6 @@ function JobListings() {
   const [savedJobs, setSavedJobs] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
 
-  // Build match lookup map
   const matchMap = useMemo(() => {
     const map = new Map<string, JobMatch>();
     for (const m of matches) {
@@ -152,21 +150,21 @@ function JobListings() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-gray-50 dark:bg-gray-950">
+      <main className="min-h-dvh bg-[#FAFAFA]">
         {/* Hero banner */}
-        <section className="bg-white px-4 py-12 dark:bg-gray-900 sm:py-16">
-          <div className="mx-auto max-w-7xl">
+        <section className="bg-white px-6 py-20">
+          <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
-              <span className="text-sm font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
+              <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
                 Job Board
               </span>
-              <h1 className="mt-3 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+              <h1 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
                 Find Jobs with{" "}
-                <span className="text-blue-600 dark:text-blue-400">
+                <span className="text-[#2563EB]">
                   Verified Employers
                 </span>
               </h1>
-              <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+              <p className="mt-6 text-[18px] leading-relaxed text-[#6B7280]">
                 Browse current job openings from Canadian employers with publicly
                 documented TFWP hiring history. Search, filter, and find your next
                 opportunity.
@@ -176,12 +174,12 @@ function JobListings() {
         </section>
 
         {/* Search & Filters */}
-        <section className="sticky top-[61px] z-40 border-b border-gray-200 bg-white/90 px-4 py-4 backdrop-blur dark:border-gray-700 dark:bg-gray-900/90">
-          <div className="mx-auto max-w-7xl space-y-3">
+        <section className="sticky top-[73px] z-40 border-b border-[#F0F0F0] bg-white/90 px-6 py-5 backdrop-blur-xl">
+          <div className="mx-auto max-w-6xl space-y-3">
             {/* Search bar */}
             <div className="relative">
               <svg
-                className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400"
+                className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#9CA3AF]"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={2}
@@ -202,20 +200,19 @@ function JobListings() {
                   setSearch(e.target.value);
                   setVisibleCount(12);
                 }}
-                className="w-full rounded-xl border border-gray-200 bg-white py-2.5 pl-9 pr-4 text-sm text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500"
+                className="w-full rounded-2xl border border-[#E5E7EB] bg-white py-3 pl-11 pr-4 text-[15px] text-[#0A0A0B] placeholder:text-[#9CA3AF] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
               />
             </div>
 
             {/* Filter pills/dropdowns */}
             <div className="flex flex-wrap items-center gap-2">
-              {/* Province filter */}
               <select
                 value={selectedProvince}
                 onChange={(e) => {
                   setSelectedProvince(e.target.value);
                   setVisibleCount(12);
                 }}
-                className="rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
+                className="rounded-2xl border border-[#E5E7EB] bg-white px-4 py-2.5 text-[15px] text-[#0A0A0B] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
                 aria-label="Filter by province"
               >
                 <option value="">All Provinces</option>
@@ -226,14 +223,13 @@ function JobListings() {
                 ))}
               </select>
 
-              {/* Industry filter */}
               <select
                 value={selectedIndustry}
                 onChange={(e) => {
                   setSelectedIndustry(e.target.value);
                   setVisibleCount(12);
                 }}
-                className="rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
+                className="rounded-2xl border border-[#E5E7EB] bg-white px-4 py-2.5 text-[15px] text-[#0A0A0B] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
                 aria-label="Filter by industry"
               >
                 <option value="">All Industries</option>
@@ -244,14 +240,13 @@ function JobListings() {
                 ))}
               </select>
 
-              {/* Job Type filter */}
               <select
                 value={selectedType}
                 onChange={(e) => {
                   setSelectedType(e.target.value);
                   setVisibleCount(12);
                 }}
-                className="rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
+                className="rounded-2xl border border-[#E5E7EB] bg-white px-4 py-2.5 text-[15px] text-[#0A0A0B] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
                 aria-label="Filter by job type"
               >
                 <option value="">All Types</option>
@@ -262,14 +257,13 @@ function JobListings() {
                 ))}
               </select>
 
-              {/* Salary filter */}
               <select
                 value={selectedSalary}
                 onChange={(e) => {
                   setSelectedSalary(e.target.value);
                   setVisibleCount(12);
                 }}
-                className="rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
+                className="rounded-2xl border border-[#E5E7EB] bg-white px-4 py-2.5 text-[15px] text-[#0A0A0B] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
                 aria-label="Filter by salary range"
               >
                 <option value="">All Salaries</option>
@@ -280,16 +274,15 @@ function JobListings() {
                 ))}
               </select>
 
-              {/* Remote toggle */}
               <button
                 onClick={() => {
                   setRemoteOnly(!remoteOnly);
                   setVisibleCount(12);
                 }}
-                className={`inline-flex items-center gap-1.5 rounded-xl border px-3 py-2 text-sm font-medium transition-colors ${
+                className={`inline-flex items-center gap-1.5 rounded-2xl border px-4 py-2.5 text-[15px] font-medium transition-colors ${
                   remoteOnly
-                    ? "border-blue-600 bg-blue-50 text-blue-700 dark:border-blue-500 dark:bg-blue-900/30 dark:text-blue-400"
-                    : "border-gray-200 bg-white text-gray-600 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+                    ? "border-[#2563EB] bg-[#EFF6FF] text-[#2563EB]"
+                    : "border-[#E5E7EB] bg-white text-[#4B5563] hover:bg-[#F8F9FA]"
                 }`}
               >
                 <svg
@@ -309,11 +302,10 @@ function JobListings() {
                 Remote Only
               </button>
 
-              {/* Clear filters */}
               {hasActiveFilters && (
                 <button
                   onClick={clearFilters}
-                  className="rounded-xl px-4 py-2 text-sm font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200"
+                  className="rounded-2xl px-4 py-2.5 text-[15px] font-medium text-[#6B7280] transition-colors hover:bg-[#F8F9FA] hover:text-[#0A0A0B]"
                 >
                   Clear Filters
                 </button>
@@ -323,24 +315,23 @@ function JobListings() {
         </section>
 
         {/* Results */}
-        <section className="px-4 py-8 sm:py-12">
-          <div className="mx-auto max-w-7xl">
-            {/* Results count */}
-            <div className="mb-6 flex items-center justify-between">
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+        <section className="px-6 py-12">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-8 flex items-center justify-between">
+              <p className="text-[15px] text-[#9CA3AF]">
                 {loading ? (
                   <span className="inline-flex items-center gap-2">
-                    <span className="h-3 w-3 animate-spin rounded-full border-2 border-blue-600 border-t-transparent" />
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#2563EB] border-t-transparent" />
                     Loading jobs...
                   </span>
                 ) : (
                   <>
                     Showing{" "}
-                    <span className="font-semibold text-gray-900 dark:text-white">
+                    <span className="font-semibold text-[#0A0A0B]">
                       {displayed.length}
                     </span>{" "}
                     of{" "}
-                    <span className="font-semibold text-gray-900 dark:text-white">
+                    <span className="font-semibold text-[#0A0A0B]">
                       {filtered.length}
                     </span>{" "}
                     jobs
@@ -348,40 +339,38 @@ function JobListings() {
                 )}
               </p>
               {savedJobs.size > 0 && (
-                <p className="text-sm text-gray-400 dark:text-gray-500">
+                <p className="text-sm text-[#9CA3AF]">
                   {savedJobs.size} saved
                 </p>
               )}
             </div>
 
-            {/* Loading skeleton */}
             {loading && (
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div
                     key={i}
-                    className="animate-pulse rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+                    className="animate-pulse rounded-3xl border border-[#F0F0F0] bg-white p-8"
                   >
                     <div className="space-y-3">
-                      <div className="h-5 w-3/4 rounded bg-gray-200 dark:bg-gray-700" />
-                      <div className="h-4 w-1/2 rounded bg-gray-200 dark:bg-gray-700" />
+                      <div className="h-6 w-3/4 rounded-lg bg-[#F0F0F0]" />
+                      <div className="h-5 w-1/2 rounded-lg bg-[#F0F0F0]" />
                       <div className="flex gap-2">
-                        <div className="h-5 w-16 rounded-full bg-gray-200 dark:bg-gray-700" />
-                        <div className="h-5 w-20 rounded-full bg-gray-200 dark:bg-gray-700" />
+                        <div className="h-6 w-16 rounded-full bg-[#F0F0F0]" />
+                        <div className="h-6 w-20 rounded-full bg-[#F0F0F0]" />
                       </div>
-                      <div className="h-3 w-full rounded bg-gray-200 dark:bg-gray-700" />
-                      <div className="h-3 w-2/3 rounded bg-gray-200 dark:bg-gray-700" />
+                      <div className="h-4 w-full rounded-lg bg-[#F0F0F0]" />
+                      <div className="h-4 w-2/3 rounded-lg bg-[#F0F0F0]" />
                     </div>
                   </div>
                 ))}
               </div>
             )}
 
-            {/* Empty state */}
             {!loading && filtered.length === 0 && (
-              <div className="flex flex-col items-center justify-center py-20 text-center">
+              <div className="flex flex-col items-center justify-center py-24 text-center">
                 <svg
-                  className="h-16 w-16 text-gray-300 dark:text-gray-600"
+                  className="h-16 w-16 text-[#E5E7EB]"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
@@ -394,23 +383,22 @@ function JobListings() {
                     d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
                   />
                 </svg>
-                <h3 className="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
+                <h3 className="mt-6 text-xl font-bold text-[#0A0A0B]">
                   No jobs match your search
                 </h3>
-                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                <p className="mt-2 text-[15px] text-[#6B7280]">
                   Try adjusting your filters or search terms to find more
                   opportunities.
                 </p>
                 <button
                   onClick={clearFilters}
-                  className="mt-4 rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+                  className="mt-6 rounded-2xl bg-[#2563EB] px-6 py-3 text-[15px] font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
                 >
                   Clear All Filters
                 </button>
               </div>
             )}
 
-            {/* Job cards grid */}
             {!loading && filtered.length > 0 && (
               <>
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -421,20 +409,19 @@ function JobListings() {
                     return (
                       <div
                         key={job.id}
-                        className="group relative flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
+                        className="group relative flex flex-col rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm transition-all hover:border-[#E5E7EB] hover:shadow-md"
                       >
-                        {/* Save button */}
                         <button
                           onClick={(e) => {
                             e.preventDefault();
                             toggleSaveJob(job.id);
                           }}
-                          className="absolute right-4 top-4 rounded-full p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-blue-600 dark:hover:bg-gray-700 dark:hover:text-blue-400"
+                          className="absolute right-6 top-6 rounded-full p-2 text-[#9CA3AF] transition-colors hover:bg-[#F8F9FA] hover:text-[#2563EB]"
                           aria-label={isSaved ? "Unsave job" : "Save job"}
                         >
                           {isSaved ? (
                             <svg
-                              className="h-5 w-5 text-blue-600"
+                              className="h-5 w-5 text-[#2563EB]"
                               fill="currentColor"
                               viewBox="0 0 24 24"
                               aria-hidden="true"
@@ -459,32 +446,28 @@ function JobListings() {
                           )}
                         </button>
 
-                        {/* Match score badge for signed-in users */}
                         {jobMatch && (
-                          <div className="absolute right-4 top-14">
+                          <div className="absolute right-6 top-16">
                             <MatchScoreBadge score={jobMatch.matchScore} size="sm" />
                           </div>
                         )}
 
-                        {/* Job title */}
-                        <h3 className="pr-8 text-lg font-bold text-gray-900 dark:text-white">
+                        <h3 className="pr-10 text-lg font-bold text-[#0A0A0B]">
                           {job.title}
                         </h3>
 
-                        {/* Employer name */}
                         {employer && (
                           <Link
                             to="/employers/$slug"
                             params={{ slug: employer.slug }}
-                            className="mt-1 text-sm font-medium text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                            className="mt-1.5 text-[15px] font-medium text-[#2563EB] transition-colors hover:text-[#1D4ED8]"
                           >
                             {employer.name}
                           </Link>
                         )}
 
-                        {/* Badges */}
-                        <div className="mt-3 flex flex-wrap items-center gap-2">
-                          <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+                        <div className="mt-4 flex flex-wrap items-center gap-2">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-[#F0F0F0] px-3 py-1 text-xs font-medium text-[#4B5563]">
                             <svg
                               className="h-3 w-3"
                               fill="none"
@@ -506,22 +489,21 @@ function JobListings() {
                             </svg>
                             {job.location}
                           </span>
-                          <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
+                          <span className="inline-flex items-center rounded-full bg-[#FAFAFA] px-3 py-1 text-xs font-medium text-[#6B7280]">
                             {job.type}
                           </span>
                           {job.remote && (
-                            <span className="inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                            <span className="inline-flex items-center rounded-full bg-[#F0FDF4] px-3 py-1 text-xs font-medium text-[#16A34A]">
                               Remote
                             </span>
                           )}
                         </div>
 
-                        {/* Salary and date */}
-                        <div className="mt-3 flex items-center gap-4 text-sm">
-                          <span className="font-semibold text-green-600 dark:text-green-400">
+                        <div className="mt-4 flex items-center gap-4 text-[15px]">
+                          <span className="font-semibold text-[#16A34A]">
                             {job.salary}
                           </span>
-                          <span className="text-gray-400 dark:text-gray-500">
+                          <span className="text-[#9CA3AF]">
                             {new Date(job.postedDate).toLocaleDateString("en-CA", {
                               month: "short",
                               day: "numeric",
@@ -529,21 +511,19 @@ function JobListings() {
                           </span>
                         </div>
 
-                        {/* Description snippet */}
-                        <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                        <p className="mt-4 line-clamp-2 text-[15px] leading-relaxed text-[#6B7280]">
                           {job.description}
                         </p>
 
-                        {/* Actions */}
-                        <div className="mt-4 flex items-center gap-3">
+                        <div className="mt-6 flex items-center gap-3">
                           <Link
                             to="/jobs/$jobId"
                             params={{ jobId: job.id }}
-                            className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+                            className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-5 py-2.5 text-[15px] font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
                           >
                             View Details
                             <svg
-                              className="h-3.5 w-3.5"
+                              className="h-4 w-4"
                               fill="none"
                               viewBox="0 0 24 24"
                               strokeWidth={2.5}
@@ -563,53 +543,26 @@ function JobListings() {
                   })}
                 </div>
 
-                {/* Load more / Show less */}
                 {hasMore && (
-                  <div className="mt-8 text-center">
+                  <div className="mt-12 text-center">
                     <button
                       onClick={() => setVisibleCount((c) => c + 12)}
-                      className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50 hover:text-blue-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-blue-400"
+                      className="inline-flex items-center gap-2 rounded-2xl border border-[#E5E7EB] bg-white px-6 py-3.5 text-[16px] font-semibold text-[#0A0A0B] transition-colors hover:bg-[#F8F9FA] hover:text-[#2563EB]"
                     >
                       Load More Jobs
-                      <svg
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                        stroke="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                        />
-                      </svg>
+                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
                     </button>
                   </div>
                 )}
 
                 {!hasMore && filtered.length > 12 && (
-                  <div className="mt-8 text-center">
+                  <div className="mt-12 text-center">
                     <button
                       onClick={() => setVisibleCount(12)}
-                      className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+                      className="inline-flex items-center gap-2 rounded-2xl border border-[#E5E7EB] bg-white px-6 py-3.5 text-[16px] font-semibold text-[#0A0A0B] transition-colors hover:bg-[#F8F9FA]"
                     >
                       Show Less
-                      <svg
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                        stroke="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M4.5 15.75l7.5-7.5 7.5 7.5"
-                        />
-                      </svg>
+                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" /></svg>
                     </button>
                   </div>
                 )}

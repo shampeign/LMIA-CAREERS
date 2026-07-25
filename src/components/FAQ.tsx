@@ -41,42 +41,42 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="bg-gray-50 px-4 py-20 dark:bg-gray-900/50 sm:py-28">
+    <section id="faq" className="bg-white px-6 py-32 sm:py-40">
       <div className="mx-auto max-w-3xl">
         {/* Section heading */}
         <div className="text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
+          <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
             FAQ
           </span>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+          <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
             Frequently asked questions
           </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+          <p className="mt-6 text-[18px] leading-relaxed text-[#6B7280]">
             Everything you need to know about LMIA Career AI.
           </p>
         </div>
 
         {/* FAQ items */}
-        <div className="mt-14 space-y-3">
+        <div className="mt-16 space-y-3">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={faq.question}
-                className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all dark:border-gray-700 dark:bg-gray-800"
+                className="overflow-hidden rounded-3xl border border-[#F0F0F0] bg-white shadow-sm transition-all"
               >
                 <button
                   type="button"
                   onClick={() => toggle(idx)}
-                  className="flex w-full items-center justify-between px-6 py-5 text-left"
+                  className="flex w-full items-center justify-between px-8 py-6 text-left"
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${idx}`}
                 >
-                  <span className="pr-4 text-base font-semibold text-gray-900 dark:text-white">
+                  <span className="pr-4 text-[17px] font-semibold text-[#0A0A0B]">
                     {faq.question}
                   </span>
                   <svg
-                    className={`h-5 w-5 flex-shrink-0 text-gray-400 transition-transform duration-200 ${
+                    className={`h-5 w-5 flex-shrink-0 text-[#9CA3AF] transition-transform duration-200 ${
                       isOpen ? "rotate-180" : ""
                     }`}
                     fill="none"
@@ -96,7 +96,7 @@ export function FAQ() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="px-6 pb-5 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                    <p className="px-8 pb-6 text-[16px] leading-relaxed text-[#6B7280]">
                       {faq.answer}
                     </p>
                   </div>

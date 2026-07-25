@@ -23,7 +23,7 @@ export const Route = createRootRoute({
         content:
           "Discover Canadian employers with TFWP hiring history, get AI-matched to jobs, optimize your resume, and land your dream job in Canada.",
       },
-      { name: "theme-color", content: "#2563EB" },
+      { name: "theme-color", content: "#FFFFFF" },
       {
         property: "og:title",
         content: "LMIA Career AI — Find Canadian Employers Who Are Hiring",
@@ -44,17 +44,17 @@ export const Route = createRootRoute({
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap",
       },
     ],
   }),
   notFoundComponent: () => (
-    <div className="flex min-h-dvh items-center justify-center">
+    <div className="flex min-h-dvh items-center justify-center bg-[#FAFAFA]">
       <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+        <h1 className="text-7xl font-bold text-[#0A0A0B]">
           404
         </h1>
-        <p className="mt-2 text-gray-500 dark:text-gray-400">
+        <p className="mt-4 text-lg text-[#6B7280]">
           Page not found
         </p>
       </div>
