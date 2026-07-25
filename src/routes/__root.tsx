@@ -5,6 +5,7 @@ import {
   createRootRoute,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { ClerkAuthProvider } from "~/providers/clerk";
 
 import appCss from "~/styles/app.css?url";
 
@@ -23,7 +24,10 @@ export const Route = createRootRoute({
           "Discover Canadian employers with TFWP hiring history, get AI-matched to jobs, optimize your resume, and land your dream job in Canada.",
       },
       { name: "theme-color", content: "#2563EB" },
-      { property: "og:title", content: "LMIA Career AI — Find Canadian Employers Who Are Hiring" },
+      {
+        property: "og:title",
+        content: "LMIA Career AI — Find Canadian Employers Who Are Hiring",
+      },
       {
         property: "og:description",
         content:
@@ -47,8 +51,12 @@ export const Route = createRootRoute({
   notFoundComponent: () => (
     <div className="flex min-h-dvh items-center justify-center">
       <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">404</h1>
-        <p className="mt-2 text-gray-500 dark:text-gray-400">Page not found</p>
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+          404
+        </h1>
+        <p className="mt-2 text-gray-500 dark:text-gray-400">
+          Page not found
+        </p>
       </div>
     </div>
   ),
@@ -57,9 +65,11 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <RootDocument>
-      <Outlet />
-    </RootDocument>
+    <ClerkAuthProvider>
+      <RootDocument>
+        <Outlet />
+      </RootDocument>
+    </ClerkAuthProvider>
   );
 }
 
