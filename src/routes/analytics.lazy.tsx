@@ -6,6 +6,18 @@ import { employerLMIAData } from "~/data/employer-lmia";
 import { employers } from "~/data/employers";
 import { getProfile } from "~/server/profile";
 import { useMemo, useState, useEffect } from "react";
+
+function SectionHeader({ title, badge }: { title: string; badge: string }) {
+  return (
+    <div className="mb-6 flex items-center justify-between">
+      <h2 className="text-[24px] font-bold text-white">{title}</h2>
+      <span className={`rounded-full px-4 py-1 text-xs font-semibold ${badge === "Free" ? "bg-white/10 text-[#B0B8C4]" : badge === "Pro" ? "bg-[#2563EB]/20 text-[#2563EB]" : "bg-amber-500/10 text-amber-400"}`}>
+        {badge}
+      </span>
+    </div>
+  );
+}
+
 export default function AnalyticsPage() {
   const [isPaid, setIsPaid] = useState(false);
 
