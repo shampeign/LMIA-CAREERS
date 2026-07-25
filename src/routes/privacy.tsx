@@ -3,6 +3,17 @@ import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 
 export const Route = createFileRoute("/privacy")({
+  head: () => ({
+    meta: [
+      { title: "Privacy Policy — LMIA Career AI" },
+      {
+        name: "description",
+        content:
+          "Privacy Policy for LMIA Career AI. Learn how we collect, use, and protect your personal data on our employer intelligence platform.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "https://lmiacareersai.com/privacy" }],
+  }),
   component: PrivacyPolicy,
 });
 

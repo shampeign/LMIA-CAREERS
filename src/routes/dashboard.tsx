@@ -10,6 +10,17 @@ import type { Profile } from "~/server/profile";
 import { MatchScoreBadge } from "~/components/MatchScoreBadge";
 
 export const Route = createFileRoute("/dashboard")({
+  head: () => ({
+    meta: [
+      { title: "Dashboard — LMIA Career AI" },
+      {
+        name: "description",
+        content:
+          "Your personal LMIA Career AI dashboard. View your profile, job matches, saved employers, and application tracking — all in one place.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "https://lmiacareersai.com/dashboard" }],
+  }),
   component: DashboardPage,
   loader: async () => {
     try {

@@ -7,6 +7,17 @@ import type { EmployerLMIA } from "~/data/employer-lmia";
 import { useEmployerPreview } from "~/components/EmployerPreviewContext";
 
 export const Route = createFileRoute("/employers")({
+  head: () => ({
+    meta: [
+      { title: "Employer Directory — Canadian LMIA Employers | LMIA Career AI" },
+      {
+        name: "description",
+        content:
+          "Browse 30+ Canadian employers with documented LMIA/TFWP hiring history. Filter by province, industry, wage range, sponsorship score, and approval rate.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "https://lmiacareersai.com/employers" }],
+  }),
   component: EmployerDirectory,
 });
 

@@ -8,6 +8,17 @@ import { getProfile } from "~/server/profile";
 import { useMemo, useState, useEffect } from "react";
 
 export const Route = createFileRoute("/analytics")({
+  head: () => ({
+    meta: [
+      { title: "LMIA Analytics — Employer Intelligence Dashboard | LMIA Career AI" },
+      {
+        name: "description",
+        content:
+          "Explore LMIA employer analytics: stream breakdowns, approval trends, wage distributions, provincial heatmaps, and top occupations across Canadian TFWP data.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "https://lmiacareersai.com/analytics" }],
+  }),
   component: AnalyticsPage,
 });
 

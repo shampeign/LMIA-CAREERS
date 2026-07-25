@@ -4,6 +4,16 @@ import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 
 export const Route = createFileRoute("/sign-up")({
+  head: () => ({
+    meta: [
+      { title: "Sign Up — LMIA Career AI" },
+      {
+        name: "description",
+        content: "Create your free LMIA Career AI account. Get AI-matched to Canadian LMIA jobs, optimize your resume, and track applications.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "https://lmiacareersai.com/sign-up" }],
+  }),
   component: SignUpPage,
 });
 

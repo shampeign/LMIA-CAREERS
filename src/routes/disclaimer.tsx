@@ -3,6 +3,17 @@ import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 
 export const Route = createFileRoute("/disclaimer")({
+  head: () => ({
+    meta: [
+      { title: "Disclaimer — LMIA Career AI" },
+      {
+        name: "description",
+        content:
+          "Disclaimer for LMIA Career AI. We do not provide immigration advice. Our platform uses publicly available data for informational purposes only.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "https://lmiacareersai.com/disclaimer" }],
+  }),
   component: Disclaimer,
 });
 

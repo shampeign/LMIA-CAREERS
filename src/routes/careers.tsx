@@ -3,6 +3,17 @@ import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 
 export const Route = createFileRoute("/careers")({
+  head: () => ({
+    meta: [
+      { title: "Careers — LMIA Career AI" },
+      {
+        name: "description",
+        content:
+          "Join the LMIA Career AI team. We're on a mission to bring transparency to Canadian employer hiring data for TFWP job seekers worldwide.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "https://lmiacareersai.com/careers" }],
+  }),
   component: CareersPage,
 });
 

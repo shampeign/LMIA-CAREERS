@@ -18,6 +18,17 @@ const industries = [
 ] as const;
 
 export const Route = createFileRoute("/matches")({
+  head: () => ({
+    meta: [
+      { title: "Your Job Matches — LMIA Career AI" },
+      {
+        name: "description",
+        content:
+          "View your AI-powered job matches from Canadian LMIA employers. Compare match scores, skill breakdowns, and find your best-fit opportunities.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "https://lmiacareersai.com/matches" }],
+  }),
   component: MatchesPage,
   loader: async () => {
     try {

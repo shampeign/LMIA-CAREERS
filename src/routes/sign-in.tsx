@@ -4,6 +4,16 @@ import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 
 export const Route = createFileRoute("/sign-in")({
+  head: () => ({
+    meta: [
+      { title: "Sign In — LMIA Career AI" },
+      {
+        name: "description",
+        content: "Sign in to your LMIA Career AI account to access job matches, employer analytics, and AI-powered career tools.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "https://lmiacareersai.com/sign-in" }],
+  }),
   component: SignInPage,
 });
 

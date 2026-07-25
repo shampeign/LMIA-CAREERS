@@ -12,6 +12,17 @@ import { MatchScoreBadge } from "~/components/MatchScoreBadge";
 import { useEmployerPreview } from "~/components/EmployerPreviewContext";
 
 export const Route = createFileRoute("/jobs")({
+  head: () => ({
+    meta: [
+      { title: "Job Search — LMIA Career AI" },
+      {
+        name: "description",
+        content:
+          "Search 62+ jobs from Canadian LMIA employers. Filter by province, job type, wage range, and match score. Find your next opportunity in Canada.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "https://lmiacareersai.com/jobs" }],
+  }),
   component: JobListings,
   loader: async () => {
     let matches: JobMatch[] = [];

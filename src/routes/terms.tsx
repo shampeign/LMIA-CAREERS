@@ -3,6 +3,17 @@ import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 
 export const Route = createFileRoute("/terms")({
+  head: () => ({
+    meta: [
+      { title: "Terms of Service — LMIA Career AI" },
+      {
+        name: "description",
+        content:
+          "Terms of Service for LMIA Career AI. Read our terms and conditions for using our Canadian employer intelligence platform.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "https://lmiacareersai.com/terms" }],
+  }),
   component: TermsOfService,
 });
 

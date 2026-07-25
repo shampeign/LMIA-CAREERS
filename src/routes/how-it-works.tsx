@@ -4,6 +4,17 @@ import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 
 export const Route = createFileRoute("/how-it-works")({
+  head: () => ({
+    meta: [
+      { title: "How It Works — LMIA Career AI" },
+      {
+        name: "description",
+        content:
+          "Learn how LMIA Career AI works: discover LMIA employers, get AI-matched to jobs, optimize your resume, and track your applications — all in one platform.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "https://lmiacareersai.com/how-it-works" }],
+  }),
   component: HowItWorksPage,
 });
 

@@ -11,30 +11,28 @@ import { EmployerPreviewModal } from "~/components/EmployerPreviewModal";
 
 import appCss from "~/styles/app.css?url";
 
+const DEFAULT_TITLE = "LMIA Career AI — Canada's LMIA Employer Intelligence Platform";
+const DEFAULT_DESCRIPTION =
+  "Discover Canadian employers with TFWP hiring history. Browse 30+ employers, 62+ jobs, LMIA analytics, sponsorship scores, and AI-powered job matching.";
+
 export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      {
-        title:
-          "LMIA Career AI — Find Canadian Employers Who Are Hiring",
-      },
-      {
-        name: "description",
-        content:
-          "Discover Canadian employers with TFWP hiring history, get AI-matched to jobs, optimize your resume, and land your dream job in Canada.",
-      },
+      { title: DEFAULT_TITLE },
+      { name: "description", content: DEFAULT_DESCRIPTION },
       { name: "theme-color", content: "#FFFFFF" },
-      {
-        property: "og:title",
-        content: "LMIA Career AI — Find Canadian Employers Who Are Hiring",
-      },
-      {
-        property: "og:description",
-        content:
-          "Discover Canadian employers with TFWP hiring history, get AI-matched to jobs, optimize your resume, and land your dream job in Canada.",
-      },
+      { name: "robots", content: "index, follow" },
+      // Open Graph
+      { property: "og:title", content: DEFAULT_TITLE },
+      { property: "og:description", content: DEFAULT_DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "LMIA Career AI" },
+      // Twitter Card
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: DEFAULT_TITLE },
+      { name: "twitter:description", content: DEFAULT_DESCRIPTION },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -83,6 +81,21 @@ function RootDocument({ children }: { children: ReactNode }) {
     <html lang="en" className="scroll-smooth">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              name: "LMIA Career AI",
+              description:
+                "Canada's LMIA employer intelligence platform — discover employers with TFWP hiring history, get AI-matched to jobs, optimize your resume, and land your dream job in Canada.",
+              applicationCategory: "Employment",
+              operatingSystem: "Web",
+              url: "https://lmiacareersai.com",
+            }),
+          }}
+        />
       </head>
       <body className="font-sans">
         {children}

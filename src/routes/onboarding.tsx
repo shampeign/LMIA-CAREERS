@@ -6,6 +6,17 @@ import { saveProfile } from "~/server/profile";
 import { useState, useRef } from "react";
 
 export const Route = createFileRoute("/onboarding")({
+  head: () => ({
+    meta: [
+      { title: "Complete Your Profile — LMIA Career AI" },
+      {
+        name: "description",
+        content:
+          "Complete your LMIA Career AI profile to get personalized job matches. Tell us about your skills, experience, and preferences for Canadian job opportunities.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "https://lmiacareersai.com/onboarding" }],
+  }),
   component: OnboardingPage,
 });
 

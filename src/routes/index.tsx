@@ -10,6 +10,19 @@ import { FAQ } from "~/components/FAQ";
 import { Footer } from "~/components/Footer";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      {
+        title: "LMIA Career AI — Find Canadian Employers Who Are Hiring",
+      },
+      {
+        name: "description",
+        content:
+          "Discover Canadian employers with TFWP hiring history. Browse 30+ employers, 62+ jobs, LMIA analytics, sponsorship scores, and AI-powered job matching.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "https://lmiacareersai.com" }],
+  }),
   component: Home,
 });
 

@@ -41,6 +41,15 @@ export const Route = createFileRoute("/jobs/$jobId")({
 
     return { job, match, profile };
   },
+  head: ({ loaderData }) => ({
+    meta: [
+      { title: `${loaderData.job.title} — LMIA Career AI` },
+      {
+        name: "description",
+        content: `${loaderData.job.title} at a Canadian LMIA employer. ${loaderData.job.location}, ${loaderData.job.type}. View match score, requirements, and apply on LMIA Career AI.`,
+      },
+    ],
+  }),
   component: JobDetailPage,
 });
 

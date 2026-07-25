@@ -31,6 +31,15 @@ export const Route = createFileRoute("/employers/$slug")({
     const lmia = employerLMIAData[employer.slug] ?? null;
     return { employer, lmia, profile };
   },
+  head: ({ loaderData }) => ({
+    meta: [
+      { title: `${loaderData.employer.name} — LMIA Profile & Analytics | LMIA Career AI` },
+      {
+        name: "description",
+        content: `${loaderData.employer.name} — LMIA employer profile with TFWP hiring history, occupations, wage data, approval trends, and active job listings. Based on publicly available Canadian government data.`,
+      },
+    ],
+  }),
   component: EmployerProfile,
 });
 
