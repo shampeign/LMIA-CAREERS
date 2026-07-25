@@ -7,6 +7,48 @@ import { employers } from "~/data/employers";
 import { getProfile } from "~/server/profile";
 import { useMemo, useState, useEffect } from "react";
 
+// ── Colour palette ───────────────────────────────────────────
+const STREAM_COLORS: Record<string, string> = {
+  highWage: "#2563EB",
+  lowWage: "#F59E0B",
+  prStream: "#10B981",
+  agriculture: "#8B5CF6",
+  globalTalent: "#EC4899",
+  caregiver: "#06B6D4",
+};
+const STREAM_LABELS: Record<string, string> = {
+  highWage: "High Wage",
+  lowWage: "Low Wage",
+  prStream: "PR Stream",
+  agriculture: "Agriculture",
+  globalTalent: "Global Talent",
+  caregiver: "Caregiver",
+};
+
+// ── Helpers ──────────────────────────────────────────────────
+function fmt(n: number): string {
+  return n.toLocaleString("en-CA");
+}
+function fmtPct(n: number): string {
+  return n.toFixed(1) + "%";
+}
+function fmtWage(n: number): string {
+  return "$" + n.toFixed(2) + "/hr";
+}
+
+// ── Lock Overlay Component ───────────────────────────────────
+function LockOverlay({ rows = 5 }: { rows?: number }) {
+  return (
+    <div>
+      <div className="relative z-10 pb-8 pt-20 text-center">
+        <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm font-medium text-[#6B7280]">
+          🔒 Upgrade to unlock full data
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function SectionHeader({ title, badge }: { title: string; badge: string }) {
   return (
     <div className="mb-6 flex items-center justify-between">

@@ -4,6 +4,9 @@ import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 import { employers } from "~/data/employers";
 import type { EmployerLMIA } from "~/data/employer-lmia";
+
+type Tab = "overview" | "occupations" | "wages" | "history" | "jobs";
+
 export default function EmployerProfile() {
   const routeApi = getRouteApi("/employers/$slug");
   const { employer, lmia } = routeApi.useLoaderData();
