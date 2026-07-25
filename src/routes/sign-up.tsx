@@ -25,7 +25,7 @@ function SignUpPage() {
             routing="path"
             path="/sign-up"
             signInUrl="/sign-in"
-            afterSignUpUrl="/dashboard"
+            afterSignUpUrl="/onboarding"
             appearance={{
               elements: {
                 rootBox: "mx-auto w-full",

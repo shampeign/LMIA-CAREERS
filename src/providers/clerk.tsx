@@ -20,7 +20,7 @@ export function ClerkAuthProvider({ children }: { children: ReactNode }) {
       signInUrl="/sign-in"
       signUpUrl="/sign-up"
       afterSignInUrl="/dashboard"
-      afterSignUpUrl="/dashboard"
+      afterSignUpUrl="/onboarding"
     >
       {children}
     </ClerkProvider>

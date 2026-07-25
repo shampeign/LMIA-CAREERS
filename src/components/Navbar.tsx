@@ -85,6 +85,12 @@ export function Navbar() {
             >
               Dashboard
             </Link>
+            <Link
+              to="/onboarding"
+              className="rounded-xl px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-blue-600 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-blue-400"
+            >
+              Profile
+            </Link>
             <UserButton
               afterSignOutUrl="/"
               appearance={{
@@ -192,6 +198,13 @@ export function Navbar() {
                 className="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-blue-400"
               >
                 Dashboard
+              </Link>
+              <Link
+                to="/onboarding"
+                onClick={() => setMobileOpen(false)}
+                className="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-blue-400"
+              >
+                Profile
               </Link>
               <div className="mt-2 px-3">
                 <UserButton
