@@ -18,6 +18,17 @@ function SectionHeader({ title, badge }: { title: string; badge: string }) {
   );
 }
 
+function StatCard({ label, value, subtitle, trend }: { label: string; value: string; subtitle: string; trend: string }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+      <p className="text-sm text-[#B0B8C4]">{label}</p>
+      <p className="mt-2 text-[28px] font-bold text-white">{value}</p>
+      <p className="mt-1 text-xs text-[#6B7280]">{subtitle}</p>
+      {trend && <p className="mt-2 text-xs font-medium text-[#2563EB]">{trend}</p>}
+    </div>
+  );
+}
+
 export default function AnalyticsPage() {
   const [isPaid, setIsPaid] = useState(false);
 
