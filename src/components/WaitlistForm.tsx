@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { submitWaitlistEmail } from "~/server/waitlist";
 
 interface WaitlistFormProps {
   variant?: "hero" | "cta";
@@ -8,16 +9,27 @@ export function WaitlistForm({ variant = "hero" }: WaitlistFormProps) {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
 
     setLoading(true);
-    // Simulate submission delay
-    await new Promise((r) => setTimeout(r, 800));
-    setLoading(false);
-    setSubmitted(true);
+    setError(null);
+
+    try {
+      const result = await submitWaitlistEmail({ data: email.trim() });
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch (err: any) {
+      setError(err?.message ?? "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputClasses =
@@ -102,6 +114,11 @@ export function WaitlistForm({ variant = "hero" }: WaitlistFormProps) {
           )}
         </button>
       </div>
+      {error && (
+        <p className="mt-2 text-xs text-red-500 dark:text-red-400" role="alert">
+          {error}
+        </p>
+      )}
       <p className="mt-2 text-xs text-gray-400 dark:text-gray-500">
         No spam, ever. We'll only email you when we launch.
       </p>
