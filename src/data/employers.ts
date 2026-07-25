@@ -32,6 +32,7 @@ export interface Employer {
   locations: EmployerLocation[];
   hiringHistory: HiringRecord[];
   openPositions: OpenPosition[];
+  lmia?: import("./employer-lmia").EmployerLMIA;
 }
 
 export const employers: Employer[] = [
