@@ -1,12 +1,24 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { SignedIn, SignedOut } from "@clerk/tanstack-start";
 import { useState, useMemo, useEffect } from "react";
 import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 import { jobs, provinces, jobTypes } from "~/data/jobs";
 import { employers } from "~/data/employers";
+import { getJobMatches, type JobMatch } from "~/server/matching";
+import { MatchScoreBadge } from "~/components/MatchScoreBadge";
 
 export const Route = createFileRoute("/jobs")({
   component: JobListings,
+  loader: async () => {
+    let matches: JobMatch[] = [];
+    try {
+      matches = await getJobMatches();
+    } catch {
+      // Not signed in or no profile
+    }
+    return { matches };
+  },
 });
 
 const industries = [
@@ -42,6 +54,7 @@ function parseSalary(salary: string): number {
 }
 
 function JobListings() {
+  const { matches } = Route.useLoaderData();
   const [search, setSearch] = useState("");
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedIndustry, setSelectedIndustry] = useState("");
@@ -51,6 +64,15 @@ function JobListings() {
   const [visibleCount, setVisibleCount] = useState(12);
   const [savedJobs, setSavedJobs] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
+
+  // Build match lookup map
+  const matchMap = useMemo(() => {
+    const map = new Map<string, JobMatch>();
+    for (const m of matches) {
+      map.set(m.job.id, m);
+    }
+    return map;
+  }, [matches]);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 300);
@@ -395,6 +417,7 @@ function JobListings() {
                   {displayed.map((job) => {
                     const employer = getEmployer(job.employerSlug);
                     const isSaved = savedJobs.has(job.id);
+                    const jobMatch = matchMap.get(job.id);
                     return (
                       <div
                         key={job.id}
@@ -435,6 +458,13 @@ function JobListings() {
                             </svg>
                           )}
                         </button>
+
+                        {/* Match score badge for signed-in users */}
+                        {jobMatch && (
+                          <div className="absolute right-4 top-14">
+                            <MatchScoreBadge score={jobMatch.matchScore} size="sm" />
+                          </div>
+                        )}
 
                         {/* Job title */}
                         <h3 className="pr-8 text-lg font-bold text-gray-900 dark:text-white">

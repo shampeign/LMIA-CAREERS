@@ -3,18 +3,28 @@ import { SignedIn, SignedOut, SignInButton, useUser } from "@clerk/tanstack-star
 import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 import { getProfile } from "~/server/profile";
+import { getJobMatches, type JobMatch } from "~/server/matching";
 import { employers } from "~/data/employers";
 import { useState, useEffect } from "react";
 import type { Profile } from "~/server/profile";
+import { MatchScoreBadge } from "~/components/MatchScoreBadge";
 
 export const Route = createFileRoute("/dashboard")({
   component: DashboardPage,
   loader: async () => {
     try {
       const profile = await getProfile();
-      return { profile };
+      let matches: JobMatch[] = [];
+      if (profile) {
+        try {
+          matches = await getJobMatches();
+        } catch {
+          // getJobMatches will return [] if no profile
+        }
+      }
+      return { profile, matches };
     } catch {
-      return { profile: null };
+      return { profile: null, matches: [] };
     }
   },
 });
@@ -76,13 +86,15 @@ function DashboardPage() {
 
 function DashboardContent() {
   const { user } = useUser();
-  const { profile: initialProfile } = Route.useLoaderData();
+  const { profile: initialProfile, matches: initialMatches } = Route.useLoaderData();
   const [profile, setProfile] = useState<Profile | null>(initialProfile);
+  const [matches, setMatches] = useState<JobMatch[]>(initialMatches);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const completeness = computeCompleteness(profile);
   const missingText = getMissingFields(profile);
   const hasProfile = !!profile;
+  const hasSkills = hasProfile && (profile?.skills?.length ?? 0) > 0;
   const needsOnboarding = !hasProfile || completeness < 30;
 
   const userName =
@@ -92,8 +104,12 @@ function DashboardContent() {
     setProfile(initialProfile);
   }, [initialProfile]);
 
-  // Recent employer matches — pick 4 random employers
-  const matchedEmployers = employers.slice(0, 4);
+  useEffect(() => {
+    setMatches(initialMatches);
+  }, [initialMatches]);
+
+  const topMatches = matches.slice(0, 5);
+  const matchCount = matches.length;
 
   const navItems = [
     {
@@ -113,6 +129,15 @@ function DashboardContent() {
         </svg>
       ),
       to: "/onboarding",
+    },
+    {
+      label: "Best Matches",
+      icon: (
+        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
+        </svg>
+      ),
+      to: "/matches",
     },
     {
       label: "Saved Jobs",
@@ -278,7 +303,7 @@ function DashboardContent() {
             />
             <StatCard
               label="Jobs Matched"
-              value="12"
+              value={String(matchCount)}
               icon={
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -312,56 +337,102 @@ function DashboardContent() {
           <div className="grid gap-6 lg:grid-cols-3">
             {/* Main column */}
             <div className="space-y-6 lg:col-span-2">
-              {/* Recent employer matches */}
+              {/* Top Job Matches */}
               <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
                 <div className="mb-4 flex items-center justify-between">
                   <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    Recent Employer Matches
+                    Top Job Matches
                   </h2>
                   <Link
-                    to="/employers"
+                    to="/matches"
                     className="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
                   >
-                    View All
+                    View All Matches
                   </Link>
                 </div>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {matchedEmployers.map((employer) => (
+
+                {!hasSkills && hasProfile && (
+                  <div className="mb-4 rounded-xl border border-blue-200 bg-blue-50 p-4 dark:border-blue-900/40 dark:bg-blue-900/20">
+                    <p className="text-sm text-blue-800 dark:text-blue-300">
+                      <strong>Complete your profile</strong> with skills and preferences to see your personalized job matches.
+                    </p>
                     <Link
-                      key={employer.slug}
-                      to="/employers/$slug"
-                      params={{ slug: employer.slug }}
-                      className="group block rounded-xl border border-gray-100 bg-gray-50 p-4 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-sm dark:border-gray-700 dark:bg-gray-800/50 dark:hover:border-blue-800"
+                      to="/onboarding"
+                      className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
                     >
-                      <div className="flex items-start gap-3">
-                        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-blue-100 text-xs font-bold text-blue-700 dark:bg-blue-900/40 dark:text-blue-300">
-                          {employer.name
-                            .split(" ")
-                            .map((w) => w[0])
-                            .join("")
-                            .slice(0, 2)
-                            .toUpperCase()}
-                        </div>
-                        <div className="min-w-0">
-                          <h3 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
-                            {employer.name}
-                          </h3>
-                          <div className="mt-1 flex flex-wrap gap-1.5">
-                            <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600 dark:bg-gray-700 dark:text-gray-300">
-                              {employer.industry}
-                            </span>
-                            <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
-                              {employer.province}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="mt-3 line-clamp-2 text-xs text-gray-500 dark:text-gray-400">
-                        {employer.description}
-                      </p>
+                      Add Skills & Preferences
+                      <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                      </svg>
                     </Link>
-                  ))}
-                </div>
+                  </div>
+                )}
+
+                {!hasProfile && (
+                  <div className="mb-4 rounded-xl border border-blue-200 bg-blue-50 p-4 dark:border-blue-900/40 dark:bg-blue-900/20">
+                    <p className="text-sm text-blue-800 dark:text-blue-300">
+                      <strong>Complete your profile</strong> to get AI-powered job matches tailored to your skills and experience.
+                    </p>
+                    <Link
+                      to="/onboarding"
+                      className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                    >
+                      Set Up Your Profile
+                      <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                      </svg>
+                    </Link>
+                  </div>
+                )}
+
+                {hasSkills && topMatches.length > 0 && (
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {topMatches.map((match) => {
+                      const emp = employers.find((e) => e.slug === match.job.employerSlug);
+                      return (
+                        <Link
+                          key={match.job.id}
+                          to="/jobs/$jobId"
+                          params={{ jobId: match.job.id }}
+                          className="group block rounded-xl border border-gray-100 bg-gray-50 p-4 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-sm dark:border-gray-700 dark:bg-gray-800/50 dark:hover:border-blue-800"
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className="flex-shrink-0">
+                              <MatchScoreBadge score={match.matchScore} size="sm" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <h3 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+                                {match.job.title}
+                              </h3>
+                              <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+                                {emp?.name || "Employer"}
+                              </p>
+                              <div className="mt-1.5 flex flex-wrap gap-1.5">
+                                <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+                                  {match.job.location}
+                                </span>
+                                <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
+                                  {match.job.category}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {hasSkills && topMatches.length === 0 && (
+                  <div className="py-8 text-center">
+                    <svg className="mx-auto h-12 w-12 text-gray-300 dark:text-gray-600" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+                    <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">
+                      No job matches found. Try adding more skills to your profile.
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* Recent activity */}

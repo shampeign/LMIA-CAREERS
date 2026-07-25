@@ -1,26 +1,52 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useState } from "react";
+import { SignedIn, SignedOut } from "@clerk/tanstack-start";
+import { useState, useEffect } from "react";
 import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 import { jobs } from "~/data/jobs";
 import { employers } from "~/data/employers";
+import { getJobMatch, type JobMatch } from "~/server/matching";
+import { MatchScoreBadge, MatchBreakdownBar } from "~/components/MatchScoreBadge";
 
 export const Route = createFileRoute("/jobs/$jobId")({
-  loader: ({ params }) => {
+  loader: async ({ params }) => {
     const job = jobs.find((j) => j.id === params.jobId);
     if (!job) throw notFound();
     const employer = employers.find((e) => e.slug === job.employerSlug);
     const relatedJobs = jobs
       .filter((j) => j.id !== job.id && j.category === job.category)
       .slice(0, 3);
-    return { job, employer, relatedJobs };
+    // Try to get match, but don't fail if user isn't logged in
+    let match: JobMatch | null = null;
+    try {
+      match = await getJobMatch({ data: { jobId: params.jobId } });
+    } catch {
+      // User not authenticated or no profile
+    }
+    return { job, employer, relatedJobs, match };
   },
   component: JobDetail,
 });
 
 function JobDetail() {
-  const { job, employer, relatedJobs } = Route.useLoaderData();
+  const { job, employer, relatedJobs, match } = Route.useLoaderData();
   const [saved, setSaved] = useState(false);
+  const [localMatch, setLocalMatch] = useState<JobMatch | null>(match ?? null);
+
+  useEffect(() => {
+    setLocalMatch(match ?? null);
+  }, [match]);
+
+  // Re-fetch match on client side if needed
+  useEffect(() => {
+    if (!localMatch) {
+      import("~/server/matching").then(({ getJobMatch }) => {
+        getJobMatch({ data: { jobId: job.id } }).then((m) => {
+          if (m) setLocalMatch(m);
+        }).catch(() => {});
+      });
+    }
+  }, []);
 
   if (!employer) {
     return (
@@ -401,52 +427,119 @@ function JobDetail() {
                   </Link>
                 </div>
 
-                {/* AI Match Score placeholder */}
-                <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                  <div className="flex items-center gap-2">
-                    <svg
-                      className="h-5 w-5 text-purple-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2}
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"
-                      />
-                    </svg>
-                    <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
-                      AI Match Score
-                    </h3>
+                {/* AI Match Score */}
+                <SignedIn>
+                  <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                    <div className="flex items-center gap-2">
+                      <svg
+                        className="h-5 w-5 text-purple-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"
+                        />
+                      </svg>
+                      <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
+                        AI Match Score
+                      </h3>
+                    </div>
+                    {localMatch ? (
+                      <div className="mt-4 space-y-4">
+                        <div className="flex items-center gap-3">
+                          <MatchScoreBadge score={localMatch.matchScore} size="lg" showLabel />
+                        </div>
+                        <div className="space-y-2">
+                          <MatchBreakdownBar label="Skills" score={localMatch.breakdown.skillsScore} max={40} />
+                          <MatchBreakdownBar label="Experience" score={localMatch.breakdown.experienceScore} max={20} />
+                          <MatchBreakdownBar label="Education" score={localMatch.breakdown.educationScore} max={15} />
+                          <MatchBreakdownBar label="Location" score={localMatch.breakdown.locationScore} max={15} />
+                          <MatchBreakdownBar label="Salary" score={localMatch.breakdown.salaryScore} max={10} />
+                        </div>
+                        {/* Matched & Missing Skills */}
+                        {localMatch.matchedSkills.length > 0 && (
+                          <div>
+                            <p className="text-xs font-semibold text-green-700 dark:text-green-400">Matched Skills</p>
+                            <div className="mt-1 flex flex-wrap gap-1">
+                              {localMatch.matchedSkills.map((s, i) => (
+                                <span key={i} className="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                  {s}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {localMatch.missingSkills.length > 0 && (
+                          <div>
+                            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">Skills to Develop</p>
+                            <div className="mt-1 flex flex-wrap gap-1">
+                              {localMatch.missingSkills.map((s, i) => (
+                                <span key={i} className="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-500 dark:bg-gray-700 dark:text-gray-400">
+                                  {s}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="mt-3 space-y-3">
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          Complete your profile with skills and preferences to see your match score.
+                        </p>
+                        <Link
+                          to="/onboarding"
+                          className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                        >
+                          Complete Your Profile
+                          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                          </svg>
+                        </Link>
+                      </div>
+                    )}
                   </div>
-                  <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">
-                    Sign in to see how well your profile matches this job and get
-                    personalized recommendations.
-                  </p>
-                  <Link
-                    to="/sign-up"
-                    className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-                  >
-                    Sign Up to See Your Score
-                    <svg
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2.5}
-                      stroke="currentColor"
-                      aria-hidden="true"
+                </SignedIn>
+                <SignedOut>
+                  <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                    <div className="flex items-center gap-2">
+                      <svg
+                        className="h-5 w-5 text-purple-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"
+                        />
+                      </svg>
+                      <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
+                        AI Match Score
+                      </h3>
+                    </div>
+                    <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">
+                      Sign in to see how well your profile matches this job and get personalized recommendations.
+                    </p>
+                    <Link
+                      to="/sign-up"
+                      className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                      />
-                    </svg>
-                  </Link>
-                </div>
+                      Sign Up to See Your Score
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                      </svg>
+                    </Link>
+                  </div>
+                </SignedOut>
 
                 {/* Quick facts */}
                 <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
