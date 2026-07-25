@@ -110,18 +110,27 @@ function DashboardContent() {
 
           {hasProfile && (profile?.plan || "free") === "free" && (
             <div className="mb-10 rounded-2xl border border-[#DBEAFE] bg-gradient-to-r from-[#EFF6FF] to-[#F8FAFC] p-6 sm:p-8">
-              <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-col gap-5">
                 <div>
                   <h3 className="text-lg font-bold text-[#1E40AF]">You&apos;re on the Free plan</h3>
                   <p className="mt-2 text-sm text-[#3B82F6]">Upgrade to unlock application links, AI resume optimization, and premium features.</p>
                 </div>
-                <a
-                  href="/#pricing"
-                  className="inline-flex items-center gap-2 self-start rounded-2xl bg-[#2563EB] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1D4ED8] sm:self-center"
-                >
-                  Upgrade Now
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-                </a>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href="https://buy.stripe.com/bJefZheVr1wk0810fvaEE00"
+                    className="inline-flex items-center gap-2 self-start rounded-2xl bg-[#2563EB] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
+                  >
+                    Upgrade to Professional — $19/mo
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                  </a>
+                  <a
+                    href="https://buy.stripe.com/5KQ14ndRn1wk9IB0fvaEE01"
+                    className="inline-flex items-center gap-2 self-start rounded-2xl border border-[#2563EB] bg-transparent px-5 py-3 text-sm font-semibold text-[#2563EB] transition-colors hover:bg-[#2563EB]/10"
+                  >
+                    Upgrade to Premium — $39/mo
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                  </a>
+                </div>
               </div>
             </div>
           )}

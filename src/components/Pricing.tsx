@@ -15,6 +15,7 @@ const tiers = [
     ],
     cta: "Get Started Free",
     href: "/sign-up",
+    external: false,
     featured: false,
   },
   {
@@ -32,7 +33,8 @@ const tiers = [
       "Priority employer alerts",
     ],
     cta: "Get Started",
-    href: "/sign-up",
+    href: "https://buy.stripe.com/bJefZheVr1wk0810fvaEE00",
+    external: true,
     featured: true,
   },
   {
@@ -50,7 +52,8 @@ const tiers = [
       "Priority support",
     ],
     cta: "Get Started",
-    href: "/sign-up",
+    href: "https://buy.stripe.com/5KQ14ndRn1wk9IB0fvaEE01",
+    external: true,
     featured: false,
   },
 ];
@@ -112,16 +115,29 @@ export function Pricing() {
                 ))}
               </ul>
 
-              <Link
-                to={tier.href}
-                className={`mt-10 block rounded-full px-8 py-4 text-center text-[16px] font-semibold transition-colors ${
-                  tier.featured
-                    ? "bg-[#2563EB] text-white hover:bg-[#1D4ED8]"
-                    : "border border-white/20 text-white hover:bg-white/5"
-                }`}
-              >
-                {tier.cta}
-              </Link>
+              {tier.external ? (
+                <a
+                  href={tier.href}
+                  className={`mt-10 block rounded-full px-8 py-4 text-center text-[16px] font-semibold transition-colors ${
+                    tier.featured
+                      ? "bg-[#2563EB] text-white hover:bg-[#1D4ED8]"
+                      : "border border-white/20 text-white hover:bg-white/5"
+                  }`}
+                >
+                  {tier.cta}
+                </a>
+              ) : (
+                <Link
+                  to={tier.href}
+                  className={`mt-10 block rounded-full px-8 py-4 text-center text-[16px] font-semibold transition-colors ${
+                    tier.featured
+                      ? "bg-[#2563EB] text-white hover:bg-[#1D4ED8]"
+                      : "border border-white/20 text-white hover:bg-white/5"
+                  }`}
+                >
+                  {tier.cta}
+                </Link>
+              )}
             </div>
           ))}
         </div>
