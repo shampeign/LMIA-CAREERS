@@ -58,7 +58,7 @@ function DashboardPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-white">
+      <main className="min-h-dvh bg-[#0B0E14]">
         <SignedIn><DashboardContent /></SignedIn>
         <SignedOut><Unauthenticated /></SignedOut>
       </main>
@@ -100,26 +100,26 @@ function DashboardContent() {
     <div className="flex">
       {sidebarOpen && <div className="fixed inset-0 z-40 bg-black/20 lg:hidden" onClick={() => setSidebarOpen(false)} />}
 
-      <aside className={`fixed top-[73px] left-0 z-50 h-[calc(100dvh-73px)] w-64 transform border-r border-[#F0F0F0] bg-white transition-transform duration-200 lg:sticky lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
+      <aside className={`fixed top-[73px] left-0 z-50 h-[calc(100dvh-73px)] w-64 transform border-r border-white/10 bg-white/5 transition-transform duration-200 lg:sticky lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex h-full flex-col">
-          <div className="border-b border-[#F0F0F0] px-6 py-6">
+          <div className="border-b border-white/10 px-6 py-6">
             <div className="flex items-center gap-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#0A0A0B] text-sm font-bold text-white">{userName.charAt(0).toUpperCase()}</div>
               <div className="min-w-0">
-                <p className="truncate text-[15px] font-semibold text-[#0A0A0B]">{userName}</p>
-                <p className="truncate text-sm text-[#9CA3AF]">{profile?.work_authorization || "Job Seeker"}</p>
+                <p className="truncate text-[15px] font-semibold text-white">{userName}</p>
+                <p className="truncate text-sm text-[#6B7280]">{profile?.work_authorization || "Job Seeker"}</p>
               </div>
             </div>
           </div>
           <nav className="flex-1 space-y-1 px-4 py-5">
             {navItems.map((item) => (
-              <Link key={item.label} to={item.to} onClick={() => setSidebarOpen(false)} className="flex items-center gap-3 rounded-2xl px-4 py-3 text-[15px] font-medium text-[#4B5563] transition-colors hover:bg-[#F8F9FA] hover:text-[#0A0A0B] [&.active]:bg-[#F0F0F0] [&.active]:text-[#0A0A0B]">
+              <Link key={item.label} to={item.to} onClick={() => setSidebarOpen(false)} className="flex items-center gap-3 rounded-2xl px-4 py-3 text-[15px] font-medium text-[#B0B8C4] transition-colors hover:bg-white/5 hover:text-white [&.active]:bg-white/10 [&.active]:text-white">
                 {item.icon}{item.label}
               </Link>
             ))}
           </nav>
-          <div className="border-t border-[#F0F0F0] px-4 py-5">
-            <Link to="/employers" className="flex items-center gap-3 rounded-2xl px-4 py-3 text-[15px] font-medium text-[#4B5563] transition-colors hover:bg-[#F8F9FA] hover:text-[#0A0A0B]">
+          <div className="border-t border-white/10 px-4 py-5">
+            <Link to="/employers" className="flex items-center gap-3 rounded-2xl px-4 py-3 text-[15px] font-medium text-[#B0B8C4] transition-colors hover:bg-white/5 hover:text-white">
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" /></svg>
               Browse Employers
             </Link>
@@ -128,11 +128,11 @@ function DashboardContent() {
       </aside>
 
       <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-3 border-b border-[#F0F0F0] bg-white px-6 py-4 lg:hidden">
-          <button onClick={() => setSidebarOpen(true)} className="rounded-xl p-2 text-[#4B5563] hover:bg-[#F8F9FA]" aria-label="Open sidebar">
+        <div className="flex items-center gap-3 border-b border-white/10 bg-white/5 px-6 py-4 lg:hidden">
+          <button onClick={() => setSidebarOpen(true)} className="rounded-xl p-2 text-[#B0B8C4] hover:bg-white/5" aria-label="Open sidebar">
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
           </button>
-          <span className="text-[15px] font-semibold text-[#0A0A0B]">Dashboard</span>
+          <span className="text-[15px] font-semibold text-white">Dashboard</span>
         </div>
 
         <div className="px-6 py-10 lg:px-10">
@@ -170,7 +170,7 @@ function DashboardContent() {
           )}
 
           <div className="mb-10">
-            <h1 className="text-[36px] font-bold tracking-[-0.03em] text-[#0A0A0B]">Welcome back, {userName}!</h1>
+            <h1 className="text-[36px] font-bold tracking-[-0.03em] text-white">Welcome back, {userName}!</h1>
             <p className="mt-2 text-[16px] text-[#6B7280]">Here&apos;s an overview of your job search activity.</p>
           </div>
 
@@ -181,12 +181,12 @@ function DashboardContent() {
               { label: "Saved Jobs", value: "5", icon: <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" /></svg>, iconBg: "bg-[#F3E8FF] text-[#9333EA]" },
               { label: "Applications", value: "3", icon: <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" /></svg>, iconBg: "bg-[#FFFBEB] text-[#D97706]" },
             ].map((stat) => (
-              <div key={stat.label} className="rounded-2xl border border-[#F0F0F0] bg-white p-6 ">
+              <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5 p-6 ">
                 <div className="flex items-center gap-3">
                   <div className={`flex h-11 w-11 items-center justify-center rounded-2xl ${stat.iconBg}`}>{stat.icon}</div>
                   <div>
-                    <p className="text-2xl font-bold text-[#0A0A0B]">{stat.value}</p>
-                    <p className="text-xs text-[#9CA3AF]">{stat.label}</p>
+                    <p className="text-2xl font-bold text-white">{stat.value}</p>
+                    <p className="text-xs text-[#6B7280]">{stat.label}</p>
                   </div>
                 </div>
               </div>
@@ -195,9 +195,9 @@ function DashboardContent() {
 
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="space-y-8 lg:col-span-2">
-              <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 ">
                 <div className="mb-6 flex items-center justify-between">
-                  <h2 className="text-xl font-bold text-[#0A0A0B]">Top Job Matches</h2>
+                  <h2 className="text-xl font-bold text-white">Top Job Matches</h2>
                   <Link to="/matches" className="text-sm font-medium text-[#2563EB] hover:text-[#1D4ED8]">View All Matches</Link>
                 </div>
                 {!hasSkills && hasProfile && (
@@ -217,15 +217,15 @@ function DashboardContent() {
                     {topMatches.map((match) => {
                       const emp = employers.find((e) => e.slug === match.job.employerSlug);
                       return (
-                        <Link key={match.job.id} to="/jobs/$jobId" params={{ jobId: match.job.id }} className="group block rounded-2xl border border-[#F0F0F0] bg-white p-5 hover:">
+                        <Link key={match.job.id} to="/jobs/$jobId" params={{ jobId: match.job.id }} className="group block rounded-2xl border border-white/10 bg-white/5 p-5 hover:">
                           <div className="flex items-start gap-3">
                             <div className="flex-shrink-0"><MatchScoreBadge score={match.matchScore} size="sm" /></div>
                             <div className="min-w-0 flex-1">
-                              <h3 className="text-sm font-semibold text-[#0A0A0B] transition-colors group-hover:text-[#2563EB]">{match.job.title}</h3>
-                              <p className="mt-1 text-xs text-[#9CA3AF]">{emp?.name || "Employer"}</p>
+                              <h3 className="text-sm font-semibold text-white transition-colors group-hover:text-[#2563EB]">{match.job.title}</h3>
+                              <p className="mt-1 text-xs text-[#6B7280]">{emp?.name || "Employer"}</p>
                               <div className="mt-2 flex flex-wrap gap-1.5">
-                                <span className="inline-flex items-center rounded-full bg-[#F0F0F0] px-2.5 py-0.5 text-xs text-[#4B5563]">{match.job.location}</span>
-                                <span className="inline-flex items-center rounded-full bg-white px-2.5 py-0.5 text-xs text-[#6B7280]">{match.job.category}</span>
+                                <span className="inline-flex items-center rounded-full bg-white/10 px-2.5 py-0.5 text-xs text-[#B0B8C4]">{match.job.location}</span>
+                                <span className="inline-flex items-center rounded-full bg-white/5 px-2.5 py-0.5 text-xs text-[#6B7280]">{match.job.category}</span>
                               </div>
                             </div>
                           </div>
@@ -242,8 +242,8 @@ function DashboardContent() {
                 )}
               </div>
 
-              <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
-                <h2 className="mb-6 text-xl font-bold text-[#0A0A0B]">Recent Activity</h2>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 ">
+                <h2 className="mb-6 text-xl font-bold text-white">Recent Activity</h2>
                 <div className="space-y-5">
                   {[
                     { title: "Profile created", time: "Just now", active: true },
@@ -252,10 +252,10 @@ function DashboardContent() {
                     { title: "Interview preparation", time: "Coming soon" },
                   ].map((item) => (
                     <div key={item.title} className="flex items-start gap-3">
-                      <div className={`mt-1 flex h-3 w-3 flex-shrink-0 rounded-full ${item.active ? "bg-[#2563EB]" : "bg-[#E5E7EB]"}`} />
+                      <div className={`mt-1 flex h-3 w-3 flex-shrink-0 rounded-full ${item.active ? "bg-[#2563EB]" : "bg-white/10"}`} />
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-[#0A0A0B]">{item.title}</p>
-                        <p className="text-xs text-[#9CA3AF]">{item.time}</p>
+                        <p className="text-sm font-medium text-white">{item.title}</p>
+                        <p className="text-xs text-[#6B7280]">{item.time}</p>
                       </div>
                     </div>
                   ))}
@@ -264,41 +264,41 @@ function DashboardContent() {
             </div>
 
             <div className="space-y-8">
-              <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
-                <h2 className="text-sm font-semibold text-[#0A0A0B]">Resume AI Score</h2>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 ">
+                <h2 className="text-sm font-semibold text-white">Resume AI Score</h2>
                 {profile?.resume_text ? (
                   <div className="mt-6 text-center">
-                    <div className="inline-flex h-24 w-24 items-center justify-center rounded-full bg-[#F0F0F0]"><span className="text-3xl font-bold text-[#9CA3AF]">—</span></div>
-                    <p className="mt-4 text-sm font-medium text-[#0A0A0B]">Resume uploaded</p>
-                    <p className="mt-1 text-xs text-[#9CA3AF]">AI scoring coming soon</p>
+                    <div className="inline-flex h-24 w-24 items-center justify-center rounded-full bg-white/10"><span className="text-3xl font-bold text-[#6B7280]">—</span></div>
+                    <p className="mt-4 text-sm font-medium text-white">Resume uploaded</p>
+                    <p className="mt-1 text-xs text-[#6B7280]">AI scoring coming soon</p>
                   </div>
                 ) : (
                   <div className="mt-6 text-center">
-                    <div className="inline-flex h-24 w-24 items-center justify-center rounded-full bg-[#F0F0F0]">
-                      <svg className="h-10 w-10 text-[#9CA3AF]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                    <div className="inline-flex h-24 w-24 items-center justify-center rounded-full bg-white/10">
+                      <svg className="h-10 w-10 text-[#6B7280]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
                     </div>
-                    <p className="mt-4 text-sm font-medium text-[#0A0A0B]">Upload your resume to get an AI score</p>
+                    <p className="mt-4 text-sm font-medium text-white">Upload your resume to get an AI score</p>
                     <Link to="/onboarding" className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[#2563EB] hover:text-[#1D4ED8]">Upload Now <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></Link>
                   </div>
                 )}
               </div>
 
-              <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
-                <h2 className="text-sm font-semibold text-[#0A0A0B]">Profile Completeness</h2>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 ">
+                <h2 className="text-sm font-semibold text-white">Profile Completeness</h2>
                 <div className="mt-6">
                   <div className="flex items-center justify-between">
-                    <span className="text-4xl font-bold text-[#0A0A0B]">{completeness}%</span>
-                    <span className="text-sm text-[#9CA3AF]">complete</span>
+                    <span className="text-4xl font-bold text-white">{completeness}%</span>
+                    <span className="text-sm text-[#6B7280]">complete</span>
                   </div>
-                  <div className="mt-4 h-2.5 w-full rounded-full bg-[#F0F0F0]"><div className="h-2.5 rounded-full bg-[#2563EB] duration-500" style={{ width: `${completeness}%` }} /></div>
+                  <div className="mt-4 h-2.5 w-full rounded-full bg-white/10"><div className="h-2.5 rounded-full bg-[#2563EB] duration-500" style={{ width: `${completeness}%` }} /></div>
                   {missingText && <p className="mt-4 text-sm text-[#6B7280]">{completeness}% complete — {missingText}</p>}
                   {!missingText && completeness === 100 && <p className="mt-4 text-sm text-[#16A34A]">Your profile is complete!</p>}
                   <Link to="/onboarding" className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[#2563EB] hover:text-[#1D4ED8]">{completeness < 100 ? "Complete Profile" : "Edit Profile"} <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></Link>
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
-                <h2 className="text-sm font-semibold text-[#0A0A0B]">Quick Tips</h2>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 ">
+                <h2 className="text-sm font-semibold text-white">Quick Tips</h2>
                 <ul className="mt-5 space-y-4">
                   {[
                     "Complete your profile to get matched with relevant employers.",
@@ -306,7 +306,7 @@ function DashboardContent() {
                     "Browse employers and save jobs you're interested in.",
                   ].map((tip, i) => (
                     <li key={i} className="flex gap-3 text-sm text-[#6B7280]">
-                      <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#F0F0F0] text-xs font-bold text-[#4B5563]">{i + 1}</span>
+                      <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-bold text-[#B0B8C4]">{i + 1}</span>
                       {tip}
                     </li>
                   ))}
@@ -323,14 +323,14 @@ function DashboardContent() {
 function Unauthenticated() {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
-      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F0F0F0]">
-        <svg className="h-8 w-8 text-[#9CA3AF]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
+      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10">
+        <svg className="h-8 w-8 text-[#6B7280]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
       </div>
-      <h2 className="mt-8 text-[28px] font-bold text-[#0A0A0B]">Sign In Required</h2>
+      <h2 className="mt-8 text-[28px] font-bold text-white">Sign In Required</h2>
       <p className="mt-3 max-w-sm text-[16px] text-[#6B7280]">You need to sign in to access your dashboard. Create an account to get started with AI-powered job matching.</p>
       <div className="mt-8 flex items-center gap-3">
         <SignInButton mode="modal">
-          <button type="button" className="rounded-2xl border border-[#E5E7EB] bg-white px-6 py-3 text-[16px] font-semibold text-[#0A0A0B] transition-colors hover:bg-[#F8F9FA]">Sign In</button>
+          <button type="button" className="rounded-2xl border border-white/10 bg-white/5 px-6 py-3 text-[16px] font-semibold text-white transition-colors hover:bg-white/5">Sign In</button>
         </SignInButton>
         <Link to="/sign-up" className="rounded-2xl bg-[#2563EB] px-6 py-3 text-[16px] font-semibold text-white transition-colors hover:bg-[#1D4ED8]">Sign Up</Link>
       </div>

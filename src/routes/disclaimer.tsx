@@ -21,17 +21,17 @@ function Disclaimer() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-white">
+      <main className="min-h-dvh bg-[#0B0E14]">
         {/* Header */}
-        <section className="bg-white px-6 py-24">
+        <section className="bg-[#0B0E14] px-6 py-24">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
+            <span className="text-sm font-semibold uppercase text-[#6B7280]">
               Legal
             </span>
-            <h1 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
+            <h1 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[48px]">
               LMIA Disclaimer
             </h1>
-            <p className="mt-4 text-[15px] text-[#9CA3AF]">
+            <p className="mt-4 text-[15px] text-[#6B7280]">
               Important information about our platform
             </p>
           </div>
@@ -39,7 +39,7 @@ function Disclaimer() {
 
         {/* Content */}
         <section className="px-6 py-16">
-          <div className="mx-auto max-w-3xl space-y-10 text-[16px] leading-[1.8] text-[#4B5563]">
+          <div className="mx-auto max-w-3xl space-y-10 text-[16px] leading-[1.8] text-[#B0B8C4]">
             {/* Primary disclaimer - prominent */}
             <div className="rounded-2xl border-2 border-[#F59E0B]/30 bg-[#F59E0B]/5 p-8 sm:p-10">
               <div className="flex items-start gap-4">
@@ -58,7 +58,7 @@ function Disclaimer() {
                   />
                 </svg>
                 <div>
-                  <p className="text-[17px] font-semibold text-[#0A0A0B] leading-snug">
+                  <p className="text-[17px] font-semibold text-white leading-snug">
                     LMIA Career AI is an independent platform. We are NOT affiliated with, endorsed
                     by, or connected to Immigration, Refugees and Citizenship Canada (IRCC),
                     Employment and Social Development Canada (ESDC), or Service Canada.
@@ -69,8 +69,8 @@ function Disclaimer() {
 
             {/* Key disclaimers */}
             <section className="space-y-6">
-              <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
-                <h2 className="text-[18px] font-bold text-[#0A0A0B] mb-3">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 ">
+                <h2 className="text-[18px] font-bold text-white mb-3">
                   We Do Not Process Immigration Applications
                 </h2>
                 <p>
@@ -81,8 +81,8 @@ function Disclaimer() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
-                <h2 className="text-[18px] font-bold text-[#0A0A0B] mb-3">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 ">
+                <h2 className="text-[18px] font-bold text-white mb-3">
                   No Guarantees of Employment or Immigration Outcomes
                 </h2>
                 <p>
@@ -93,8 +93,8 @@ function Disclaimer() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
-                <h2 className="text-[18px] font-bold text-[#0A0A0B] mb-3">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 ">
+                <h2 className="text-[18px] font-bold text-white mb-3">
                   Data Sourced from Public Records
                 </h2>
                 <p>
@@ -106,8 +106,8 @@ function Disclaimer() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
-                <h2 className="text-[18px] font-bold text-[#0A0A0B] mb-3">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 ">
+                <h2 className="text-[18px] font-bold text-white mb-3">
                   Verify with Official Sources
                 </h2>
                 <p className="mb-4">
@@ -159,8 +159,8 @@ function Disclaimer() {
             </section>
 
             {/* Contact */}
-            <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
-              <h2 className="text-[18px] font-bold text-[#0A0A0B] mb-3">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-8 ">
+              <h2 className="text-[18px] font-bold text-white mb-3">
                 Questions?
               </h2>
               <p>

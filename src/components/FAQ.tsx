@@ -45,7 +45,7 @@ export function FAQ() {
             return (
               <div
                 key={faq.question}
-                className="border-b border-[#F0F0F0]"
+                className="border-b border-[#E5E7EB]"
               >
                 <button
                   type="button"
@@ -76,7 +76,7 @@ export function FAQ() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="pb-6 text-[16px] leading-relaxed text-[#6B7280]">
+                    <p className="pb-6 text-[16px] leading-relaxed text-[#4B5563]">
                       {faq.answer}
                     </p>
                   </div>

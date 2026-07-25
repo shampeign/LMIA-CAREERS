@@ -397,7 +397,7 @@ function EmployerDirectory() {
     <div className="space-y-6">
       {/* NOC Code */}
       <div>
-        <label className="mb-1.5 block text-[13px] font-semibold uppercase tracking-[0.05em] text-[#9CA3AF]">
+        <label className="mb-1.5 block text-[13px] font-semibold uppercase tracking-[0.05em] text-[#6B7280]">
           NOC Code
         </label>
         <div className="relative">
@@ -413,7 +413,7 @@ function EmployerDirectory() {
               setVisibleCount(9);
             }}
             onFocus={() => setNocSuggestionsOpen(true)}
-            className="w-full rounded-2xl border border-[#E5E7EB] bg-white px-4 py-3 text-[15px] text-[#0A0A0B] placeholder:text-[#9CA3AF] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
+            className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white placeholder:text-[#6B7280] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
           />
           {selectedNocCode && (
             <button
@@ -422,7 +422,7 @@ function EmployerDirectory() {
                 setNocSearch("");
                 setVisibleCount(9);
               }}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#9CA3AF] hover:text-[#0A0A0B]"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6B7280] hover:text-white"
               aria-label="Clear NOC code"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
@@ -432,10 +432,10 @@ function EmployerDirectory() {
           {nocSuggestionsOpen && nocSearch && !selectedNocCode && (
             <div
               ref={isMobile ? undefined : nocDropdownRef}
-              className="absolute left-0 right-0 top-full z-50 mt-1 max-h-48 overflow-y-auto rounded-2xl border border-[#E5E7EB] bg-white shadow-lg"
+              className="absolute left-0 right-0 top-full z-50 mt-1 max-h-48 overflow-y-auto rounded-2xl border border-white/10 bg-white/5 shadow-lg"
             >
               {nocSuggestions.length === 0 ? (
-                <div className="px-4 py-3 text-sm text-[#9CA3AF]">
+                <div className="px-4 py-3 text-sm text-[#6B7280]">
                   No matching NOC codes
                 </div>
               ) : (
@@ -448,12 +448,12 @@ function EmployerDirectory() {
                       setNocSuggestionsOpen(false);
                       setVisibleCount(9);
                     }}
-                    className="flex w-full items-start gap-3 px-4 py-3 text-left hover:bg-[#F8F9FA] transition-colors"
+                    className="flex w-full items-start gap-3 px-4 py-3 text-left hover:bg-white/5 transition-colors"
                   >
-                    <span className="shrink-0 rounded-lg bg-[#F0F0F0] px-2 py-0.5 text-xs font-semibold text-[#4B5563]">
+                    <span className="shrink-0 rounded-lg bg-white/10 px-2 py-0.5 text-xs font-semibold text-[#B0B8C4]">
                       {noc.code}
                     </span>
-                    <span className="text-sm text-[#4B5563] leading-snug line-clamp-1">
+                    <span className="text-sm text-[#B0B8C4] leading-snug line-clamp-1">
                       {noc.name}
                     </span>
                   </button>
@@ -466,7 +466,7 @@ function EmployerDirectory() {
 
       {/* Wage Range */}
       <div>
-        <label className="mb-1.5 block text-[13px] font-semibold uppercase tracking-[0.05em] text-[#9CA3AF]">
+        <label className="mb-1.5 block text-[13px] font-semibold uppercase tracking-[0.05em] text-[#6B7280]">
           Wage Range
         </label>
         <select
@@ -475,7 +475,7 @@ function EmployerDirectory() {
             setWageRangeIdx(Number(e.target.value));
             setVisibleCount(9);
           }}
-          className="w-full rounded-2xl border border-[#E5E7EB] bg-white px-4 py-3 text-[15px] text-[#0A0A0B] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
+          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
         >
           {WAGE_RANGES.map((r, i) => (
             <option key={i} value={i}>
@@ -487,7 +487,7 @@ function EmployerDirectory() {
 
       {/* LMIA Approval Count */}
       <div>
-        <label className="mb-1.5 block text-[13px] font-semibold uppercase tracking-[0.05em] text-[#9CA3AF]">
+        <label className="mb-1.5 block text-[13px] font-semibold uppercase tracking-[0.05em] text-[#6B7280]">
           LMIA Approvals
         </label>
         <select
@@ -496,7 +496,7 @@ function EmployerDirectory() {
             setApprovalCountIdx(Number(e.target.value));
             setVisibleCount(9);
           }}
-          className="w-full rounded-2xl border border-[#E5E7EB] bg-white px-4 py-3 text-[15px] text-[#0A0A0B] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
+          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
         >
           {APPROVAL_COUNT_RANGES.map((r, i) => (
             <option key={i} value={i}>
@@ -508,7 +508,7 @@ function EmployerDirectory() {
 
       {/* Approval Rate */}
       <div>
-        <label className="mb-1.5 block text-[13px] font-semibold uppercase tracking-[0.05em] text-[#9CA3AF]">
+        <label className="mb-1.5 block text-[13px] font-semibold uppercase tracking-[0.05em] text-[#6B7280]">
           Approval Rate
         </label>
         <select
@@ -517,7 +517,7 @@ function EmployerDirectory() {
             setApprovalRateIdx(Number(e.target.value));
             setVisibleCount(9);
           }}
-          className="w-full rounded-2xl border border-[#E5E7EB] bg-white px-4 py-3 text-[15px] text-[#0A0A0B] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
+          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
         >
           {APPROVAL_RATE_OPTIONS.map((r, i) => (
             <option key={i} value={i}>
@@ -529,7 +529,7 @@ function EmployerDirectory() {
 
       {/* Sponsorship Score */}
       <div>
-        <label className="mb-1.5 block text-[13px] font-semibold uppercase tracking-[0.05em] text-[#9CA3AF]">
+        <label className="mb-1.5 block text-[13px] font-semibold uppercase tracking-[0.05em] text-[#6B7280]">
           Sponsorship Score
         </label>
         <select
@@ -538,7 +538,7 @@ function EmployerDirectory() {
             setSponsorshipScoreIdx(Number(e.target.value));
             setVisibleCount(9);
           }}
-          className="w-full rounded-2xl border border-[#E5E7EB] bg-white px-4 py-3 text-[15px] text-[#0A0A0B] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
+          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
         >
           {SPONSORSHIP_SCORE_OPTIONS.map((r, i) => (
             <option key={i} value={i}>
@@ -550,7 +550,7 @@ function EmployerDirectory() {
 
       {/* Program Stream */}
       <div>
-        <label className="mb-2 block text-[13px] font-semibold uppercase tracking-[0.05em] text-[#9CA3AF]">
+        <label className="mb-2 block text-[13px] font-semibold uppercase tracking-[0.05em] text-[#6B7280]">
           Program Stream
         </label>
         <div className="flex flex-wrap gap-2">
@@ -563,7 +563,7 @@ function EmployerDirectory() {
                 className={`rounded-full border px-3.5 py-2 text-[13px] font-medium ${
                   active
                     ? "border-[#2563EB] bg-[#2563EB]/5 text-[#2563EB]"
-                    : "border-[#E5E7EB] bg-white text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#0A0A0B]"
+                    : "border-white/10 bg-white/5 text-[#6B7280] hover:border-white/20 hover:text-white"
                 }`}
               >
                 {stream.label}
@@ -575,7 +575,7 @@ function EmployerDirectory() {
 
       {/* TEER Level */}
       <div>
-        <label className="mb-2 block text-[13px] font-semibold uppercase tracking-[0.05em] text-[#9CA3AF]">
+        <label className="mb-2 block text-[13px] font-semibold uppercase tracking-[0.05em] text-[#6B7280]">
           TEER Level
         </label>
         <div className="flex flex-wrap gap-2">
@@ -596,7 +596,7 @@ function EmployerDirectory() {
                 className={`rounded-full border px-3.5 py-2 text-[13px] font-medium ${
                   active
                     ? "border-[#2563EB] bg-[#2563EB]/5 text-[#2563EB]"
-                    : "border-[#E5E7EB] bg-white text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#0A0A0B]"
+                    : "border-white/10 bg-white/5 text-[#6B7280] hover:border-white/20 hover:text-white"
                 }`}
               >
                 {teerLabels[level]}
@@ -633,15 +633,15 @@ function EmployerDirectory() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-white">
+      <main className="min-h-dvh bg-[#0B0E14]">
         {/* Hero banner */}
-        <section className="bg-white px-6 py-20">
+        <section className="bg-[#0B0E14] px-6 py-20">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
-              <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
+              <span className="text-sm font-semibold uppercase text-[#6B7280]">
                 Employer Directory
               </span>
-              <h1 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
+              <h1 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[48px]">
                 Canadian Employers with{" "}
                 <span className="text-[#2563EB]">TFWP Hiring History</span>
               </h1>
@@ -655,12 +655,12 @@ function EmployerDirectory() {
         </section>
 
         {/* Search & Quick Filters */}
-        <section className="sticky top-[73px] z-40 border-b border-[#F0F0F0] bg-white/90 px-6 py-5 backdrop-blur-xl">
+        <section className="sticky top-[73px] z-40 border-b border-white/10 bg-[#0B0E14]/90 px-6 py-5 backdrop-blur-xl">
           <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3">
             {/* Search */}
             <div className="relative flex-1 min-w-[200px]">
               <svg
-                className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#9CA3AF]"
+                className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#6B7280]"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={2}
@@ -677,7 +677,7 @@ function EmployerDirectory() {
                   setSearch(e.target.value);
                   setVisibleCount(9);
                 }}
-                className="w-full rounded-2xl border border-[#E5E7EB] bg-white py-3 pl-11 pr-4 text-[15px] text-[#0A0A0B] placeholder:text-[#9CA3AF] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
+                className="w-full rounded-2xl border border-white/10 bg-white/5 py-3 pl-11 pr-4 text-[15px] text-white placeholder:text-[#6B7280] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
               />
             </div>
 
@@ -688,7 +688,7 @@ function EmployerDirectory() {
                 setSelectedProvince(e.target.value);
                 setVisibleCount(9);
               }}
-              className="rounded-2xl border border-[#E5E7EB] bg-white px-5 py-3 text-[15px] text-[#0A0A0B] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
+              className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-[15px] text-white focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
               aria-label="Filter by province"
             >
               <option value="">All Provinces</option>
@@ -706,7 +706,7 @@ function EmployerDirectory() {
                 setSelectedIndustry(e.target.value);
                 setVisibleCount(9);
               }}
-              className="rounded-2xl border border-[#E5E7EB] bg-white px-5 py-3 text-[15px] text-[#0A0A0B] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
+              className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-[15px] text-white focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
               aria-label="Filter by industry"
             >
               <option value="">All Industries</option>
@@ -723,7 +723,7 @@ function EmployerDirectory() {
               className={`relative inline-flex items-center gap-2 rounded-2xl border px-5 py-3 text-[15px] font-medium transition-colors ${
                 filtersOpen || activeLmiaFilterCount > 0
                   ? "border-[#2563EB] bg-[#2563EB]/5 text-[#2563EB]"
-                  : "border-[#E5E7EB] bg-white text-[#4B5563] hover:border-[#D1D5DB]"
+                  : "border-white/10 bg-white/5 text-[#B0B8C4] hover:border-white/20"
               }`}
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
@@ -740,7 +740,7 @@ function EmployerDirectory() {
             {/* Mobile filters button */}
             <button
               onClick={() => setMobileFiltersOpen(true)}
-              className="inline-flex items-center gap-2 rounded-2xl border border-[#E5E7EB] bg-white px-4 py-3 text-[15px] font-medium text-[#4B5563] md:hidden"
+              className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-[15px] font-medium text-[#B0B8C4] md:hidden"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
@@ -754,7 +754,7 @@ function EmployerDirectory() {
             {hasAnyFilter && (
               <button
                 onClick={clearAllFilters}
-                className="rounded-2xl px-5 py-3 text-[15px] font-medium text-[#6B7280] transition-colors hover:bg-[#F8F9FA] hover:text-[#0A0A0B]"
+                className="rounded-2xl px-5 py-3 text-[15px] font-medium text-[#6B7280] transition-colors hover:bg-white/5 hover:text-white"
               >
                 Clear All
               </button>
@@ -763,7 +763,7 @@ function EmployerDirectory() {
 
           {/* Collapsible filter panel (desktop) */}
           {filtersOpen && (
-            <div className="mx-auto mt-5 max-w-6xl border-t border-[#F0F0F0] pt-5 hidden md:block">
+            <div className="mx-auto mt-5 max-w-6xl border-t border-white/10 pt-5 hidden md:block">
               <FilterPanel />
             </div>
           )}
@@ -772,13 +772,12 @@ function EmployerDirectory() {
         {/* Mobile filter modal */}
         {mobileFiltersOpen && (
           <div className="fixed inset-0 z-50 md:hidden">
-            <div className="absolute inset-0 bg-black/30" onClick={() => setMobileFiltersOpen(false)} />
-            <div className="absolute inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl">
-              <div className="flex items-center justify-between border-b border-[#F0F0F0] px-6 py-4">
-                <h2 className="text-lg font-bold text-[#0A0A0B]">Filters</h2>
+            <div className="absolute inset-y-0 right-0 w-full max-w-sm bg-white/5 shadow-2xl">
+              <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
+                <h2 className="text-lg font-bold text-white">Filters</h2>
                 <button
                   onClick={() => setMobileFiltersOpen(false)}
-                  className="rounded-xl p-2 text-[#6B7280] hover:bg-[#F8F9FA]"
+                  className="rounded-xl p-2 text-[#6B7280] hover:bg-white/5"
                   aria-label="Close filters"
                 >
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
@@ -787,7 +786,7 @@ function EmployerDirectory() {
               <div className="overflow-y-auto p-6" style={{ maxHeight: "calc(100dvh - 130px)" }}>
                 <FilterPanel isMobile />
               </div>
-              <div className="border-t border-[#F0F0F0] p-4">
+              <div className="border-t border-white/10 p-4">
                 <button
                   onClick={() => {
                     setMobileFiltersOpen(false);
@@ -806,7 +805,7 @@ function EmployerDirectory() {
           <div className="mx-auto max-w-6xl">
             {/* Results header */}
             <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
-              <p className="text-[15px] text-[#9CA3AF]">
+              <p className="text-[15px] text-[#6B7280]">
                 {loading ? (
                   <span className="inline-flex items-center gap-2">
                     <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#2563EB] border-t-transparent" />
@@ -815,11 +814,11 @@ function EmployerDirectory() {
                 ) : (
                   <>
                     Showing{" "}
-                    <span className="font-semibold text-[#0A0A0B]">
+                    <span className="font-semibold text-white">
                       {displayed.length}
                     </span>{" "}
                     of{" "}
-                    <span className="font-semibold text-[#0A0A0B]">
+                    <span className="font-semibold text-white">
                       {sorted.length}
                     </span>{" "}
                     employers
@@ -835,7 +834,7 @@ function EmployerDirectory() {
                     setSortBy(e.target.value);
                     setVisibleCount(9);
                   }}
-                  className="rounded-2xl border border-[#E5E7EB] bg-white px-4 py-2.5 text-[14px] text-[#0A0A0B] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
+                  className="rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-[14px] text-white focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
                   aria-label="Sort employers"
                 >
                   {SORT_OPTIONS.map((opt) => (
@@ -853,21 +852,21 @@ function EmployerDirectory() {
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div
                     key={i}
-                    className="animate-pulse rounded-2xl border border-[#F0F0F0] bg-white p-8"
+                    className="animate-pulse rounded-2xl border border-white/10 bg-white/5 p-8"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="h-12 w-12 rounded-2xl bg-[#F0F0F0]" />
+                      <div className="h-12 w-12 rounded-2xl bg-white/10" />
                       <div className="flex-1 space-y-2">
-                        <div className="h-5 w-32 rounded-lg bg-[#F0F0F0]" />
+                        <div className="h-5 w-32 rounded-lg bg-white/10" />
                         <div className="flex gap-2">
-                          <div className="h-6 w-20 rounded-full bg-[#F0F0F0]" />
-                          <div className="h-6 w-14 rounded-full bg-[#F0F0F0]" />
+                          <div className="h-6 w-20 rounded-full bg-white/10" />
+                          <div className="h-6 w-14 rounded-full bg-white/10" />
                         </div>
                       </div>
                     </div>
                     <div className="mt-5 space-y-2">
-                      <div className="h-4 w-full rounded-lg bg-[#F0F0F0]" />
-                      <div className="h-4 w-3/4 rounded-lg bg-[#F0F0F0]" />
+                      <div className="h-4 w-full rounded-lg bg-white/10" />
+                      <div className="h-4 w-3/4 rounded-lg bg-white/10" />
                     </div>
                   </div>
                 ))}
@@ -887,7 +886,7 @@ function EmployerDirectory() {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
-                <h3 className="mt-6 text-xl font-bold text-[#0A0A0B]">
+                <h3 className="mt-6 text-xl font-bold text-white">
                   No employers match your criteria
                 </h3>
                 <p className="mt-2 text-[15px] text-[#6B7280]">
@@ -925,14 +924,14 @@ function EmployerDirectory() {
                     return (
                       <div
                         key={employer.slug}
-                        className="group block rounded-2xl border border-[#F0F0F0] bg-white p-6  hover:"
+                        className="group block rounded-2xl border border-white/10 bg-white/5 p-6  hover:"
                       >
                         {/* Header: logo + name + badges */}
                         <div className="flex items-start gap-4">
                           <Link
                             to="/employers/$slug"
                             params={{ slug: employer.slug }}
-                            className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[#F0F0F0] text-sm font-bold text-[#4B5563] transition-colors hover:bg-[#E5E7EB]"
+                            className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-white/10 text-sm font-bold text-[#B0B8C4] transition-colors hover:bg-white/10"
                             aria-hidden="true"
                           >
                             {initials}
@@ -941,15 +940,15 @@ function EmployerDirectory() {
                             <button
                               type="button"
                               onClick={() => openModal(employer)}
-                              className="text-left text-lg font-bold text-[#0A0A0B] leading-tight transition-colors hover:text-[#2563EB] cursor-pointer"
+                              className="text-left text-lg font-bold text-white leading-tight transition-colors hover:text-[#2563EB] cursor-pointer"
                             >
                               {employer.name}
                             </button>
                             <div className="mt-2 flex flex-wrap items-center gap-2">
-                              <span className="inline-flex items-center rounded-full bg-[#F0F0F0] px-2.5 py-0.5 text-[11px] font-medium text-[#4B5563]">
+                              <span className="inline-flex items-center rounded-full bg-white/10 px-2.5 py-0.5 text-[11px] font-medium text-[#B0B8C4]">
                                 {employer.industry}
                               </span>
-                              <span className="inline-flex items-center rounded-full bg-white px-2.5 py-0.5 text-[11px] font-medium text-[#6B7280]">
+                              <span className="inline-flex items-center rounded-full bg-white/5 px-2.5 py-0.5 text-[11px] font-medium text-[#6B7280]">
                                 {employer.province}
                               </span>
                             </div>
@@ -958,12 +957,12 @@ function EmployerDirectory() {
 
                         {/* LMIA metrics row */}
                         {lmiaData && (
-                          <div className="mt-5 grid grid-cols-3 gap-3 border-t border-[#F0F0F0] pt-4">
+                          <div className="mt-5 grid grid-cols-3 gap-3 border-t border-white/10 pt-4">
                             <div className="text-center">
-                              <p className="text-[20px] font-bold text-[#0A0A0B] leading-none">
+                              <p className="text-[20px] font-bold text-white leading-none">
                                 {formatApprovals(lmiaData.totalApprovals)}
                               </p>
-                              <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.03em] text-[#9CA3AF] leading-tight">
+                              <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.03em] text-[#6B7280] leading-tight">
                                 Approvals
                               </p>
                             </div>
@@ -974,7 +973,7 @@ function EmployerDirectory() {
                               >
                                 {lmiaData.approvalRate.toFixed(1)}%
                               </p>
-                              <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.03em] text-[#9CA3AF] leading-tight">
+                              <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.03em] text-[#6B7280] leading-tight">
                                 Approval Rate
                               </p>
                             </div>
@@ -985,7 +984,7 @@ function EmployerDirectory() {
                               >
                                 {lmiaData.sponsorshipScore}
                               </p>
-                              <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.03em] text-[#9CA3AF] leading-tight">
+                              <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.03em] text-[#6B7280] leading-tight">
                                 Score
                               </p>
                             </div>
@@ -996,36 +995,36 @@ function EmployerDirectory() {
                         <div className="mt-4 space-y-2">
                           {topOcc && (
                             <div className="flex items-center gap-2 text-sm">
-                              <svg className="h-4 w-4 shrink-0 text-[#9CA3AF]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
+                              <svg className="h-4 w-4 shrink-0 text-[#6B7280]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
                               </svg>
-                              <span className="truncate text-[#4B5563]">
+                              <span className="truncate text-[#B0B8C4]">
                                 {topOcc.nocName}
                               </span>
-                              <span className="shrink-0 rounded-md bg-[#F0F0F0] px-1.5 py-0.5 text-[11px] font-semibold text-[#6B7280]">
+                              <span className="shrink-0 rounded-md bg-white/10 px-1.5 py-0.5 text-[11px] font-semibold text-[#6B7280]">
                                 {topOcc.nocCode}
                               </span>
                             </div>
                           )}
                           {lmiaData && (
                             <div className="flex items-center gap-2 text-sm">
-                              <svg className="h-4 w-4 shrink-0 text-[#9CA3AF]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
+                              <svg className="h-4 w-4 shrink-0 text-[#6B7280]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                               </svg>
-                              <span className="text-[#4B5563]">
+                              <span className="text-[#B0B8C4]">
                                 Avg.{" "}
-                                <span className="font-semibold text-[#0A0A0B]">
+                                <span className="font-semibold text-white">
                                   ${lmiaData.wageAverage.toFixed(2)}/hr
                                 </span>
                               </span>
                             </div>
                           )}
                           <div className="flex items-center gap-2 text-sm">
-                            <svg className="h-4 w-4 shrink-0 text-[#9CA3AF]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
+                            <svg className="h-4 w-4 shrink-0 text-[#6B7280]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
                             </svg>
-                            <span className="text-[#4B5563]">
-                              <span className="font-semibold text-[#0A0A0B]">
+                            <span className="text-[#B0B8C4]">
+                              <span className="font-semibold text-white">
                                 {employer.openPositions.length}
                               </span>{" "}
                               open position{employer.openPositions.length !== 1 ? "s" : ""}
@@ -1034,7 +1033,7 @@ function EmployerDirectory() {
                         </div>
 
                         {/* Bottom CTAs */}
-                        <div className="mt-5 flex items-center justify-between border-t border-[#F0F0F0] pt-4">
+                        <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
                           <a
                             href={employer.careerPage}
                             target="_blank"
@@ -1050,7 +1049,7 @@ function EmployerDirectory() {
                             <Link
                               to="/employers/$slug"
                               params={{ slug: employer.slug }}
-                              className="text-[13px] font-medium text-[#9CA3AF] transition-colors hover:text-[#2563EB]"
+                              className="text-[13px] font-medium text-[#6B7280] transition-colors hover:text-[#2563EB]"
                             >
                               Details →
                             </Link>
@@ -1075,7 +1074,7 @@ function EmployerDirectory() {
                   <div className="mt-12 text-center">
                     <button
                       onClick={() => setVisibleCount((c) => c + 9)}
-                      className="inline-flex items-center gap-2 rounded-2xl border border-[#E5E7EB] bg-white px-6 py-3.5 text-[16px] font-semibold text-[#0A0A0B] transition-colors hover:bg-[#F8F9FA] hover:text-[#2563EB]"
+                      className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-6 py-3.5 text-[16px] font-semibold text-white transition-colors hover:bg-white/5 hover:text-[#2563EB]"
                     >
                       Load More Employers
                       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
@@ -1090,7 +1089,7 @@ function EmployerDirectory() {
                   <div className="mt-12 text-center">
                     <button
                       onClick={() => setVisibleCount(9)}
-                      className="inline-flex items-center gap-2 rounded-2xl border border-[#E5E7EB] bg-white px-6 py-3.5 text-[16px] font-semibold text-[#0A0A0B] transition-colors hover:bg-[#F8F9FA]"
+                      className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-6 py-3.5 text-[16px] font-semibold text-white transition-colors hover:bg-white/5"
                     >
                       Show Less
                       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">

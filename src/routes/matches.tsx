@@ -48,7 +48,7 @@ function MatchesPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-white">
+      <main className="min-h-dvh bg-[#0B0E14]">
         <SignedIn><MatchesContent /></SignedIn>
         <SignedOut><Unauthenticated /></SignedOut>
       </main>
@@ -93,14 +93,14 @@ function MatchesContent() {
     <div className="mx-auto max-w-6xl px-6 py-12 lg:px-8">
       <div className="mb-10">
         <div className="flex items-center gap-3">
-          <Link to="/dashboard" className="inline-flex items-center gap-1 text-[15px] font-medium text-[#6B7280] transition-colors hover:text-[#0A0A0B]">
+          <Link to="/dashboard" className="inline-flex items-center gap-1 text-[15px] font-medium text-[#6B7280] transition-colors hover:text-white">
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
             Dashboard
           </Link>
           <span className="text-[#E5E7EB]">/</span>
-          <span className="text-[15px] font-medium text-[#0A0A0B]">Best Matches</span>
+          <span className="text-[15px] font-medium text-white">Best Matches</span>
         </div>
-        <h1 className="mt-5 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B]">
+        <h1 className="mt-5 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-white">
           Your Best Job Matches
         </h1>
         <p className="mt-3 text-[16px] text-[#6B7280]">
@@ -142,36 +142,36 @@ function MatchesContent() {
         <>
           <div className="mb-8 grid gap-5 sm:grid-cols-4">
             {[
-              { label: "Total Matches", value: String(filteredMatches.length), color: "text-[#0A0A0B]" },
-              { label: "Average Match", value: `${avgScore}%`, color: "text-[#0A0A0B]" },
+              { label: "Total Matches", value: String(filteredMatches.length), color: "text-white" },
+              { label: "Average Match", value: `${avgScore}%`, color: "text-white" },
               { label: "Strong Matches (80%+)", value: String(filteredMatches.filter((m) => m.matchScore >= 80).length), color: "text-[#16A34A]" },
               { label: "Top Score", value: filteredMatches.length > 0 ? `${filteredMatches[0].matchScore}%` : "—", color: "text-[#2563EB]" },
             ].map((stat) => (
-              <div key={stat.label} className="rounded-2xl border border-[#F0F0F0] bg-white p-6 ">
-                <p className="text-xs font-medium text-[#9CA3AF]">{stat.label}</p>
+              <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5 p-6 ">
+                <p className="text-xs font-medium text-[#6B7280]">{stat.label}</p>
                 <p className={`mt-2 text-[28px] font-bold ${stat.color}`}>{stat.value}</p>
               </div>
             ))}
           </div>
 
           <div className="mb-8 flex flex-wrap items-center gap-3">
-            <select value={selectedProvince} onChange={(e) => setSelectedProvince(e.target.value)} className="rounded-2xl border border-[#E5E7EB] bg-white px-4 py-2.5 text-[15px] text-[#0A0A0B] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10">
+            <select value={selectedProvince} onChange={(e) => setSelectedProvince(e.target.value)} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-[15px] text-white focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10">
               <option value="">All Provinces</option>
               {provinces.map((p) => (<option key={p} value={p}>{p}</option>))}
             </select>
-            <select value={selectedIndustry} onChange={(e) => setSelectedIndustry(e.target.value)} className="rounded-2xl border border-[#E5E7EB] bg-white px-4 py-2.5 text-[15px] text-[#0A0A0B] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10">
+            <select value={selectedIndustry} onChange={(e) => setSelectedIndustry(e.target.value)} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-[15px] text-white focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10">
               <option value="">All Industries</option>
               {industries.map((ind) => (<option key={ind} value={ind}>{ind}</option>))}
             </select>
             <div className="flex gap-1.5">
               {(["all", "strong", "good", "low"] as const).map((f) => (
-                <button key={f} onClick={() => setScoreFilter(f)} className={`rounded-2xl px-4 py-2.5 text-sm font-semibold transition-colors ${scoreFilter === f ? "bg-[#2563EB] text-white" : "border border-[#E5E7EB] bg-white text-[#4B5563] hover:bg-[#F8F9FA]"}`}>
+                <button key={f} onClick={() => setScoreFilter(f)} className={`rounded-2xl px-4 py-2.5 text-sm font-semibold transition-colors ${scoreFilter === f ? "bg-[#2563EB] text-white" : "border border-white/10 bg-white/5 text-[#B0B8C4] hover:bg-white/5"}`}>
                   {f === "all" ? "All Scores" : f === "strong" ? "80%+" : f === "good" ? "50-79%" : "<50%"}
                 </button>
               ))}
             </div>
             {(selectedProvince || selectedIndustry || scoreFilter !== "all") && (
-              <button onClick={() => { setSelectedProvince(""); setSelectedIndustry(""); setScoreFilter("all"); }} className="rounded-2xl px-4 py-2.5 text-sm font-medium text-[#6B7280] transition-colors hover:bg-[#F8F9FA] hover:text-[#0A0A0B]">
+              <button onClick={() => { setSelectedProvince(""); setSelectedIndustry(""); setScoreFilter("all"); }} className="rounded-2xl px-4 py-2.5 text-sm font-medium text-[#6B7280] transition-colors hover:bg-white/5 hover:text-white">
                 Clear Filters
               </button>
             )}
@@ -180,7 +180,7 @@ function MatchesContent() {
           {filteredMatches.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-24 text-center">
               <svg className="h-16 w-16 text-[#E5E7EB]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
-              <h3 className="mt-6 text-xl font-bold text-[#0A0A0B]">No matches found</h3>
+              <h3 className="mt-6 text-xl font-bold text-white">No matches found</h3>
               <p className="mt-2 text-[15px] text-[#6B7280]">Try adjusting your filters or adding more skills to your profile.</p>
             </div>
           ) : (
@@ -189,17 +189,17 @@ function MatchesContent() {
                 const emp = employers.find((e) => e.slug === match.job.employerSlug);
                 const isExpanded = expandedMatch === match.job.id;
                 return (
-                  <div key={match.job.id} className="overflow-hidden rounded-2xl border border-[#F0F0F0] bg-white ">
+                  <div key={match.job.id} className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 ">
                     <div className="flex flex-col gap-5 p-8 sm:flex-row sm:items-center sm:justify-between">
                       <div className="flex items-start gap-5">
                         <MatchScoreBadge score={match.matchScore} size="md" />
                         <div>
                           {isFreeUser ? (
-                            <a href="/#pricing" className="text-xl font-bold text-[#0A0A0B] transition-colors hover:text-[#2563EB]">
+                            <a href="/#pricing" className="text-xl font-bold text-white transition-colors hover:text-[#2563EB]">
                               {match.job.title}
                             </a>
                           ) : (
-                            <Link to="/jobs/$jobId" params={{ jobId: match.job.id }} className="text-xl font-bold text-[#0A0A0B] transition-colors hover:text-[#2563EB]">
+                            <Link to="/jobs/$jobId" params={{ jobId: match.job.id }} className="text-xl font-bold text-white transition-colors hover:text-[#2563EB]">
                               {match.job.title}
                             </Link>
                           )}
@@ -219,16 +219,16 @@ function MatchesContent() {
                         ) : (
                           <Link to="/jobs/$jobId" params={{ jobId: match.job.id }} className="rounded-2xl bg-[#2563EB] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1D4ED8]">View Job</Link>
                         )}
-                        <button onClick={() => setExpandedMatch(isExpanded ? null : match.job.id)} className="rounded-2xl border border-[#E5E7EB] bg-white px-5 py-2.5 text-sm font-medium text-[#0A0A0B] transition-colors hover:bg-[#F8F9FA]">
+                        <button onClick={() => setExpandedMatch(isExpanded ? null : match.job.id)} className="rounded-2xl border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/5">
                           {isExpanded ? "Hide" : "Details"}
                         </button>
                       </div>
                     </div>
                     {isExpanded && (
-                      <div className="border-t border-[#F0F0F0] bg-white p-8">
+                      <div className="border-t border-white/10 bg-white/5 p-8">
                         <div className="grid gap-8 lg:grid-cols-2">
                           <div>
-                            <h4 className="mb-4 text-sm font-semibold text-[#0A0A0B]">Match Breakdown</h4>
+                            <h4 className="mb-4 text-sm font-semibold text-white">Match Breakdown</h4>
                             <div className="space-y-3">
                               <MatchBreakdownBar label="Skills" score={match.breakdown.skillsScore} max={40} />
                               <MatchBreakdownBar label="Experience" score={match.breakdown.experienceScore} max={20} />
@@ -250,10 +250,10 @@ function MatchesContent() {
                             )}
                             {match.missingSkills.length > 0 && (
                               <div>
-                                <h4 className="mb-2 text-xs font-semibold uppercase text-[#9CA3AF]">Skills to Develop ({match.missingSkills.length})</h4>
+                                <h4 className="mb-2 text-xs font-semibold uppercase text-[#6B7280]">Skills to Develop ({match.missingSkills.length})</h4>
                                 <div className="flex flex-wrap gap-1.5">
                                   {match.missingSkills.map((s, i) => (
-                                    <span key={i} className="inline-flex items-center rounded-full bg-[#F0F0F0] px-3 py-1 text-xs font-medium text-[#6B7280]">{s}</span>
+                                    <span key={i} className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-[#6B7280]">{s}</span>
                                   ))}
                                 </div>
                               </div>
@@ -284,14 +284,14 @@ function MatchesContent() {
 function Unauthenticated() {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
-      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F0F0F0]">
-        <svg className="h-8 w-8 text-[#9CA3AF]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
+      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10">
+        <svg className="h-8 w-8 text-[#6B7280]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
       </div>
-      <h2 className="mt-8 text-[28px] font-bold text-[#0A0A0B]">Sign In Required</h2>
+      <h2 className="mt-8 text-[28px] font-bold text-white">Sign In Required</h2>
       <p className="mt-3 max-w-sm text-[16px] text-[#6B7280]">Sign in to see your personalized job matches based on your profile, skills, and preferences.</p>
       <div className="mt-8 flex items-center gap-3">
         <SignInButton mode="modal">
-          <button type="button" className="rounded-2xl border border-[#E5E7EB] bg-white px-6 py-3 text-[16px] font-semibold text-[#0A0A0B] transition-colors hover:bg-[#F8F9FA]">Sign In</button>
+          <button type="button" className="rounded-2xl border border-white/10 bg-white/5 px-6 py-3 text-[16px] font-semibold text-white transition-colors hover:bg-white/5">Sign In</button>
         </SignInButton>
         <Link to="/sign-up" className="rounded-2xl bg-[#2563EB] px-6 py-3 text-[16px] font-semibold text-white transition-colors hover:bg-[#1D4ED8]">Sign Up</Link>
       </div>

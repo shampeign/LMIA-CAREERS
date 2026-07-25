@@ -20,28 +20,28 @@ export function Navbar() {
 
   return (
     <nav
-      className="sticky top-0 z-50 bg-white"
+      className="sticky top-0 z-50 bg-[#0B0E14]/95 backdrop-blur-md"
       aria-label="Main navigation"
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 lg:px-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8">
         {/* Logo */}
         <Link
           to="/"
-          className="flex items-center gap-2.5 text-lg font-bold text-[#0A0A0B] tracking-[-0.02em]"
+          className="flex items-center gap-2.5 text-lg font-bold text-white tracking-[-0.02em]"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#0A0A0B] text-sm font-bold text-white">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#2563EB] text-sm font-bold text-white">
             L
           </span>
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden items-center gap-10 md:flex">
+        <div className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) =>
             link.isRoute ? (
               <Link
                 key={link.href}
                 to={link.href}
-                className="text-[15px] font-medium text-[#4B5563] hover:text-[#0A0A0B]"
+                className="text-[14px] font-medium text-[#9CA3AF] hover:text-white transition-colors"
               >
                 {link.label}
               </Link>
@@ -49,7 +49,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[15px] font-medium text-[#4B5563] hover:text-[#0A0A0B]"
+                className="text-[14px] font-medium text-[#9CA3AF] hover:text-white transition-colors"
               >
                 {link.label}
               </a>
@@ -63,7 +63,7 @@ export function Navbar() {
             <SignInButton mode="modal">
               <button
                 type="button"
-                className="rounded-xl px-5 py-2.5 text-[15px] font-medium text-[#4B5563] hover:text-[#0A0A0B]"
+                className="rounded-full px-5 py-2 text-[14px] font-medium text-[#9CA3AF] hover:text-white transition-colors"
               >
                 Sign In
               </button>
@@ -71,7 +71,7 @@ export function Navbar() {
             <SignUpButton mode="modal">
               <button
                 type="button"
-                className="rounded-xl bg-[#2563EB] px-6 py-2.5 text-[15px] font-semibold text-white hover:bg-[#1D4ED8]"
+                className="rounded-full bg-[#2563EB] px-5 py-2 text-[14px] font-semibold text-white hover:bg-[#1D4ED8] transition-colors"
               >
                 Get Started
               </button>
@@ -80,13 +80,13 @@ export function Navbar() {
           <SignedIn>
             <Link
               to="/dashboard"
-              className="rounded-xl px-5 py-2.5 text-[15px] font-medium text-[#4B5563] hover:text-[#0A0A0B]"
+              className="rounded-full px-4 py-2 text-[14px] font-medium text-[#9CA3AF] hover:text-white transition-colors"
             >
               Dashboard
             </Link>
             <Link
               to="/onboarding"
-              className="rounded-xl px-5 py-2.5 text-[15px] font-medium text-[#4B5563] hover:text-[#0A0A0B]"
+              className="rounded-full px-4 py-2 text-[14px] font-medium text-[#9CA3AF] hover:text-white transition-colors"
             >
               Profile
             </Link>
@@ -94,7 +94,7 @@ export function Navbar() {
               afterSignOutUrl="/"
               appearance={{
                 elements: {
-                  avatarBox: "h-9 w-9",
+                  avatarBox: "h-8 w-8",
                 },
               }}
             />
@@ -104,14 +104,14 @@ export function Navbar() {
         {/* Mobile hamburger */}
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-xl p-2.5 text-[#4B5563] hover:bg-[#F8F9FA] md:hidden"
+          className="inline-flex items-center justify-center rounded-full p-2 text-[#9CA3AF] hover:text-white md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-expanded={mobileOpen}
           aria-label="Toggle navigation menu"
         >
           {mobileOpen ? (
             <svg
-              className="h-6 w-6"
+              className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={2}
@@ -126,7 +126,7 @@ export function Navbar() {
             </svg>
           ) : (
             <svg
-              className="h-6 w-6"
+              className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={2}
@@ -145,15 +145,15 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 top-[73px] z-40 bg-white md:hidden">
-          <div className="flex flex-col px-6 pt-8">
+        <div className="fixed inset-0 top-[65px] z-40 bg-[#0B0E14] md:hidden">
+          <div className="flex flex-col px-6 pt-6">
             {navLinks.map((link) =>
               link.isRoute ? (
                 <Link
                   key={link.href}
                   to={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="rounded-xl px-4 py-4 text-lg font-medium text-[#0A0A0B] hover:bg-[#F8F9FA]"
+                  className="rounded-xl px-4 py-4 text-lg font-medium text-white hover:bg-white/5"
                 >
                   {link.label}
                 </Link>
@@ -162,20 +162,20 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="rounded-xl px-4 py-4 text-lg font-medium text-[#0A0A0B] hover:bg-[#F8F9FA]"
+                  className="rounded-xl px-4 py-4 text-lg font-medium text-white hover:bg-white/5"
                 >
                   {link.label}
                 </a>
               ),
             )}
 
-            <div className="mt-8 space-y-3 border-t border-[#F0F0F0] pt-8">
+            <div className="mt-6 space-y-3 border-t border-white/10 pt-6">
               <SignedOut>
                 <SignInButton mode="modal">
                   <button
                     type="button"
                     onClick={() => setMobileOpen(false)}
-                    className="block w-full rounded-xl px-4 py-4 text-left text-lg font-medium text-[#4B5563] hover:bg-[#F8F9FA]"
+                    className="block w-full rounded-xl px-4 py-4 text-left text-lg font-medium text-[#9CA3AF] hover:bg-white/5"
                   >
                     Sign In
                   </button>
@@ -194,14 +194,14 @@ export function Navbar() {
                 <Link
                   to="/dashboard"
                   onClick={() => setMobileOpen(false)}
-                  className="block rounded-xl px-4 py-4 text-lg font-medium text-[#4B5563] hover:bg-[#F8F9FA]"
+                  className="block rounded-xl px-4 py-4 text-lg font-medium text-[#9CA3AF] hover:bg-white/5"
                 >
                   Dashboard
                 </Link>
                 <Link
                   to="/onboarding"
                   onClick={() => setMobileOpen(false)}
-                  className="block rounded-xl px-4 py-4 text-lg font-medium text-[#4B5563] hover:bg-[#F8F9FA]"
+                  className="block rounded-xl px-4 py-4 text-lg font-medium text-[#9CA3AF] hover:bg-white/5"
                 >
                   Profile
                 </Link>

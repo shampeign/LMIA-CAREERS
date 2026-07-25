@@ -93,15 +93,14 @@ function HowItWorksPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-white">
+      <main className="min-h-dvh bg-[#0B0E14]">
         {/* Hero */}
-        <section className="relative overflow-hidden bg-white px-6 py-32 sm:py-40">
-          <div className="absolute inset-0 bg-dots opacity-40" aria-hidden="true" />
-          <div className="relative mx-auto max-w-4xl text-center">
-            <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
+        <section className="bg-[#0B0E14] px-6 py-32 sm:py-40">
+          <div className="mx-auto max-w-4xl text-center">
+            <span className="text-sm font-semibold uppercase text-[#6B7280]">
               How It Works
             </span>
-            <h1 className="mt-4 text-[44px] font-bold leading-[1.1] tracking-[-0.03em] text-[#0A0A0B] sm:text-[56px]">
+            <h1 className="mt-4 text-[44px] font-bold leading-[1.1] tracking-[-0.03em] text-white sm:text-[56px]">
               Your path to a Canadian job,{" "}
               <span className="text-[#2563EB]">step by step</span>
             </h1>
@@ -113,7 +112,7 @@ function HowItWorksPage() {
         </section>
 
         {/* Steps */}
-        <section className="bg-white px-6 py-24 sm:py-32">
+        <section className="bg-[#0B0E14] px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-4xl">
             <div className="space-y-16">
               {steps.map((step, i) => (
@@ -125,7 +124,7 @@ function HowItWorksPage() {
                 >
                   {/* Step number & icon */}
                   <div className="flex-shrink-0">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-[#2563EB]/10 text-[#2563EB]">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#2563EB]/10 text-[#2563EB]">
                       {step.icon}
                     </div>
                   </div>
@@ -133,10 +132,10 @@ function HowItWorksPage() {
                   {/* Content */}
                   <div className="flex-1">
                     <div className="flex items-center gap-4">
-                      <span className="text-5xl font-bold text-[#F0F0F0] select-none">
+                      <span className="text-5xl font-bold text-white/10 select-none">
                         {step.number}
                       </span>
-                      <h2 className="text-[28px] font-bold text-[#0A0A0B]">
+                      <h2 className="text-[28px] font-bold text-white">
                         {step.title}
                       </h2>
                     </div>
@@ -147,7 +146,7 @@ function HowItWorksPage() {
                       {step.details.map((detail) => (
                         <li
                           key={detail}
-                          className="flex items-start gap-3 text-[15px] text-[#4B5563]"
+                          className="flex items-start gap-3 text-[15px] text-[#B0B8C4]"
                         >
                           <svg
                             className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#2563EB]"
@@ -180,13 +179,13 @@ function HowItWorksPage() {
             <h2 className="text-[36px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[44px]">
               Ready to get started?
             </h2>
-            <p className="mt-5 text-[18px] leading-relaxed text-[#9CA3AF]">
+            <p className="mt-5 text-[18px] leading-relaxed text-[#6B7280]">
               Join our waitlist for early access. No spam — just one email when we launch.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link
                 to="/employers"
-                className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-8 py-3.5 text-[16px] font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
+                className="inline-flex items-center gap-2 rounded-full bg-[#2563EB] px-8 py-3.5 text-[16px] font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
               >
                 Browse Employers
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
@@ -195,7 +194,7 @@ function HowItWorksPage() {
               </Link>
               <a
                 href="/#waitlist"
-                className="rounded-2xl border border-[#374151] px-8 py-3.5 text-[16px] font-semibold text-white transition-colors hover:border-[#6B7280] hover:bg-white/5"
+                className="rounded-full border border-white/20 px-8 py-3.5 text-[16px] font-semibold text-white transition-colors hover:border-[#6B7280] hover:bg-white/5"
               >
                 Get Started
               </a>

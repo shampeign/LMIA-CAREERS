@@ -66,7 +66,7 @@ function JobDetailPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-white">
+      <main className="min-h-dvh bg-[#0B0E14]">
         {/* Back link */}
         <div className="border-b border-[#F0F0F0] bg-white">
           <div className="mx-auto max-w-6xl px-6 py-4 lg:px-8">
@@ -83,7 +83,7 @@ function JobDetailPage() {
         </div>
 
         {/* Job header */}
-        <section className="bg-white px-6 py-16">
+        <section className="bg-[#0B0E14] px-6 py-16">
           <div className="mx-auto max-w-6xl">
             <div className="grid gap-10 lg:grid-cols-3">
               <div className="lg:col-span-2">

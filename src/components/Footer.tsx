@@ -33,28 +33,28 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#F0F0F0] bg-white px-6 py-20">
+    <footer className="bg-[#0B0E14] px-6 py-20">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2.5 text-lg font-bold text-[#0A0A0B]">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#0A0A0B] text-sm font-bold text-white">
+            <Link to="/" className="flex items-center gap-2.5 text-lg font-bold text-white">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#2563EB] text-sm font-bold text-white">
                 L
               </span>
               LMIA Career AI
             </Link>
-            <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-[#6B7280]">
+            <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-[#9CA3AF]">
               Helping job seekers discover Canadian employers with TFWP hiring history and optimize
               their applications with AI.
             </p>
-            <p className="mt-4 text-sm text-[#9CA3AF]">
+            <p className="mt-4 text-sm text-[#6B7280]">
               Not an immigration consultancy. We do not process visa applications or provide legal advice.
             </p>
           </div>
 
           {Object.values(footerLinks).map((section) => (
             <div key={section.title}>
-              <h3 className="text-[15px] font-semibold text-[#0A0A0B]">
+              <h3 className="text-[15px] font-semibold text-white">
                 {section.title}
               </h3>
               <ul className="mt-4 space-y-3" role="list">
@@ -63,14 +63,14 @@ export function Footer() {
                     {"isRoute" in link && link.isRoute ? (
                       <Link
                         to={link.href}
-                        className="text-[15px] text-[#6B7280] hover:text-[#0A0A0B]"
+                        className="text-[15px] text-[#9CA3AF] hover:text-white transition-colors"
                       >
                         {link.label}
                       </Link>
                     ) : (
                       <a
                         href={link.href}
-                        className="text-[15px] text-[#6B7280] hover:text-[#0A0A0B]"
+                        className="text-[15px] text-[#9CA3AF] hover:text-white transition-colors"
                       >
                         {link.label}
                       </a>
@@ -82,8 +82,8 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-16 border-t border-[#F0F0F0] pt-8">
-          <p className="text-center text-sm text-[#9CA3AF]">
+        <div className="mt-16 border-t border-white/10 pt-8">
+          <p className="text-center text-sm text-[#6B7280]">
             &copy; {new Date().getFullYear()} LMIA Career AI. All rights reserved.
           </p>
         </div>

@@ -55,14 +55,14 @@ function OnboardingPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-white">
+      <main className="min-h-dvh bg-[#0B0E14]">
         <SignedIn><OnboardingWizard /></SignedIn>
         <SignedOut>
           <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F0F0F0]">
-              <svg className="h-8 w-8 text-[#9CA3AF]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10">
+              <svg className="h-8 w-8 text-[#6B7280]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
             </div>
-            <h2 className="mt-8 text-[28px] font-bold text-[#0A0A0B]">Sign In Required</h2>
+            <h2 className="mt-8 text-[28px] font-bold text-white">Sign In Required</h2>
             <p className="mt-3 max-w-sm text-[16px] text-[#6B7280]">You need to sign in to complete your profile setup.</p>
             <SignInButton mode="modal">
               <button type="button" className="mt-8 rounded-2xl bg-[#2563EB] px-6 py-3 text-[16px] font-semibold text-white transition-colors hover:bg-[#1D4ED8]">Sign In</button>
@@ -122,14 +122,14 @@ function OnboardingWizard() {
     setData((d) => ({ ...d, skills: d.skills.includes(skill) ? d.skills.filter((s) => s !== skill) : [...d.skills, skill] }));
   };
 
-  const inputClass = "mt-2 w-full rounded-2xl border border-[#E5E7EB] bg-white px-5 py-3.5 text-[16px] text-[#0A0A0B] placeholder:text-[#9CA3AF] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10";
-  const selectClass = "mt-2 w-full rounded-2xl border border-[#E5E7EB] bg-white px-5 py-3.5 text-[16px] text-[#0A0A0B] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10";
+  const inputClass = "mt-2 w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-3.5 text-[16px] text-white placeholder:text-[#6B7280] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10";
+  const selectClass = "mt-2 w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-3.5 text-[16px] text-white focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10";
 
   return (
     <div className="mx-auto max-w-xl px-6 py-16">
       <div className="mb-12 text-center">
-        <span className="text-sm font-semibold uppercase text-[#9CA3AF]">Profile Setup</span>
-        <h1 className="mt-3 text-[32px] font-bold tracking-[-0.03em] text-[#0A0A0B]">Complete Your Profile</h1>
+        <span className="text-sm font-semibold uppercase text-[#6B7280]">Profile Setup</span>
+        <h1 className="mt-3 text-[32px] font-bold tracking-[-0.03em] text-white">Complete Your Profile</h1>
         <p className="mt-3 text-[16px] text-[#6B7280]">Help us match you with the best Canadian employers.</p>
       </div>
 
@@ -142,33 +142,33 @@ function OnboardingWizard() {
             const isDone = stepNum < step;
             return (
               <div key={i} className="flex items-center">
-                <div className={`flex h-12 w-12 items-center justify-center rounded-full text-sm font-semibold ${isDone ? "bg-[#2563EB] text-white" : isActive ? "bg-[#2563EB] text-white ring-4 ring-[#DBEAFE]" : "bg-[#F0F0F0] text-[#9CA3AF]"}`}>
+                <div className={`flex h-12 w-12 items-center justify-center rounded-full text-sm font-semibold ${isDone ? "bg-[#2563EB] text-white" : isActive ? "bg-[#2563EB] text-white ring-4 ring-[#DBEAFE]" : "bg-white/10 text-[#6B7280]"}`}>
                   {isDone ? <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg> : stepNum}
                 </div>
-                {i < TOTAL_STEPS - 1 && <div className={`mx-1 h-0.5 w-8 rounded transition-colors sm:w-14 ${stepNum <= step ? "bg-[#2563EB]" : "bg-[#F0F0F0]"}`} />}
+                {i < TOTAL_STEPS - 1 && <div className={`mx-1 h-0.5 w-8 rounded transition-colors sm:w-14 ${stepNum <= step ? "bg-[#2563EB]" : "bg-white/10"}`} />}
               </div>
             );
           })}
         </div>
-        <p className="mt-4 text-center text-sm font-medium text-[#9CA3AF]">Step {step} of {TOTAL_STEPS}: {step === 1 ? "Basic Info" : step === 2 ? "Career Details" : step === 3 ? "Job Preferences" : "Confirmation"}</p>
+        <p className="mt-4 text-center text-sm font-medium text-[#6B7280]">Step {step} of {TOTAL_STEPS}: {step === 1 ? "Basic Info" : step === 2 ? "Career Details" : step === 3 ? "Job Preferences" : "Confirmation"}</p>
       </div>
 
       {error && <div className="mb-8 rounded-2xl border border-red-200 bg-red-50/50 px-5 py-4 text-sm text-red-700">{error}</div>}
 
-      <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8  sm:p-10">
+      <div className="rounded-2xl border border-white/10 bg-white/5 p-8  sm:p-10">
         {/* Step content */}
         {step === 1 && (
           <div className="space-y-6">
             <div>
-              <label htmlFor="fullName" className="block text-sm font-semibold text-[#0A0A0B]">Full Name *</label>
+              <label htmlFor="fullName" className="block text-sm font-semibold text-white">Full Name *</label>
               <input id="fullName" type="text" value={data.full_name} onChange={(e) => update({ full_name: e.target.value })} placeholder="John Doe" className={inputClass} />
             </div>
             <div>
-              <label htmlFor="linkedin" className="block text-sm font-semibold text-[#0A0A0B]">LinkedIn URL</label>
+              <label htmlFor="linkedin" className="block text-sm font-semibold text-white">LinkedIn URL</label>
               <input id="linkedin" type="url" value={data.linkedin_url} onChange={(e) => update({ linkedin_url: e.target.value })} placeholder="https://linkedin.com/in/yourprofile" className={inputClass} />
             </div>
             <div>
-              <label htmlFor="workAuth" className="block text-sm font-semibold text-[#0A0A0B]">Work Authorization Status *</label>
+              <label htmlFor="workAuth" className="block text-sm font-semibold text-white">Work Authorization Status *</label>
               <select id="workAuth" value={data.work_authorization} onChange={(e) => update({ work_authorization: e.target.value })} className={selectClass}>
                 <option value="">Select your status...</option>
                 {WORK_AUTHORIZATIONS.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
@@ -180,22 +180,22 @@ function OnboardingWizard() {
         {step === 2 && (
           <div className="space-y-6">
             <div>
-              <label htmlFor="education" className="block text-sm font-semibold text-[#0A0A0B]">Education Level *</label>
+              <label htmlFor="education" className="block text-sm font-semibold text-white">Education Level *</label>
               <select id="education" value={data.education} onChange={(e) => update({ education: e.target.value })} className={selectClass}>
                 <option value="">Select education level...</option>
                 {EDUCATION_LEVELS.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
               </select>
             </div>
             <div>
-              <label htmlFor="experience" className="block text-sm font-semibold text-[#0A0A0B]">Years of Experience *</label>
+              <label htmlFor="experience" className="block text-sm font-semibold text-white">Years of Experience *</label>
               <select id="experience" value={data.experience} onChange={(e) => update({ experience: e.target.value })} className={selectClass}>
                 <option value="">Select experience range...</option>
                 {EXPERIENCE_LEVELS.map((opt) => <option key={opt} value={opt}>{opt} years</option>)}
               </select>
             </div>
             <div>
-              <label className="block text-sm font-semibold text-[#0A0A0B]">Skills</label>
-              <p className="mt-1 text-xs text-[#9CA3AF]">Select skills from the list below or type a custom skill and press Enter</p>
+              <label className="block text-sm font-semibold text-white">Skills</label>
+              <p className="mt-1 text-xs text-[#6B7280]">Select skills from the list below or type a custom skill and press Enter</p>
               <input type="text" placeholder="Type a skill and press Enter..." className={inputClass}
                 onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); const val = (e.target as HTMLInputElement).value.trim(); if (val && !data.skills.includes(val)) { update({ skills: [...data.skills, val] }); (e.target as HTMLInputElement).value = ""; } } }} />
               {data.skills.length > 0 && (
@@ -210,7 +210,7 @@ function OnboardingWizard() {
               )}
               <div className="mt-4 flex flex-wrap gap-2">
                 {COMMON_SKILLS.filter((s) => !data.skills.includes(s)).map((skill) => (
-                  <button key={skill} type="button" onClick={() => toggleSkill(skill)} className="rounded-full border border-[#E5E7EB] bg-white px-4 py-1.5 text-sm font-medium text-[#4B5563] transition-colors hover:border-[#2563EB] hover:text-[#2563EB]">+ {skill}</button>
+                  <button key={skill} type="button" onClick={() => toggleSkill(skill)} className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-[#B0B8C4] transition-colors hover:border-[#2563EB] hover:text-[#2563EB]">+ {skill}</button>
                 ))}
               </div>
             </div>
@@ -220,24 +220,24 @@ function OnboardingWizard() {
         {step === 3 && (
           <div className="space-y-6">
             <div>
-              <label htmlFor="province" className="block text-sm font-semibold text-[#0A0A0B]">Preferred Province *</label>
+              <label htmlFor="province" className="block text-sm font-semibold text-white">Preferred Province *</label>
               <select id="province" value={data.preferred_province} onChange={(e) => update({ preferred_province: e.target.value })} className={selectClass}>
                 <option value="">Select a province...</option>
                 {CANADIAN_PROVINCES.map((prov) => <option key={prov} value={prov}>{prov}</option>)}
               </select>
             </div>
             <div>
-              <label htmlFor="salary" className="block text-sm font-semibold text-[#0A0A0B]">Preferred Salary Range *</label>
+              <label htmlFor="salary" className="block text-sm font-semibold text-white">Preferred Salary Range *</label>
               <select id="salary" value={data.preferred_salary} onChange={(e) => update({ preferred_salary: e.target.value })} className={selectClass}>
                 <option value="">Select salary range...</option>
                 {SALARY_RANGES.map((range) => <option key={range} value={range}>{range}</option>)}
               </select>
             </div>
             <div>
-              <label className="block text-sm font-semibold text-[#0A0A0B]">Upload Resume</label>
-              <p className="mt-1 text-xs text-[#9CA3AF]">Accepted: .pdf, .doc, .docx, .txt</p>
+              <label className="block text-sm font-semibold text-white">Upload Resume</label>
+              <p className="mt-1 text-xs text-[#6B7280]">Accepted: .pdf, .doc, .docx, .txt</p>
               <input ref={fileInputRef} type="file" accept=".pdf,.doc,.docx,.txt" onChange={handleFileChange}
-                className="mt-3 block w-full text-sm text-[#6B7280] file:mr-5 file:rounded-2xl file:border-0 file:bg-[#F0F0F0] file:px-5 file:py-2.5 file:text-sm file:font-semibold file:text-[#0A0A0B] hover:file:bg-[#E5E7EB]" />
+                className="mt-3 block w-full text-sm text-[#6B7280] file:mr-5 file:rounded-2xl file:border-0 file:bg-white/10 file:px-5 file:py-2.5 file:text-sm file:font-semibold file:text-white hover:file:bg-white/10" />
               {data.resume_filename && (
                 <p className="mt-3 flex items-center gap-1.5 text-sm text-[#16A34A]">
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
@@ -251,16 +251,16 @@ function OnboardingWizard() {
         {step === 4 && (
           <div className="space-y-5">
             <p className="text-[16px] text-[#6B7280]">Review your profile information before saving.</p>
-            <div className="space-y-3 rounded-2xl border border-[#F0F0F0] bg-white p-6">
+            <div className="space-y-3 rounded-2xl border border-white/10 bg-white/5 p-6">
               {[
                 ["Full Name", data.full_name], ["LinkedIn", data.linkedin_url || "—"], ["Work Authorization", data.work_authorization],
                 ["Education", data.education], ["Experience", `${data.experience} years`],
                 ["Skills", data.skills.length > 0 ? data.skills.join(", ") : "—"], ["Preferred Province", data.preferred_province],
                 ["Salary Range", data.preferred_salary], ["Resume", data.resume_filename || "Not uploaded"],
               ].map(([label, value]) => (
-                <div key={label} className="flex items-start justify-between gap-4 border-b border-[#E5E7EB] pb-3 last:border-0 last:pb-0">
-                  <span className="text-sm font-medium text-[#9CA3AF]">{label}</span>
-                  <span className="text-right text-sm font-semibold text-[#0A0A0B]">{value}</span>
+                <div key={label} className="flex items-start justify-between gap-4 border-b border-white/10 pb-3 last:border-0 last:pb-0">
+                  <span className="text-sm font-medium text-[#6B7280]">{label}</span>
+                  <span className="text-right text-sm font-semibold text-white">{value}</span>
                 </div>
               ))}
             </div>
@@ -279,7 +279,7 @@ function OnboardingWizard() {
         {/* Navigation buttons */}
         <div className="mt-10 flex items-center justify-between">
           {step > 1 ? (
-            <button type="button" onClick={() => setStep((s) => s - 1)} className="inline-flex items-center gap-2 rounded-2xl border border-[#E5E7EB] bg-white px-6 py-3 text-[16px] font-medium text-[#0A0A0B] transition-colors hover:bg-[#F8F9FA]">
+            <button type="button" onClick={() => setStep((s) => s - 1)} className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-6 py-3 text-[16px] font-medium text-white transition-colors hover:bg-white/5">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
               Previous
             </button>

@@ -57,13 +57,13 @@ const tiers = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="bg-white px-6 py-40">
+    <section id="pricing" className="bg-[#0B0E14] px-6 py-40">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-[#0A0A0B]">
+          <h2 className="text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-white">
             Plans for every stage of your career journey
           </h2>
-          <p className="mt-6 text-[18px] leading-relaxed text-[#6B7280]">
+          <p className="mt-6 text-[18px] leading-relaxed text-[#9CA3AF]">
             Start free, upgrade when you're ready to accelerate.
           </p>
         </div>
@@ -72,26 +72,26 @@ export function Pricing() {
           {tiers.map((tier) => (
             <div
               key={tier.name}
-              className={`flex flex-col rounded-2xl border bg-white p-10 ${
+              className={`flex flex-col rounded-2xl border p-10 ${
                 tier.featured
-                  ? "border-[#0A0A0B]"
-                  : "border-[#F0F0F0]"
+                  ? "border-[#2563EB] bg-[#2563EB]/5"
+                  : "border-white/10 bg-white/5"
               }`}
             >
               {tier.featured && (
-                <span className="mb-6 inline-block self-start rounded-lg bg-[#0A0A0B] px-4 py-1.5 text-sm font-semibold text-white">
+                <span className="mb-6 inline-block self-start rounded-full bg-[#2563EB] px-4 py-1.5 text-sm font-semibold text-white">
                   Most Popular
                 </span>
               )}
 
-              <h3 className="text-xl font-bold text-[#0A0A0B]">{tier.name}</h3>
-              <p className="mt-2 text-[15px] text-[#6B7280]">{tier.description}</p>
+              <h3 className="text-xl font-bold text-white">{tier.name}</h3>
+              <p className="mt-2 text-[15px] text-[#9CA3AF]">{tier.description}</p>
 
               <div className="mt-8">
-                <span className="text-5xl font-bold text-[#0A0A0B]">
+                <span className="text-5xl font-bold text-white">
                   {tier.price}
                 </span>
-                <span className="text-[15px] text-[#6B7280]">{tier.period}</span>
+                <span className="text-[15px] text-[#9CA3AF]">{tier.period}</span>
               </div>
 
               <ul className="mt-10 flex-1 space-y-4" role="list">
@@ -107,17 +107,17 @@ export function Pricing() {
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-[15px] text-[#4B5563]">{feature}</span>
+                    <span className="text-[15px] text-[#B0B8C4]">{feature}</span>
                   </li>
                 ))}
               </ul>
 
               <Link
                 to={tier.href}
-                className={`mt-10 block rounded-xl px-8 py-4 text-center text-[16px] font-semibold ${
+                className={`mt-10 block rounded-full px-8 py-4 text-center text-[16px] font-semibold transition-colors ${
                   tier.featured
                     ? "bg-[#2563EB] text-white hover:bg-[#1D4ED8]"
-                    : "border border-[#E5E7EB] bg-white text-[#0A0A0B] hover:bg-[#F8F9FA]"
+                    : "border border-white/20 text-white hover:bg-white/5"
                 }`}
               >
                 {tier.cta}

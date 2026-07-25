@@ -23,17 +23,17 @@ function PrivacyPolicy() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-white">
+      <main className="min-h-dvh bg-[#0B0E14]">
         {/* Header */}
-        <section className="bg-white px-6 py-24">
+        <section className="bg-[#0B0E14] px-6 py-24">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
+            <span className="text-sm font-semibold uppercase text-[#6B7280]">
               Legal
             </span>
-            <h1 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
+            <h1 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[48px]">
               Privacy Policy
             </h1>
-            <p className="mt-4 text-[15px] text-[#9CA3AF]">
+            <p className="mt-4 text-[15px] text-[#6B7280]">
               Last updated: {lastUpdated}
             </p>
           </div>
@@ -41,7 +41,7 @@ function PrivacyPolicy() {
 
         {/* Content */}
         <section className="px-6 py-16">
-          <div className="mx-auto max-w-3xl space-y-12 text-[16px] leading-[1.8] text-[#4B5563]">
+          <div className="mx-auto max-w-3xl space-y-12 text-[16px] leading-[1.8] text-[#B0B8C4]">
             {/* Intro */}
             <section>
               <p>
@@ -54,7 +54,7 @@ function PrivacyPolicy() {
 
             {/* 1. Information We Collect */}
             <section>
-              <h2 className="text-[22px] font-bold text-[#0A0A0B] mb-4">
+              <h2 className="text-[22px] font-bold text-white mb-4">
                 1. Information We Collect
               </h2>
               <p className="mb-3">We collect the following types of information:</p>
@@ -102,7 +102,7 @@ function PrivacyPolicy() {
 
             {/* 2. How We Use Information */}
             <section>
-              <h2 className="text-[22px] font-bold text-[#0A0A0B] mb-4">
+              <h2 className="text-[22px] font-bold text-white mb-4">
                 2. How We Use Your Information
               </h2>
               <p className="mb-3">We use your information for the following purposes:</p>
@@ -132,7 +132,7 @@ function PrivacyPolicy() {
 
             {/* 3. Data Storage and Security */}
             <section>
-              <h2 className="text-[22px] font-bold text-[#0A0A0B] mb-4">
+              <h2 className="text-[22px] font-bold text-white mb-4">
                 3. Data Storage and Security
               </h2>
               <p>
@@ -147,7 +147,7 @@ function PrivacyPolicy() {
 
             {/* 4. Cookies and Analytics */}
             <section>
-              <h2 className="text-[22px] font-bold text-[#0A0A0B] mb-4">
+              <h2 className="text-[22px] font-bold text-white mb-4">
                 4. Cookies and Analytics
               </h2>
               <p>
@@ -160,7 +160,7 @@ function PrivacyPolicy() {
 
             {/* 5. Third-Party Services */}
             <section>
-              <h2 className="text-[22px] font-bold text-[#0A0A0B] mb-4">
+              <h2 className="text-[22px] font-bold text-white mb-4">
                 5. Third-Party Services
               </h2>
               <p>
@@ -191,7 +191,7 @@ function PrivacyPolicy() {
 
             {/* 6. Data Retention */}
             <section>
-              <h2 className="text-[22px] font-bold text-[#0A0A0B] mb-4">
+              <h2 className="text-[22px] font-bold text-white mb-4">
                 6. Data Retention
               </h2>
               <p>
@@ -205,7 +205,7 @@ function PrivacyPolicy() {
 
             {/* 7. User Rights */}
             <section>
-              <h2 className="text-[22px] font-bold text-[#0A0A0B] mb-4">
+              <h2 className="text-[22px] font-bold text-white mb-4">
                 7. Your Rights
               </h2>
               <p className="mb-3">
@@ -249,7 +249,7 @@ function PrivacyPolicy() {
 
             {/* 8. Contact */}
             <section>
-              <h2 className="text-[22px] font-bold text-[#0A0A0B] mb-4">
+              <h2 className="text-[22px] font-bold text-white mb-4">
                 8. Contact Information
               </h2>
               <p>

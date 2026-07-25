@@ -21,10 +21,10 @@ function SignInPage() {
   return (
     <>
       <Navbar />
-      <main className="flex min-h-[calc(100dvh-73px)] items-center justify-center bg-white px-6 py-16">
+      <main className="flex min-h-[calc(100dvh-73px)] items-center justify-center bg-white/5 px-6 py-16">
         <div className="w-full max-w-md">
           <div className="mb-10 text-center">
-            <h1 className="text-[32px] font-bold tracking-[-0.03em] text-[#0A0A0B]">
+            <h1 className="text-[32px] font-bold tracking-[-0.03em] text-white">
               Welcome Back
             </h1>
             <p className="mt-3 text-[16px] text-[#6B7280]">
@@ -39,17 +39,17 @@ function SignInPage() {
             appearance={{
               elements: {
                 rootBox: "mx-auto w-full",
-                card: "rounded-2xl  border border-[#F0F0F0] bg-white p-8",
-                headerTitle: "text-[#0A0A0B]",
+                card: "rounded-2xl  border border-white/10 bg-white/5 p-8",
+                headerTitle: "text-white",
                 headerSubtitle: "text-[#6B7280]",
                 socialButtonsBlockButton:
-                  "border-[#E5E7EB] text-[#0A0A0B] rounded-2xl",
+                  "border-white/10 text-white rounded-2xl",
                 formButtonPrimary:
                   "bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-sm font-semibold rounded-2xl px-6 py-3",
                 footerActionLink:
                   "text-[#2563EB] hover:text-[#1D4ED8]",
                 formFieldInput:
-                  "rounded-2xl border-[#E5E7EB] text-[#0A0A0B] focus:border-[#2563EB] focus:ring-[#2563EB]/10",
+                  "rounded-2xl border-white/10 text-white focus:border-[#2563EB] focus:ring-[#2563EB]/10",
               },
             }}
           />

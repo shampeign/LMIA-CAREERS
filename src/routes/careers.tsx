@@ -21,14 +21,14 @@ function CareersPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-white">
+      <main className="min-h-dvh bg-[#0B0E14]">
         {/* Hero */}
-        <section className="bg-white px-6 py-32 sm:py-40">
+        <section className="bg-[#0B0E14] px-6 py-32 sm:py-40">
           <div className="mx-auto max-w-4xl text-center">
-            <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
+            <span className="text-sm font-semibold uppercase text-[#6B7280]">
               Careers
             </span>
-            <h1 className="mt-4 text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-[#0A0A0B] sm:text-[56px]">
+            <h1 className="mt-4 text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-white sm:text-[56px]">
               Help us build the future of{" "}
               <span className="text-[#2563EB]">Canadian employment intelligence</span>
             </h1>
@@ -43,10 +43,10 @@ function CareersPage() {
         <section className="px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
-              <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
+              <span className="text-sm font-semibold uppercase text-[#6B7280]">
                 Why LMIA Career AI
               </span>
-              <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
+              <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[48px]">
                 Build something that{" "}
                 <span className="text-[#2563EB]">matters</span>
               </h2>
@@ -121,10 +121,10 @@ function CareersPage() {
               ].map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-2xl border border-[#F0F0F0] bg-white p-8  hover:"
+                  className="rounded-2xl border border-white/10 bg-white/5 p-8  hover:"
                 >
                   <div className="text-[#2563EB]">{item.icon}</div>
-                  <h3 className="mt-5 text-[18px] font-bold text-[#0A0A0B]">{item.title}</h3>
+                  <h3 className="mt-5 text-[18px] font-bold text-white">{item.title}</h3>
                   <p className="mt-3 text-[15px] leading-relaxed text-[#6B7280]">{item.description}</p>
                 </div>
               ))}
@@ -133,33 +133,33 @@ function CareersPage() {
         </section>
 
         {/* Open Position */}
-        <section className="bg-white px-6 py-24 sm:py-32">
+        <section className="bg-[#0B0E14] px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
-              <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
+              <span className="text-sm font-semibold uppercase text-[#6B7280]">
                 Open Position
               </span>
-              <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
+              <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[48px]">
                 Join our{" "}
                 <span className="text-[#2563EB]">technology team</span>
               </h2>
             </div>
 
             {/* Job Card */}
-            <div className="mt-16 mx-auto max-w-3xl rounded-2xl border border-[#2563EB] bg-white p-10  ring-1 ring-[#2563EB]">
+            <div className="mt-16 mx-auto max-w-3xl rounded-2xl border border-[#2563EB] bg-white/5 p-10  ring-1 ring-[#2563EB]">
               <div className="flex items-start gap-4">
-                <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-[#2563EB] text-lg font-bold text-white">
+                <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-[#2563EB] text-lg font-bold text-white">
                   FS
                 </div>
                 <div>
-                  <h3 className="text-[24px] font-bold text-[#0A0A0B]">
+                  <h3 className="text-[24px] font-bold text-white">
                     Full-Stack Web Developer & Digital Platform Manager
                   </h3>
                   <div className="mt-3 flex flex-wrap items-center gap-3">
-                    <span className="rounded-full bg-[#F0F0F0] px-4 py-1.5 text-sm font-medium text-[#4B5563]">
+                    <span className="rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-[#B0B8C4]">
                       Remote (Canada)
                     </span>
-                    <span className="rounded-full bg-[#F0F0F0] px-4 py-1.5 text-sm font-medium text-[#4B5563]">
+                    <span className="rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-[#B0B8C4]">
                       Full-Time
                     </span>
                     <span className="rounded-full bg-[#2563EB]/10 px-4 py-1.5 text-sm font-medium text-[#2563EB]">
@@ -173,14 +173,14 @@ function CareersPage() {
               <div className="mt-10 space-y-10">
                 {/* Overview */}
                 <div>
-                  <h4 className="text-[17px] font-semibold text-[#0A0A0B]">Overview</h4>
-                  <p className="mt-3 text-[16px] leading-relaxed text-[#4B5563]">
+                  <h4 className="text-[17px] font-semibold text-white">Overview</h4>
+                  <p className="mt-3 text-[16px] leading-relaxed text-[#B0B8C4]">
                     We are looking for a proactive and skilled Full-Stack Web Developer & Digital Platform
                     Manager to build, maintain, optimize, and continuously improve our website and digital
                     platforms. You will work closely with leadership and one other technology team member to
                     ensure the platform remains secure, scalable, reliable, and user-friendly.
                   </p>
-                  <p className="mt-3 text-[16px] leading-relaxed text-[#4B5563]">
+                  <p className="mt-3 text-[16px] leading-relaxed text-[#B0B8C4]">
                     This is a high-ownership technical role where you'll help shape the future of our
                     digital products. You won't just execute tasks — you'll define how we build.
                   </p>
@@ -188,7 +188,7 @@ function CareersPage() {
 
                 {/* Responsibilities */}
                 <div>
-                  <h4 className="text-[17px] font-semibold text-[#0A0A0B]">What You'll Do</h4>
+                  <h4 className="text-[17px] font-semibold text-white">What You'll Do</h4>
                   <div className="mt-4 space-y-6">
                     {[
                       {
@@ -249,7 +249,7 @@ function CareersPage() {
                               >
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                               </svg>
-                              <span className="text-[15px] text-[#4B5563]">{item}</span>
+                              <span className="text-[15px] text-[#B0B8C4]">{item}</span>
                             </li>
                           ))}
                         </ul>
@@ -260,7 +260,7 @@ function CareersPage() {
 
                 {/* Required Skills */}
                 <div>
-                  <h4 className="text-[17px] font-semibold text-[#0A0A0B]">Required Skills</h4>
+                  <h4 className="text-[17px] font-semibold text-white">Required Skills</h4>
                   <ul className="mt-4 space-y-2">
                     {[
                       "Experience developing and maintaining websites or web applications",
@@ -282,7 +282,7 @@ function CareersPage() {
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
-                        <span className="text-[15px] text-[#4B5563]">{skill}</span>
+                        <span className="text-[15px] text-[#B0B8C4]">{skill}</span>
                       </li>
                     ))}
                   </ul>
@@ -290,7 +290,7 @@ function CareersPage() {
 
                 {/* Preferred Skills */}
                 <div>
-                  <h4 className="text-[17px] font-semibold text-[#0A0A0B]">Preferred Skills</h4>
+                  <h4 className="text-[17px] font-semibold text-white">Preferred Skills</h4>
                   <ul className="mt-4 space-y-2">
                     {[
                       "Startup or small-team experience",
@@ -302,7 +302,7 @@ function CareersPage() {
                     ].map((skill) => (
                       <li key={skill} className="flex items-start gap-3">
                         <svg
-                          className="mt-1 h-4 w-4 flex-shrink-0 text-[#9CA3AF]"
+                          className="mt-1 h-4 w-4 flex-shrink-0 text-[#6B7280]"
                           fill="none"
                           viewBox="0 0 24 24"
                           strokeWidth={2}
@@ -318,8 +318,8 @@ function CareersPage() {
 
                 {/* Ideal Candidate */}
                 <div>
-                  <h4 className="text-[17px] font-semibold text-[#0A0A0B]">Who You Are</h4>
-                  <p className="mt-3 text-[16px] leading-relaxed text-[#4B5563]">
+                  <h4 className="text-[17px] font-semibold text-white">Who You Are</h4>
+                  <p className="mt-3 text-[16px] leading-relaxed text-[#B0B8C4]">
                     We're looking for someone who:
                   </p>
                   <ul className="mt-4 space-y-2">
@@ -341,7 +341,7 @@ function CareersPage() {
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
-                        <span className="text-[15px] text-[#4B5563]">{trait}</span>
+                        <span className="text-[15px] text-[#B0B8C4]">{trait}</span>
                       </li>
                     ))}
                   </ul>
@@ -349,7 +349,7 @@ function CareersPage() {
 
                 {/* Role Ownership */}
                 <div>
-                  <h4 className="text-[17px] font-semibold text-[#0A0A0B]">What You'll Own</h4>
+                  <h4 className="text-[17px] font-semibold text-white">What You'll Own</h4>
                   <div className="mt-4 grid gap-3 sm:grid-cols-2">
                     {[
                       "Website functionality",
@@ -363,7 +363,7 @@ function CareersPage() {
                     ].map((item) => (
                       <div
                         key={item}
-                        className="flex items-center gap-3 rounded-2xl border border-[#F0F0F0] bg-white px-5 py-3"
+                        className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-3"
                       >
                         <svg
                           className="h-5 w-5 flex-shrink-0 text-[#2563EB]"
@@ -374,7 +374,7 @@ function CareersPage() {
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
-                        <span className="text-[15px] font-medium text-[#0A0A0B]">{item}</span>
+                        <span className="text-[15px] font-medium text-white">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -384,14 +384,14 @@ function CareersPage() {
               {/* Apply CTA */}
               <div className="mt-12 rounded-2xl bg-[#0A0A0B] p-8 text-center">
                 <h3 className="text-[24px] font-bold text-white">Ready to build something that matters?</h3>
-                <p className="mt-3 text-[16px] leading-relaxed text-[#9CA3AF]">
+                <p className="mt-3 text-[16px] leading-relaxed text-[#6B7280]">
                   Send your CV, portfolio, and any relevant certifications to the email below.
                   We review every application personally.
                 </p>
                 <div className="mt-6 flex flex-col items-center gap-3">
                   <a
                     href="mailto:contact@lmiacareersai.com?subject=Application: Full-Stack Web Developer & Digital Platform Manager"
-                    className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white  hover:bg-[#1D4ED8]"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white  hover:bg-[#1D4ED8]"
                   >
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -411,12 +411,12 @@ function CareersPage() {
         </section>
 
         {/* Team Culture */}
-        <section className="bg-white px-6 py-24 sm:py-32">
+        <section className="bg-[#0B0E14] px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-4xl text-center">
-            <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
+            <span className="text-sm font-semibold uppercase text-[#6B7280]">
               Our Culture
             </span>
-            <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
+            <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[48px]">
               A team that{" "}
               <span className="text-[#2563EB]">moves fast</span> and builds with purpose
             </h2>
@@ -431,9 +431,9 @@ function CareersPage() {
                 { label: "Work Style", value: "Remote-first, async" },
                 { label: " Values", value: "Ownership, quality, impact" },
               ].map((stat) => (
-                <div key={stat.label} className="rounded-2xl border border-[#F0F0F0] bg-white p-6 ">
-                  <p className="text-sm text-[#9CA3AF]">{stat.label}</p>
-                  <p className="mt-2 text-[17px] font-semibold text-[#0A0A0B]">{stat.value}</p>
+                <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5 p-6 ">
+                  <p className="text-sm text-[#6B7280]">{stat.label}</p>
+                  <p className="mt-2 text-[17px] font-semibold text-white">{stat.value}</p>
                 </div>
               ))}
             </div>

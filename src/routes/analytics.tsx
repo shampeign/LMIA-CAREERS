@@ -57,10 +57,9 @@ function fmtWage(n: number): string {
 // ── Lock Overlay Component ───────────────────────────────────
 function LockOverlay({ rows = 5 }: { rows?: number }) {
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-end">
-      <div className="absolute inset-0 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none" />
+    <div>
       <div className="relative z-10 pb-8 pt-20 text-center">
-        <span className="inline-flex items-center gap-2 rounded-full bg-[#0A0A0B]/5 px-4 py-2 text-sm font-medium text-[#6B7280]">
+        <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm font-medium text-[#6B7280]">
           🔒 Upgrade to unlock full data
         </span>
       </div>
@@ -71,12 +70,12 @@ function LockOverlay({ rows = 5 }: { rows?: number }) {
 // ── Stat Card ─────────────────────────────────────────────────
 function StatCard({ label, value, subtitle, trend }: { label: string; value: string; subtitle: string; trend: string }) {
   return (
-    <div className="rounded-2xl border border-[#F0F0F0] bg-white p-6  hover:">
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-6  hover:">
       <div className="text-sm text-[#6B7280]">{label}</div>
-      <div className="mt-2 text-3xl font-bold tracking-[-0.02em] text-[#0A0A0B]">{value}</div>
+      <div className="mt-2 text-3xl font-bold tracking-[-0.02em] text-white">{value}</div>
       <div className="mt-1 flex items-center gap-2">
-        <span className="text-xs text-[#9CA3AF]">{subtitle}</span>
-        <span className="rounded-full bg-[#F0F0F0] px-2 py-0.5 text-[11px] font-medium text-[#6B7280]">{trend}</span>
+        <span className="text-xs text-[#6B7280]">{subtitle}</span>
+        <span className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-medium text-[#6B7280]">{trend}</span>
       </div>
     </div>
   );
@@ -86,7 +85,7 @@ function StatCard({ label, value, subtitle, trend }: { label: string; value: str
 function SectionHeader({ title, badge }: { title: string; badge?: string }) {
   return (
     <div className="mb-5 flex items-center gap-3">
-      <h2 className="text-lg font-semibold tracking-[-0.01em] text-[#0A0A0B]">{title}</h2>
+      <h2 className="text-lg font-semibold tracking-[-0.01em] text-white">{title}</h2>
       {badge && (
         <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${badge === "Free" ? "bg-[#10B981]/10 text-[#10B981]" : "bg-[#2563EB]/10 text-[#2563EB]"}`}>
           {badge}
@@ -342,12 +341,12 @@ function AnalyticsPage() {
 
   // ── Render ──────────────────────────────────────────────────
   return (
-    <div className="min-h-dvh bg-white">
+    <div className="min-h-dvh bg-[#0B0E14]">
       <Navbar />
       <main className="mx-auto max-w-6xl px-6 py-12 lg:px-8">
         {/* Page Header */}
         <div className="mb-10">
-          <h1 className="text-3xl font-bold tracking-[-0.02em] text-[#0A0A0B] lg:text-4xl">
+          <h1 className="text-3xl font-bold tracking-[-0.02em] text-white lg:text-4xl">
             LMIA Employer Intelligence
           </h1>
           <p className="mt-2 max-w-2xl text-lg text-[#6B7280]">
@@ -395,7 +394,7 @@ function AnalyticsPage() {
           <SectionHeader title="Market Trends" badge="Free" />
           <div className="grid gap-5 lg:grid-cols-2">
             {/* Province chart */}
-            <div className="rounded-2xl border border-[#F0F0F0] bg-white p-6 ">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 ">
               <h3 className="mb-4 text-sm font-semibold text-[#6B7280] uppercase tracking-wider">Top Provinces by LMIA Activity</h3>
               <svg viewBox={`0 0 400 ${Math.min(data.provinceData.length, 8) * 40 + 20}`} className="w-full">
                 {data.provinceData.slice(0, 8).map((p, i) => {
@@ -414,7 +413,7 @@ function AnalyticsPage() {
               </svg>
             </div>
             {/* Industry chart */}
-            <div className="rounded-2xl border border-[#F0F0F0] bg-white p-6 ">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 ">
               <h3 className="mb-4 text-sm font-semibold text-[#6B7280] uppercase tracking-wider">Top Industries by Employer Count</h3>
               <svg viewBox={`0 0 400 ${Math.min(data.industryData.length, 8) * 40 + 20}`} className="w-full">
                 {data.industryData.slice(0, 8).map((ind, i) => {
@@ -440,27 +439,27 @@ function AnalyticsPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="mb-10">
           <SectionHeader title="Popular Occupations" badge="Free" />
-          <div className="rounded-2xl border border-[#F0F0F0] bg-white  overflow-hidden">
+          <div className="rounded-2xl border border-white/10 bg-white/5  overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-[#F0F0F0] bg-[#F8F9FA]">
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Occupation</th>
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">NOC Code</th>
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">TEER</th>
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Approvals</th>
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Avg Wage</th>
+                  <tr className="border-b border-white/10 bg-white/5">
+                    <th className="px-6 py-4 font-semibold text-white">Occupation</th>
+                    <th className="px-6 py-4 font-semibold text-white">NOC Code</th>
+                    <th className="px-6 py-4 font-semibold text-white">TEER</th>
+                    <th className="px-6 py-4 font-semibold text-white">Approvals</th>
+                    <th className="px-6 py-4 font-semibold text-white">Avg Wage</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#F0F0F0]">
                   {data.topOccupations.slice(0, 10).map((occ) => (
-                    <tr key={occ.nocCode} className="transition-colors hover:bg-[#F8F9FA]">
-                      <td className="px-6 py-4 font-medium text-[#0A0A0B] max-w-[300px] truncate">{occ.nocName}</td>
+                    <tr key={occ.nocCode} className="transition-colors hover:bg-white/5">
+                      <td className="px-6 py-4 font-medium text-white max-w-[300px] truncate">{occ.nocName}</td>
                       <td className="px-6 py-4 text-[#6B7280] font-mono text-xs">{occ.nocCode}</td>
                       <td className="px-6 py-4">
                         <span className="rounded-full bg-[#2563EB]/10 px-2.5 py-0.5 text-xs font-semibold text-[#2563EB]">TEER {occ.teerLevel}</span>
                       </td>
-                      <td className="px-6 py-4 font-semibold text-[#0A0A0B]">{fmt(occ.approvals)}</td>
+                      <td className="px-6 py-4 font-semibold text-white">{fmt(occ.approvals)}</td>
                       <td className="px-6 py-4 text-[#6B7280]">{fmtWage(occ.avgWage)}</td>
                     </tr>
                   ))}
@@ -475,17 +474,13 @@ function AnalyticsPage() {
             ════════════════════════════════════════════════════════════ */}
         {!isPaid && (
           <section className="mb-12">
-            <div className="rounded-2xl bg-[#0A0A0B] p-8 lg:p-12 shadow-lg relative overflow-hidden">
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-[-20%] right-[-10%] h-80 w-80 rounded-full bg-[#2563EB] blur-3xl" />
-                <div className="absolute bottom-[-20%] left-[-10%] h-64 w-64 rounded-full bg-[#10B981] blur-3xl" />
-              </div>
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0B0E14] to-[#111827] border border-white/10 p-10">
               <div className="relative z-10 flex flex-col items-center text-center lg:flex-row lg:text-left lg:justify-between">
                 <div className="mb-6 lg:mb-0">
                   <h2 className="text-2xl font-bold text-white lg:text-3xl tracking-[-0.02em]">
                     🔒 Unlock Complete LMIA Employer Intelligence
                   </h2>
-                  <p className="mt-3 max-w-xl text-[#9CA3AF]">
+                  <p className="mt-3 max-w-xl text-[#6B7280]">
                     Get full access to detailed employer profiles, LMIA statistics, wage analytics, 
                     employer comparisons, advanced search, downloadable reports, and market insights.
                   </p>
@@ -526,49 +521,49 @@ function AnalyticsPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="mb-10">
           <SectionHeader title="Employer Intelligence Database" badge={isPaid ? "Pro" : "Locked"} />
-          <div className="rounded-2xl border border-[#F0F0F0] bg-white  overflow-hidden relative">
+          <div className="rounded-2xl border border-white/10 bg-white/5  overflow-hidden relative">
             {/* Search */}
-            <div className="px-6 pt-6 pb-4 border-b border-[#F0F0F0]">
+            <div className="px-6 pt-6 pb-4 border-b border-white/10">
               <input
                 type="text"
                 placeholder="Search employers by name, industry, or province..."
                 value={employerSearch}
                 onChange={(e) => setEmployerSearch(e.target.value)}
-                className="w-full rounded-xl border border-[#F0F0F0] px-4 py-2.5 text-sm text-[#0A0A0B] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 focus:border-[#2563EB]"
+                className="w-full rounded-xl border border-white/10 px-4 py-2.5 text-sm text-white placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 focus:border-[#2563EB]"
               />
             </div>
             <div className={`overflow-x-auto ${!isPaid ? "max-h-[320px] overflow-hidden" : ""}`}>
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-[#F0F0F0] bg-[#F8F9FA]">
+                  <tr className="border-b border-white/10 bg-white/5">
                     <SortTh label="Employer" col="name" current={employerSort} onClick={handleEmployerSort} />
                     <SortTh label="Industry" col="industry" current={employerSort} onClick={handleEmployerSort} />
                     <SortTh label="Province" col="province" current={employerSort} onClick={handleEmployerSort} />
                     <SortTh label="Approvals" col="approvals" current={employerSort} onClick={handleEmployerSort} />
                     <SortTh label="Appr. Rate" col="approvalRate" current={employerSort} onClick={handleEmployerSort} />
                     <SortTh label="Score" col="score" current={employerSort} onClick={handleEmployerSort} />
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Top Occupation</th>
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Avg Wage</th>
+                    <th className="px-6 py-4 font-semibold text-white">Top Occupation</th>
+                    <th className="px-6 py-4 font-semibold text-white">Avg Wage</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#F0F0F0]">
                   {(isPaid ? filteredEmployers : filteredEmployers.slice(0, 5)).map((emp) => (
-                    <tr key={emp.slug} className="transition-colors hover:bg-[#F8F9FA]">
-                      <td className="px-6 py-4 font-medium text-[#0A0A0B]">
+                    <tr key={emp.slug} className="transition-colors hover:bg-white/5">
+                      <td className="px-6 py-4 font-medium text-white">
                         <Link to={`/employers/${emp.slug}`} className="text-[#2563EB] hover:underline">
                           {emp.name}
                         </Link>
                       </td>
                       <td className="px-6 py-4 text-[#6B7280]">{emp.industry}</td>
                       <td className="px-6 py-4 text-[#6B7280]">{emp.province}</td>
-                      <td className="px-6 py-4 font-semibold text-[#0A0A0B]">{fmt(emp.approvals)}</td>
+                      <td className="px-6 py-4 font-semibold text-white">{fmt(emp.approvals)}</td>
                       <td className="px-6 py-4 text-[#6B7280]">{fmtPct(emp.approvalRate)}</td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2">
-                          <div className="h-1.5 w-12 overflow-hidden rounded-full bg-[#F0F0F0]">
+                          <div className="h-1.5 w-12 overflow-hidden rounded-full bg-white/10">
                             <div className="h-full rounded-full bg-[#2563EB]" style={{ width: `${emp.score}%` }} />
                           </div>
-                          <span className="text-xs font-semibold text-[#0A0A0B]">{emp.score}</span>
+                          <span className="text-xs font-semibold text-white">{emp.score}</span>
                         </div>
                       </td>
                       <td className="px-6 py-4 text-[#6B7280] max-w-[180px] truncate">{emp.topOccupation}</td>
@@ -587,20 +582,20 @@ function AnalyticsPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="mb-10">
           <SectionHeader title="Occupation Deep Dive" badge={isPaid ? "Pro" : "Locked"} />
-          <div className="rounded-2xl border border-[#F0F0F0] bg-white  overflow-hidden relative">
-            <div className="px-6 pt-6 pb-4 border-b border-[#F0F0F0]">
+          <div className="rounded-2xl border border-white/10 bg-white/5  overflow-hidden relative">
+            <div className="px-6 pt-6 pb-4 border-b border-white/10">
               <input
                 type="text"
                 placeholder="Search occupations by name or NOC code..."
                 value={occupationSearch}
                 onChange={(e) => setOccupationSearch(e.target.value)}
-                className="w-full rounded-xl border border-[#F0F0F0] px-4 py-2.5 text-sm text-[#0A0A0B] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 focus:border-[#2563EB]"
+                className="w-full rounded-xl border border-white/10 px-4 py-2.5 text-sm text-white placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 focus:border-[#2563EB]"
               />
             </div>
             <div className={`overflow-x-auto ${!isPaid ? "max-h-[320px] overflow-hidden" : ""}`}>
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-[#F0F0F0] bg-[#F8F9FA]">
+                  <tr className="border-b border-white/10 bg-white/5">
                     <SortTh label="Occupation" col="nocName" current={occupationSort} onClick={handleOccupationSort} />
                     <SortTh label="NOC" col="nocCode" current={occupationSort} onClick={handleOccupationSort} />
                     <SortTh label="TEER" col="teerLevel" current={occupationSort} onClick={handleOccupationSort} />
@@ -613,14 +608,14 @@ function AnalyticsPage() {
                 </thead>
                 <tbody className="divide-y divide-[#F0F0F0]">
                   {(isPaid ? filteredOccupations : filteredOccupations.slice(0, 5)).map((occ) => (
-                    <tr key={occ.nocCode} className="transition-colors hover:bg-[#F8F9FA]">
-                      <td className="px-6 py-4 font-medium text-[#0A0A0B] max-w-[300px] truncate">{occ.nocName}</td>
+                    <tr key={occ.nocCode} className="transition-colors hover:bg-white/5">
+                      <td className="px-6 py-4 font-medium text-white max-w-[300px] truncate">{occ.nocName}</td>
                       <td className="px-6 py-4 text-[#6B7280] font-mono text-xs">{occ.nocCode}</td>
                       <td className="px-6 py-4">
                         <span className="rounded-full bg-[#2563EB]/10 px-2 py-0.5 text-xs font-semibold text-[#2563EB]">TEER {occ.teerLevel}</span>
                       </td>
                       <td className="px-6 py-4 text-[#6B7280]">{occ.employersCount}</td>
-                      <td className="px-6 py-4 font-semibold text-[#0A0A0B]">{fmt(occ.approvals)}</td>
+                      <td className="px-6 py-4 font-semibold text-white">{fmt(occ.approvals)}</td>
                       <td className="px-6 py-4 text-[#2563EB] font-semibold">{fmtWage(occ.avgWage)}</td>
                       <td className="px-6 py-4 text-[#6B7280]">{fmtWage(occ.minWage)}</td>
                       <td className="px-6 py-4 text-[#6B7280]">{fmtWage(occ.maxWage)}</td>
@@ -638,24 +633,24 @@ function AnalyticsPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="mb-10">
           <SectionHeader title="Wage Analytics by Industry" badge={isPaid ? "Pro" : "Locked"} />
-          <div className="rounded-2xl border border-[#F0F0F0] bg-white  overflow-hidden relative">
+          <div className="rounded-2xl border border-white/10 bg-white/5  overflow-hidden relative">
             <div className={`overflow-x-auto ${!isPaid ? "max-h-[260px] overflow-hidden" : ""}`}>
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-[#F0F0F0] bg-[#F8F9FA]">
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Industry</th>
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Employers</th>
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Total Approvals</th>
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Avg Wage</th>
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Median Wage</th>
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Min Wage</th>
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Max Wage</th>
+                  <tr className="border-b border-white/10 bg-white/5">
+                    <th className="px-6 py-4 font-semibold text-white">Industry</th>
+                    <th className="px-6 py-4 font-semibold text-white">Employers</th>
+                    <th className="px-6 py-4 font-semibold text-white">Total Approvals</th>
+                    <th className="px-6 py-4 font-semibold text-white">Avg Wage</th>
+                    <th className="px-6 py-4 font-semibold text-white">Median Wage</th>
+                    <th className="px-6 py-4 font-semibold text-white">Min Wage</th>
+                    <th className="px-6 py-4 font-semibold text-white">Max Wage</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#F0F0F0]">
                   {(isPaid ? data.industryWages : data.industryWages.slice(0, 3)).map((iw, i) => (
-                    <tr key={iw.industry} className="transition-colors hover:bg-[#F8F9FA]">
-                      <td className="px-6 py-4 font-medium text-[#0A0A0B]">
+                    <tr key={iw.industry} className="transition-colors hover:bg-white/5">
+                      <td className="px-6 py-4 font-medium text-white">
                         {!isPaid && i >= 3 ? <>🔒 {iw.industry}</> : iw.industry}
                       </td>
                       <td className="px-6 py-4 text-[#6B7280]">{!isPaid && i >= 3 ? "🔒" : iw.employers}</td>
@@ -678,37 +673,37 @@ function AnalyticsPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="mb-10">
           <SectionHeader title="Employer Sponsorship Rankings" badge={isPaid ? "Pro" : "Locked"} />
-          <div className="rounded-2xl border border-[#F0F0F0] bg-white  overflow-hidden relative">
+          <div className="rounded-2xl border border-white/10 bg-white/5  overflow-hidden relative">
             <div className={`overflow-x-auto ${!isPaid ? "max-h-[340px] overflow-hidden" : ""}`}>
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-[#F0F0F0] bg-[#F8F9FA]">
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Rank</th>
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Employer</th>
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Score</th>
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Approvals</th>
-                    <th className="px-6 py-4 font-semibold text-[#0A0A0B]">Appr. Rate</th>
+                  <tr className="border-b border-white/10 bg-white/5">
+                    <th className="px-6 py-4 font-semibold text-white">Rank</th>
+                    <th className="px-6 py-4 font-semibold text-white">Employer</th>
+                    <th className="px-6 py-4 font-semibold text-white">Score</th>
+                    <th className="px-6 py-4 font-semibold text-white">Approvals</th>
+                    <th className="px-6 py-4 font-semibold text-white">Appr. Rate</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#F0F0F0]">
                   {(isPaid ? data.sponsorshipRankings : data.sponsorshipRankings.slice(0, 5)).map((er, i) => {
                     const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : String(i + 1);
                     return (
-                      <tr key={er.slug} className="transition-colors hover:bg-[#F8F9FA]">
+                      <tr key={er.slug} className="transition-colors hover:bg-white/5">
                         <td className="px-6 py-4">
                           <span className={i < 3 ? "text-lg" : "text-sm text-[#6B7280]"}>{medal}</span>
                         </td>
-                        <td className="px-6 py-4 font-medium text-[#0A0A0B]">
+                        <td className="px-6 py-4 font-medium text-white">
                           <Link to={`/employers/${er.slug}`} className="text-[#2563EB] hover:underline">
                             {er.name}
                           </Link>
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-2">
-                            <div className="h-2 w-16 overflow-hidden rounded-full bg-[#F0F0F0]">
+                            <div className="h-2 w-16 overflow-hidden rounded-full bg-white/10">
                               <div className="h-full rounded-full bg-[#2563EB]" style={{ width: `${er.score}%` }} />
                             </div>
-                            <span className="font-semibold text-[#0A0A0B]">{er.score}</span>
+                            <span className="font-semibold text-white">{er.score}</span>
                           </div>
                         </td>
                         <td className="px-6 py-4 text-[#6B7280]">{fmt(er.approvals)}</td>
@@ -728,7 +723,7 @@ function AnalyticsPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="mb-10">
           <SectionHeader title="Hiring Trends & Forecasts" badge={isPaid ? "Pro" : "Locked"} />
-          <div className="rounded-2xl border border-[#F0F0F0] bg-white p-6  relative">
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-6  relative">
             {/* Yearly LMIA Approvals Bar Chart */}
             <h3 className="mb-4 text-sm font-semibold text-[#6B7280] uppercase tracking-wider">Yearly LMIA Approvals</h3>
             <div className="overflow-x-auto">
@@ -796,12 +791,9 @@ function AnalyticsPage() {
               ))}
             </div>
             {!isPaid && (
-              <div className="absolute inset-0 flex items-end justify-center pb-6">
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent pointer-events-none" />
-                <span className="relative z-10 inline-flex items-center gap-2 rounded-full bg-[#0A0A0B]/5 px-4 py-2 text-sm font-medium text-[#6B7280]">
+                <span className="relative z-10 inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm font-medium text-[#6B7280]">
                   🔒 Upgrade to see detailed trend data
                 </span>
-              </div>
             )}
           </div>
         </section>
@@ -810,20 +802,20 @@ function AnalyticsPage() {
             DATA TRANSPARENCY FOOTER
             ════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
-          <div className="rounded-2xl border border-[#F0F0F0] bg-white p-6 ">
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 ">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-1">
-                <h3 className="text-sm font-semibold text-[#0A0A0B]">Data Transparency</h3>
-                <p className="text-xs text-[#9CA3AF]">
+                <h3 className="text-sm font-semibold text-white">Data Transparency</h3>
+                <p className="text-xs text-[#6B7280]">
                   Data Sources: Publicly available LMIA disclosure data from Employment and Social Development Canada (ESDC).
                 </p>
-                <p className="text-xs text-[#9CA3AF]">
+                <p className="text-xs text-[#6B7280]">
                   Last updated: Quarterly. Disclaimer: Analytics are for informational purposes only. LMIA Career AI does not guarantee employment, LMIA approval, or immigration outcomes.
                 </p>
               </div>
               <Link
                 to="/disclaimer"
-                className="shrink-0 rounded-xl bg-[#F8F9FA] px-4 py-2 text-xs font-medium text-[#6B7280] transition-colors hover:bg-[#F0F0F0] hover:text-[#0A0A0B]"
+                className="shrink-0 rounded-xl bg-white/5 px-4 py-2 text-xs font-medium text-[#6B7280] transition-colors hover:bg-white/10 hover:text-white"
               >
                 Full Disclaimer →
               </Link>
@@ -832,7 +824,7 @@ function AnalyticsPage() {
         </section>
 
         {/* Last updated */}
-        <p className="text-center text-xs text-[#9CA3AF]">
+        <p className="text-center text-xs text-[#6B7280]">
           Data sourced from publicly documented LMIA employer records. Last updated: {new Date().toLocaleDateString("en-CA", { year: "numeric", month: "long", day: "numeric" })}.
         </p>
       </main>
@@ -845,7 +837,7 @@ function AnalyticsPage() {
 function SortTh({ label, col, current, onClick }: { label: string; col: string; current: { col: string; dir: string }; onClick: (col: string) => void }) {
   const isActive = current.col === col;
   return (
-    <th className="px-6 py-4 font-semibold text-[#0A0A0B] cursor-pointer select-none hover:text-[#2563EB] transition-colors" onClick={() => onClick(col)}>
+    <th className="px-6 py-4 font-semibold text-white cursor-pointer select-none hover:text-[#2563EB] transition-colors" onClick={() => onClick(col)}>
       <span className="inline-flex items-center gap-1">
         {label}
         {isActive && (

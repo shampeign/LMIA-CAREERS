@@ -27,7 +27,7 @@ export function HowItWorks() {
           <h2 className="text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-[#0A0A0B]">
             Your path to a Canadian job, simplified
           </h2>
-          <p className="mt-6 text-[18px] leading-relaxed text-[#6B7280]">
+          <p className="mt-6 text-[18px] leading-relaxed text-[#4B5563]">
             Three steps from discovery to your offer letter.
           </p>
         </div>
@@ -36,15 +36,15 @@ export function HowItWorks() {
           {steps.map((step) => (
             <div
               key={step.number}
-              className="border border-[#F0F0F0] rounded-2xl bg-white p-10"
+              className="rounded-2xl border border-[#E5E7EB] bg-white p-10"
             >
-              <span className="text-6xl font-bold text-[#F0F0F0] select-none">
+              <span className="text-5xl font-bold text-[#E5E7EB] select-none">
                 {step.number}
               </span>
-              <h3 className="mt-6 text-[24px] font-bold text-[#0A0A0B]">
+              <h3 className="mt-6 text-[22px] font-bold text-[#0A0A0B]">
                 {step.title}
               </h3>
-              <p className="mt-3 text-[16px] leading-relaxed text-[#6B7280]">
+              <p className="mt-3 text-[16px] leading-relaxed text-[#4B5563]">
                 {step.description}
               </p>
             </div>
