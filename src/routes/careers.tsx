@@ -21,11 +21,11 @@ function CareersPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#FAFAFA]">
+      <main className="min-h-dvh bg-white">
         {/* Hero */}
         <section className="bg-white px-6 py-32 sm:py-40">
           <div className="mx-auto max-w-4xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+            <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
               Careers
             </span>
             <h1 className="mt-4 text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-[#0A0A0B] sm:text-[56px]">
@@ -43,7 +43,7 @@ function CareersPage() {
         <section className="px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
-              <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+              <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
                 Why LMIA Career AI
               </span>
               <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
@@ -121,7 +121,7 @@ function CareersPage() {
               ].map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm transition-all hover:border-[#E5E7EB] hover:shadow-md"
+                  className="rounded-2xl border border-[#F0F0F0] bg-white p-8  hover:"
                 >
                   <div className="text-[#2563EB]">{item.icon}</div>
                   <h3 className="mt-5 text-[18px] font-bold text-[#0A0A0B]">{item.title}</h3>
@@ -136,7 +136,7 @@ function CareersPage() {
         <section className="bg-white px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
-              <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+              <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
                 Open Position
               </span>
               <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
@@ -146,7 +146,7 @@ function CareersPage() {
             </div>
 
             {/* Job Card */}
-            <div className="mt-16 mx-auto max-w-3xl rounded-3xl border border-[#2563EB] bg-white p-10 shadow-sm ring-1 ring-[#2563EB]">
+            <div className="mt-16 mx-auto max-w-3xl rounded-2xl border border-[#2563EB] bg-white p-10  ring-1 ring-[#2563EB]">
               <div className="flex items-start gap-4">
                 <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-[#2563EB] text-lg font-bold text-white">
                   FS
@@ -363,7 +363,7 @@ function CareersPage() {
                     ].map((item) => (
                       <div
                         key={item}
-                        className="flex items-center gap-3 rounded-2xl border border-[#F0F0F0] bg-[#FAFAFA] px-5 py-3"
+                        className="flex items-center gap-3 rounded-2xl border border-[#F0F0F0] bg-white px-5 py-3"
                       >
                         <svg
                           className="h-5 w-5 flex-shrink-0 text-[#2563EB]"
@@ -391,7 +391,7 @@ function CareersPage() {
                 <div className="mt-6 flex flex-col items-center gap-3">
                   <a
                     href="mailto:contact@lmiacareersai.com?subject=Application: Full-Stack Web Developer & Digital Platform Manager"
-                    className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white shadow-sm transition-all hover:bg-[#1D4ED8]"
+                    className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white  hover:bg-[#1D4ED8]"
                   >
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -411,9 +411,9 @@ function CareersPage() {
         </section>
 
         {/* Team Culture */}
-        <section className="bg-[#FAFAFA] px-6 py-24 sm:py-32">
+        <section className="bg-white px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-4xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+            <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
               Our Culture
             </span>
             <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
@@ -431,7 +431,7 @@ function CareersPage() {
                 { label: "Work Style", value: "Remote-first, async" },
                 { label: " Values", value: "Ownership, quality, impact" },
               ].map((stat) => (
-                <div key={stat.label} className="rounded-3xl border border-[#F0F0F0] bg-white p-6 shadow-sm">
+                <div key={stat.label} className="rounded-2xl border border-[#F0F0F0] bg-white p-6 ">
                   <p className="text-sm text-[#9CA3AF]">{stat.label}</p>
                   <p className="mt-2 text-[17px] font-semibold text-[#0A0A0B]">{stat.value}</p>
                 </div>

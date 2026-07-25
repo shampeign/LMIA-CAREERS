@@ -21,7 +21,7 @@ function SignUpPage() {
   return (
     <>
       <Navbar />
-      <main className="flex min-h-[calc(100dvh-73px)] items-center justify-center bg-[#FAFAFA] px-6 py-16">
+      <main className="flex min-h-[calc(100dvh-73px)] items-center justify-center bg-white px-6 py-16">
         <div className="w-full max-w-md">
           <div className="mb-10 text-center">
             <h1 className="text-[32px] font-bold tracking-[-0.03em] text-[#0A0A0B]">
@@ -39,7 +39,7 @@ function SignUpPage() {
             appearance={{
               elements: {
                 rootBox: "mx-auto w-full",
-                card: "rounded-3xl shadow-sm border border-[#F0F0F0] bg-white p-8",
+                card: "rounded-2xl  border border-[#F0F0F0] bg-white p-8",
                 headerTitle: "text-[#0A0A0B]",
                 headerSubtitle: "text-[#6B7280]",
                 socialButtonsBlockButton:

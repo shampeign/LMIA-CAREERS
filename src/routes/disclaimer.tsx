@@ -21,11 +21,11 @@ function Disclaimer() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#FAFAFA]">
+      <main className="min-h-dvh bg-white">
         {/* Header */}
         <section className="bg-white px-6 py-24">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+            <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
               Legal
             </span>
             <h1 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
@@ -41,7 +41,7 @@ function Disclaimer() {
         <section className="px-6 py-16">
           <div className="mx-auto max-w-3xl space-y-10 text-[16px] leading-[1.8] text-[#4B5563]">
             {/* Primary disclaimer - prominent */}
-            <div className="rounded-3xl border-2 border-[#F59E0B]/30 bg-[#F59E0B]/5 p-8 sm:p-10">
+            <div className="rounded-2xl border-2 border-[#F59E0B]/30 bg-[#F59E0B]/5 p-8 sm:p-10">
               <div className="flex items-start gap-4">
                 <svg
                   className="mt-0.5 h-6 w-6 flex-shrink-0 text-[#F59E0B]"
@@ -69,7 +69,7 @@ function Disclaimer() {
 
             {/* Key disclaimers */}
             <section className="space-y-6">
-              <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+              <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
                 <h2 className="text-[18px] font-bold text-[#0A0A0B] mb-3">
                   We Do Not Process Immigration Applications
                 </h2>
@@ -81,7 +81,7 @@ function Disclaimer() {
                 </p>
               </div>
 
-              <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+              <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
                 <h2 className="text-[18px] font-bold text-[#0A0A0B] mb-3">
                   No Guarantees of Employment or Immigration Outcomes
                 </h2>
@@ -93,7 +93,7 @@ function Disclaimer() {
                 </p>
               </div>
 
-              <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+              <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
                 <h2 className="text-[18px] font-bold text-[#0A0A0B] mb-3">
                   Data Sourced from Public Records
                 </h2>
@@ -106,7 +106,7 @@ function Disclaimer() {
                 </p>
               </div>
 
-              <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+              <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
                 <h2 className="text-[18px] font-bold text-[#0A0A0B] mb-3">
                   Verify with Official Sources
                 </h2>
@@ -159,7 +159,7 @@ function Disclaimer() {
             </section>
 
             {/* Contact */}
-            <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+            <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
               <h2 className="text-[18px] font-bold text-[#0A0A0B] mb-3">
                 Questions?
               </h2>

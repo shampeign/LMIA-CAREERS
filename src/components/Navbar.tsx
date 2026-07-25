@@ -20,19 +20,18 @@ export function Navbar() {
 
   return (
     <nav
-      className="sticky top-0 z-50 border-b border-[#F0F0F0] bg-white/90 backdrop-blur-xl"
+      className="sticky top-0 z-50 bg-white"
       aria-label="Main navigation"
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 lg:px-8">
         {/* Logo */}
         <Link
           to="/"
           className="flex items-center gap-2.5 text-lg font-bold text-[#0A0A0B] tracking-[-0.02em]"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#0A0A0B] text-sm font-bold text-white">
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#0A0A0B] text-sm font-bold text-white">
             L
           </span>
-          <span>LMIA Career AI</span>
         </Link>
 
         {/* Desktop links */}
@@ -42,7 +41,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 to={link.href}
-                className="text-[15px] font-medium text-[#4B5563] transition-colors hover:text-[#0A0A0B]"
+                className="text-[15px] font-medium text-[#4B5563] hover:text-[#0A0A0B]"
               >
                 {link.label}
               </Link>
@@ -50,7 +49,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[15px] font-medium text-[#4B5563] transition-colors hover:text-[#0A0A0B]"
+                className="text-[15px] font-medium text-[#4B5563] hover:text-[#0A0A0B]"
               >
                 {link.label}
               </a>
@@ -64,7 +63,7 @@ export function Navbar() {
             <SignInButton mode="modal">
               <button
                 type="button"
-                className="rounded-xl px-5 py-2.5 text-[15px] font-medium text-[#4B5563] transition-colors hover:bg-[#F8F9FA] hover:text-[#0A0A0B]"
+                className="rounded-xl px-5 py-2.5 text-[15px] font-medium text-[#4B5563] hover:text-[#0A0A0B]"
               >
                 Sign In
               </button>
@@ -72,22 +71,22 @@ export function Navbar() {
             <SignUpButton mode="modal">
               <button
                 type="button"
-                className="rounded-xl bg-[#2563EB] px-6 py-2.5 text-[15px] font-semibold text-white transition-all hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 focus:ring-offset-2"
+                className="rounded-xl bg-[#2563EB] px-6 py-2.5 text-[15px] font-semibold text-white hover:bg-[#1D4ED8]"
               >
-                Sign Up
+                Get Started
               </button>
             </SignUpButton>
           </SignedOut>
           <SignedIn>
             <Link
               to="/dashboard"
-              className="rounded-xl px-5 py-2.5 text-[15px] font-medium text-[#4B5563] transition-colors hover:bg-[#F8F9FA] hover:text-[#0A0A0B]"
+              className="rounded-xl px-5 py-2.5 text-[15px] font-medium text-[#4B5563] hover:text-[#0A0A0B]"
             >
               Dashboard
             </Link>
             <Link
               to="/onboarding"
-              className="rounded-xl px-5 py-2.5 text-[15px] font-medium text-[#4B5563] transition-colors hover:bg-[#F8F9FA] hover:text-[#0A0A0B]"
+              className="rounded-xl px-5 py-2.5 text-[15px] font-medium text-[#4B5563] hover:text-[#0A0A0B]"
             >
               Profile
             </Link>
@@ -144,7 +143,7 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu - fullscreen overlay */}
+      {/* Mobile menu */}
       {mobileOpen && (
         <div className="fixed inset-0 top-[73px] z-40 bg-white md:hidden">
           <div className="flex flex-col px-6 pt-8">
@@ -187,7 +186,7 @@ export function Navbar() {
                     onClick={() => setMobileOpen(false)}
                     className="mt-2 block w-full rounded-xl bg-[#2563EB] px-6 py-4 text-center text-lg font-semibold text-white hover:bg-[#1D4ED8]"
                   >
-                    Sign Up
+                    Get Started
                   </button>
                 </SignUpButton>
               </SignedOut>

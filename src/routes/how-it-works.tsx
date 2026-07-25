@@ -93,12 +93,12 @@ function HowItWorksPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#FAFAFA]">
+      <main className="min-h-dvh bg-white">
         {/* Hero */}
         <section className="relative overflow-hidden bg-white px-6 py-32 sm:py-40">
           <div className="absolute inset-0 bg-dots opacity-40" aria-hidden="true" />
           <div className="relative mx-auto max-w-4xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+            <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
               How It Works
             </span>
             <h1 className="mt-4 text-[44px] font-bold leading-[1.1] tracking-[-0.03em] text-[#0A0A0B] sm:text-[56px]">
@@ -125,7 +125,7 @@ function HowItWorksPage() {
                 >
                   {/* Step number & icon */}
                   <div className="flex-shrink-0">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-[#2563EB]/10 text-[#2563EB]">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-[#2563EB]/10 text-[#2563EB]">
                       {step.icon}
                     </div>
                   </div>
@@ -197,7 +197,7 @@ function HowItWorksPage() {
                 href="/#waitlist"
                 className="rounded-2xl border border-[#374151] px-8 py-3.5 text-[16px] font-semibold text-white transition-colors hover:border-[#6B7280] hover:bg-white/5"
               >
-                Join the Waitlist
+                Get Started
               </a>
             </div>
           </div>

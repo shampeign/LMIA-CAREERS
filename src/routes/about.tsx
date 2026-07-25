@@ -98,12 +98,12 @@ function About() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#FAFAFA]">
+      <main className="min-h-dvh bg-white">
         {/* Hero */}
         <section className="relative overflow-hidden bg-white px-6 py-32 sm:py-40">
           <div className="absolute inset-0 bg-dots opacity-40" aria-hidden="true" />
           <div className="relative mx-auto max-w-4xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+            <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
               About Us
             </span>
             <h1 className="mt-4 text-[44px] font-bold leading-[1.1] tracking-[-0.03em] text-[#0A0A0B] sm:text-[56px]">
@@ -145,10 +145,10 @@ function About() {
         </section>
 
         {/* What We Do */}
-        <section className="bg-[#FAFAFA] px-6 py-24 sm:py-32">
+        <section className="bg-white px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
-              <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+              <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
                 What We Do
               </span>
               <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
@@ -160,7 +160,7 @@ function About() {
               {whatWeDo.map((item) => (
                 <div
                   key={item.title}
-                  className="group rounded-3xl border border-[#F0F0F0] bg-white p-10 shadow-sm transition-all hover:border-[#E5E7EB] hover:shadow-md"
+                  className="group rounded-2xl border border-[#F0F0F0] bg-white p-10  hover:"
                 >
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#2563EB]/10 text-[#2563EB]">
                     {item.icon}
@@ -181,7 +181,7 @@ function About() {
         <section className="bg-white px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
-              <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+              <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
                 Our Values
               </span>
               <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
@@ -193,7 +193,7 @@ function About() {
               {values.map((value) => (
                 <div
                   key={value.title}
-                  className="group rounded-3xl border border-[#F0F0F0] bg-white p-10 shadow-sm transition-all hover:border-[#E5E7EB] hover:shadow-md"
+                  className="group rounded-2xl border border-[#F0F0F0] bg-white p-10  hover:"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#2563EB]/10 text-[#2563EB]">
                     {value.icon}
@@ -211,7 +211,7 @@ function About() {
         </section>
 
         {/* Team Note */}
-        <section className="bg-[#FAFAFA] px-6 py-24 sm:py-32">
+        <section className="bg-white px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-[18px] leading-[1.8] text-[#6B7280]">
               Built by a team passionate about making Canadian employment accessible. We're job
@@ -244,7 +244,7 @@ function About() {
                 href="/#waitlist"
                 className="rounded-2xl border border-[#374151] px-8 py-3.5 text-[16px] font-semibold text-white transition-colors hover:border-[#6B7280] hover:bg-white/5"
               >
-                Join the Waitlist
+                Get Started
               </a>
             </div>
           </div>

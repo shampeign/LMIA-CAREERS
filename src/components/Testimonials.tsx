@@ -28,7 +28,7 @@ export function Testimonials() {
       <div className="mx-auto max-w-6xl">
         {/* Section heading */}
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+          <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
             Testimonials
           </span>
           <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
@@ -44,7 +44,7 @@ export function Testimonials() {
           {testimonials.map((t) => (
             <div
               key={t.name}
-              className="flex flex-col rounded-3xl border border-[#F0F0F0] bg-white p-10 shadow-sm"
+              className="flex flex-col rounded-2xl border border-[#F0F0F0] bg-white p-10 "
             >
               {/* Quote */}
               <blockquote className="flex-1">

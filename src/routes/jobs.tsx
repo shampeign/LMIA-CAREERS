@@ -172,12 +172,12 @@ function JobListings() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#FAFAFA]">
+      <main className="min-h-dvh bg-white">
         {/* Hero banner */}
         <section className="bg-white px-6 py-20">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
-              <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+              <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
                 Job Board
               </span>
               <h1 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
@@ -372,7 +372,7 @@ function JobListings() {
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div
                     key={i}
-                    className="animate-pulse rounded-3xl border border-[#F0F0F0] bg-white p-8"
+                    className="animate-pulse rounded-2xl border border-[#F0F0F0] bg-white p-8"
                   >
                     <div className="space-y-3">
                       <div className="h-6 w-3/4 rounded-lg bg-[#F0F0F0]" />
@@ -431,7 +431,7 @@ function JobListings() {
                     return (
                       <div
                         key={job.id}
-                        className="group relative flex flex-col rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm transition-all hover:border-[#E5E7EB] hover:shadow-md"
+                        className="group relative flex flex-col rounded-2xl border border-[#F0F0F0] bg-white p-8  hover:"
                       >
                         <button
                           onClick={(e) => {
@@ -511,7 +511,7 @@ function JobListings() {
                             </svg>
                             {job.location}
                           </span>
-                          <span className="inline-flex items-center rounded-full bg-[#FAFAFA] px-3 py-1 text-xs font-medium text-[#6B7280]">
+                          <span className="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-medium text-[#6B7280]">
                             {job.type}
                           </span>
                           {job.remote && (

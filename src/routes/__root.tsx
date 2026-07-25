@@ -49,7 +49,7 @@ export const Route = createRootRoute({
     ],
   }),
   notFoundComponent: () => (
-    <div className="flex min-h-dvh items-center justify-center bg-[#FAFAFA]">
+    <div className="flex min-h-dvh items-center justify-center bg-white">
       <div className="text-center">
         <h1 className="text-7xl font-bold text-[#0A0A0B]">
           404

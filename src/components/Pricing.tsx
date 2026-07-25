@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 const tiers = [
   {
     name: "Free",
@@ -12,6 +14,7 @@ const tiers = [
       "Community forum access",
     ],
     cta: "Get Started Free",
+    href: "/sign-up",
     featured: false,
   },
   {
@@ -28,7 +31,8 @@ const tiers = [
       "Application tracker",
       "Priority employer alerts",
     ],
-    cta: "Join Waitlist",
+    cta: "Get Started",
+    href: "/sign-up",
     featured: true,
   },
   {
@@ -45,51 +49,44 @@ const tiers = [
       "1-on-1 career coaching (monthly)",
       "Priority support",
     ],
-    cta: "Join Waitlist",
+    cta: "Get Started",
+    href: "/sign-up",
     featured: false,
   },
 ];
 
 export function Pricing() {
   return (
-    <section id="pricing" className="bg-[#FAFAFA] px-6 py-32 sm:py-40">
+    <section id="pricing" className="bg-white px-6 py-40">
       <div className="mx-auto max-w-6xl">
-        {/* Section heading */}
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
-            Pricing
-          </span>
-          <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
-            Plans for every stage of your{" "}
-            <span className="text-[#2563EB]">career journey</span>
+          <h2 className="text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-[#0A0A0B]">
+            Plans for every stage of your career journey
           </h2>
           <p className="mt-6 text-[18px] leading-relaxed text-[#6B7280]">
             Start free, upgrade when you're ready to accelerate.
           </p>
         </div>
 
-        {/* Pricing cards */}
         <div className="mt-20 grid gap-8 lg:grid-cols-3">
           {tiers.map((tier) => (
             <div
               key={tier.name}
-              className={`relative flex flex-col rounded-3xl border bg-white p-10 shadow-sm transition-all hover:border-[#E5E7EB] hover:shadow-md ${
+              className={`flex flex-col rounded-2xl border bg-white p-10 ${
                 tier.featured
-                  ? "border-[#2563EB] ring-1 ring-[#2563EB]"
+                  ? "border-[#0A0A0B]"
                   : "border-[#F0F0F0]"
               }`}
             >
               {tier.featured && (
-                <span className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-[#2563EB] px-5 py-1.5 text-sm font-semibold text-white shadow-sm">
+                <span className="mb-6 inline-block self-start rounded-lg bg-[#0A0A0B] px-4 py-1.5 text-sm font-semibold text-white">
                   Most Popular
                 </span>
               )}
 
-              {/* Plan name */}
               <h3 className="text-xl font-bold text-[#0A0A0B]">{tier.name}</h3>
               <p className="mt-2 text-[15px] text-[#6B7280]">{tier.description}</p>
 
-              {/* Price */}
               <div className="mt-8">
                 <span className="text-5xl font-bold text-[#0A0A0B]">
                   {tier.price}
@@ -97,7 +94,6 @@ export function Pricing() {
                 <span className="text-[15px] text-[#6B7280]">{tier.period}</span>
               </div>
 
-              {/* Features */}
               <ul className="mt-10 flex-1 space-y-4" role="list">
                 {tier.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
@@ -116,117 +112,18 @@ export function Pricing() {
                 ))}
               </ul>
 
-              {/* CTA */}
-              <a
-                href="/sign-up"
-                className={`mt-10 block rounded-2xl px-8 py-4 text-center text-[16px] font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 focus:ring-offset-2 ${
+              <Link
+                to={tier.href}
+                className={`mt-10 block rounded-xl px-8 py-4 text-center text-[16px] font-semibold ${
                   tier.featured
-                    ? "bg-[#2563EB] text-white hover:bg-[#1D4ED8] shadow-sm"
+                    ? "bg-[#2563EB] text-white hover:bg-[#1D4ED8]"
                     : "border border-[#E5E7EB] bg-white text-[#0A0A0B] hover:bg-[#F8F9FA]"
                 }`}
               >
                 {tier.cta}
-              </a>
+              </Link>
             </div>
           ))}
-        </div>
-
-        {/* Why Upgrade Section */}
-        <div className="mt-24">
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
-              Why Upgrade
-            </span>
-            <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
-              Unlock the full power of{" "}
-              <span className="text-[#2563EB]">LMIA Career AI</span>
-            </h2>
-            <p className="mt-6 text-[18px] leading-relaxed text-[#6B7280]">
-              The Free plan lets you browse. Paid plans give you everything you need to land the job.
-            </p>
-          </div>
-
-          {/* Comparison table */}
-          <div className="mt-16 overflow-hidden rounded-3xl border border-[#F0F0F0] bg-white shadow-sm">
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[640px]">
-                <thead>
-                  <tr className="border-b border-[#F0F0F0]">
-                    <th className="px-8 py-6 text-left text-[15px] font-semibold text-[#0A0A0B]">Feature</th>
-                    <th className="px-8 py-6 text-center text-[15px] font-semibold text-[#9CA3AF]">Free</th>
-                    <th className="px-8 py-6 text-center text-[15px] font-semibold text-[#2563EB] bg-[#F8FAFF]">Professional</th>
-                    <th className="px-8 py-6 text-center text-[15px] font-semibold text-[#2563EB]">Premium</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#F0F0F0]">
-                  {[
-                    { feature: "Employer directory access", free: true, pro: true, premium: true },
-                    { feature: "Basic job search & filters", free: true, pro: true, premium: true },
-                    { feature: "Employer analytics preview", free: true, pro: true, premium: true },
-                    { feature: "Full employer intelligence dashboard", free: false, pro: true, premium: true },
-                    { feature: "LMIA approval trends & history", free: false, pro: true, premium: true },
-                    { feature: "Occupation & NOC code data", free: false, pro: true, premium: true },
-                    { feature: "Wage insights & comparisons", free: false, pro: true, premium: true },
-                    { feature: "Access to job application links", free: false, pro: true, premium: true },
-                    { feature: "Unlimited job saves", free: false, pro: true, premium: true },
-                    { feature: "AI resume optimization", free: false, pro: true, premium: true },
-                    { feature: "AI cover letter generator", free: false, pro: true, premium: true },
-                    { feature: "AI job matching with scores", free: false, pro: true, premium: true },
-                    { feature: "Application tracker", free: false, pro: true, premium: true },
-                    { feature: "Priority employer alerts", free: false, pro: true, premium: true },
-                    { feature: "AI interview simulator", free: false, pro: false, premium: true },
-                    { feature: "Personalized job matching", free: false, pro: false, premium: true },
-                    { feature: "Salary & market insights", free: false, pro: false, premium: true },
-                    { feature: "1-on-1 career coaching", free: false, pro: false, premium: true },
-                    { feature: "Priority support", free: false, pro: false, premium: true },
-                  ].map((row, i) => (
-                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-[#FAFAFA]"}>
-                      <td className="px-8 py-4 text-[15px] font-medium text-[#0A0A0B]">{row.feature}</td>
-                      <td className="px-8 py-4 text-center">
-                        {row.free ? (
-                          <svg className="mx-auto h-5 w-5 text-[#9CA3AF]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                        ) : (
-                          <span className="text-[15px] text-[#D1D5DB]">—</span>
-                        )}
-                      </td>
-                      <td className="px-8 py-4 text-center bg-[#F8FAFF]">
-                        {row.pro ? (
-                          <svg className="mx-auto h-5 w-5 text-[#2563EB]" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                        ) : (
-                          <span className="text-[15px] text-[#D1D5DB]">—</span>
-                        )}
-                      </td>
-                      <td className="px-8 py-4 text-center">
-                        {row.premium ? (
-                          <svg className="mx-auto h-5 w-5 text-[#2563EB]" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                        ) : (
-                          <span className="text-[15px] text-[#D1D5DB]">—</span>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="mt-12 text-center">
-            <p className="text-[15px] text-[#6B7280]">
-              All plans include a{" "}
-              <span className="font-semibold text-[#0A0A0B]">14-day free trial</span> of Professional.
-              No credit card required.
-            </p>
-            <a
-              href="/sign-up"
-              className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white shadow-sm transition-all hover:bg-[#1D4ED8]"
-            >
-              Start Your Free Trial
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </a>
-          </div>
         </div>
       </div>
     </section>

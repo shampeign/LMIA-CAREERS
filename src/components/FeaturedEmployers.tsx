@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { employers as allEmployers } from "~/data/employers";
-import { useEmployerPreview } from "~/components/EmployerPreviewContext";
 
 const featuredSlugs = [
   "maple-leaf-foods",
@@ -16,26 +15,19 @@ const featuredEmployers = featuredSlugs
   .filter(Boolean) as typeof allEmployers;
 
 export function FeaturedEmployers() {
-  const { openModal } = useEmployerPreview();
   return (
-    <section id="employers" className="bg-[#FAFAFA] px-6 py-32 sm:py-40">
+    <section id="employers" className="bg-white px-6 py-40">
       <div className="mx-auto max-w-6xl">
-        {/* Section heading */}
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
-            Featured Employers
-          </span>
-          <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
-            Employers who have hired through{" "}
-            <span className="text-[#2563EB]">TFWP</span>
+          <h2 className="text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-[#0A0A0B]">
+            Employers who have hired through TFWP
           </h2>
           <p className="mt-6 text-[18px] leading-relaxed text-[#6B7280]">
             Browse employers with publicly documented hiring history. More added weekly.
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {featuredEmployers.map((employer) => {
             const initials = employer.name
               .split(" ")
@@ -44,49 +36,35 @@ export function FeaturedEmployers() {
               .slice(0, 2)
               .toUpperCase();
             return (
-            <div
-              key={employer.slug}
-              className="group rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm transition-all hover:border-[#E5E7EB] hover:shadow-md"
-            >
-              <div className="flex items-start gap-4">
-                {/* Logo placeholder */}
+              <Link
+                key={employer.slug}
+                to="/employers/$slug"
+                params={{ slug: employer.slug }}
+                className="flex items-center gap-4 rounded-xl border border-[#F0F0F0] px-6 py-5 hover:border-[#E5E7EB]"
+              >
                 <div
-                  className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[#F0F0F0] text-sm font-bold text-[#4B5563]"
+                  className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#F0F0F0] text-sm font-bold text-[#4B5563]"
                   aria-hidden="true"
                 >
                   {initials}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <button
-                    type="button"
-                    onClick={() => openModal(employer)}
-                    className="text-left text-lg font-bold text-[#0A0A0B] transition-colors hover:text-[#2563EB] cursor-pointer"
-                  >
+                  <div className="text-[16px] font-semibold text-[#0A0A0B] truncate">
                     {employer.name}
-                  </button>
-                  <div className="mt-2 flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-[#F0F0F0] px-3 py-1 text-xs font-medium text-[#4B5563]">
-                      {employer.industry}
-                    </span>
-                    <span className="rounded-full bg-[#FAFAFA] px-3 py-1 text-xs font-medium text-[#6B7280]">
-                      {employer.province}
-                    </span>
+                  </div>
+                  <div className="text-[14px] text-[#6B7280]">
+                    {employer.industry} &middot; {employer.province}
                   </div>
                 </div>
-              </div>
-              <p className="mt-5 text-[15px] leading-relaxed text-[#6B7280]">
-                {employer.description}
-              </p>
-            </div>
+              </Link>
             );
           })}
         </div>
 
-        {/* View all link */}
         <div className="mt-14 text-center">
           <Link
             to="/employers"
-            className="inline-flex items-center gap-2 text-[16px] font-semibold text-[#2563EB] transition-colors hover:text-[#1D4ED8]"
+            className="inline-flex items-center gap-2 text-[16px] font-semibold text-[#2563EB] hover:text-[#1D4ED8]"
           >
             View All Employers
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">

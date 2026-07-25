@@ -64,7 +64,7 @@ export function MatchBreakdownBar({ label, score, max }: { label: string; score:
         <span className="text-[#9CA3AF]">{Math.round(score)}/{max}</span>
       </div>
       <div className="h-1.5 w-full rounded-full bg-[#F0F0F0]">
-        <div className={`h-1.5 rounded-full transition-all duration-500 ${pct >= 80 ? "bg-[#16A34A]" : pct >= 50 ? "bg-[#D97706]" : "bg-[#DC2626]"}`} style={{ width: `${pct}%` }} />
+        <div className={`h-1.5 rounded-full duration-500 ${pct >= 80 ? "bg-[#16A34A]" : pct >= 50 ? "bg-[#D97706]" : "bg-[#DC2626]"}`} style={{ width: `${pct}%` }} />
       </div>
     </div>
   );

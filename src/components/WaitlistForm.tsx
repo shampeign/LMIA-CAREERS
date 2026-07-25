@@ -33,15 +33,15 @@ export function WaitlistForm({ variant = "hero" }: WaitlistFormProps) {
   };
 
   const inputClasses =
-    "w-full rounded-2xl border border-[#E5E7EB] bg-white px-5 py-4 text-[16px] text-[#0A0A0B] placeholder-[#9CA3AF] transition-all focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10";
+    "w-full rounded-2xl border border-[#E5E7EB] bg-white px-5 py-4 text-[16px] text-[#0A0A0B] placeholder-[#9CA3AF] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10";
 
   const buttonClasses =
-    "inline-flex items-center justify-center rounded-2xl bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white transition-all hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 focus:ring-offset-2 disabled:opacity-60";
+    "inline-flex items-center justify-center rounded-2xl bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 focus:ring-offset-2 disabled:opacity-60";
 
   if (submitted) {
     return (
       <div
-        className="rounded-3xl border border-green-200 bg-green-50/50 px-8 py-8 text-center"
+        className="rounded-2xl border border-green-200 bg-green-50/50 px-8 py-8 text-center"
         role="alert"
       >
         <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-green-100">
@@ -110,7 +110,7 @@ export function WaitlistForm({ variant = "hero" }: WaitlistFormProps) {
               Joining...
             </span>
           ) : (
-            "Join the Waitlist"
+            "Get Started"
           )}
         </button>
       </div>

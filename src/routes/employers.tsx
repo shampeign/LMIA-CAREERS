@@ -560,7 +560,7 @@ function EmployerDirectory() {
               <button
                 key={stream.key}
                 onClick={() => toggleStream(stream.key)}
-                className={`rounded-full border px-3.5 py-2 text-[13px] font-medium transition-all ${
+                className={`rounded-full border px-3.5 py-2 text-[13px] font-medium ${
                   active
                     ? "border-[#2563EB] bg-[#2563EB]/5 text-[#2563EB]"
                     : "border-[#E5E7EB] bg-white text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#0A0A0B]"
@@ -593,7 +593,7 @@ function EmployerDirectory() {
               <button
                 key={level}
                 onClick={() => toggleTeer(level)}
-                className={`rounded-full border px-3.5 py-2 text-[13px] font-medium transition-all ${
+                className={`rounded-full border px-3.5 py-2 text-[13px] font-medium ${
                   active
                     ? "border-[#2563EB] bg-[#2563EB]/5 text-[#2563EB]"
                     : "border-[#E5E7EB] bg-white text-[#6B7280] hover:border-[#D1D5DB] hover:text-[#0A0A0B]"
@@ -633,12 +633,12 @@ function EmployerDirectory() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#FAFAFA]">
+      <main className="min-h-dvh bg-white">
         {/* Hero banner */}
         <section className="bg-white px-6 py-20">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
-              <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+              <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
                 Employer Directory
               </span>
               <h1 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">
@@ -853,7 +853,7 @@ function EmployerDirectory() {
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div
                     key={i}
-                    className="animate-pulse rounded-3xl border border-[#F0F0F0] bg-white p-8"
+                    className="animate-pulse rounded-2xl border border-[#F0F0F0] bg-white p-8"
                   >
                     <div className="flex items-start gap-4">
                       <div className="h-12 w-12 rounded-2xl bg-[#F0F0F0]" />
@@ -925,7 +925,7 @@ function EmployerDirectory() {
                     return (
                       <div
                         key={employer.slug}
-                        className="group block rounded-3xl border border-[#F0F0F0] bg-white p-6 shadow-sm transition-all hover:border-[#E5E7EB] hover:shadow-md"
+                        className="group block rounded-2xl border border-[#F0F0F0] bg-white p-6  hover:"
                       >
                         {/* Header: logo + name + badges */}
                         <div className="flex items-start gap-4">
@@ -949,7 +949,7 @@ function EmployerDirectory() {
                               <span className="inline-flex items-center rounded-full bg-[#F0F0F0] px-2.5 py-0.5 text-[11px] font-medium text-[#4B5563]">
                                 {employer.industry}
                               </span>
-                              <span className="inline-flex items-center rounded-full bg-[#FAFAFA] px-2.5 py-0.5 text-[11px] font-medium text-[#6B7280]">
+                              <span className="inline-flex items-center rounded-full bg-white px-2.5 py-0.5 text-[11px] font-medium text-[#6B7280]">
                                 {employer.province}
                               </span>
                             </div>

@@ -71,7 +71,7 @@ function LockOverlay({ rows = 5 }: { rows?: number }) {
 // ── Stat Card ─────────────────────────────────────────────────
 function StatCard({ label, value, subtitle, trend }: { label: string; value: string; subtitle: string; trend: string }) {
   return (
-    <div className="rounded-3xl border border-[#F0F0F0] bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+    <div className="rounded-2xl border border-[#F0F0F0] bg-white p-6  hover:">
       <div className="text-sm text-[#6B7280]">{label}</div>
       <div className="mt-2 text-3xl font-bold tracking-[-0.02em] text-[#0A0A0B]">{value}</div>
       <div className="mt-1 flex items-center gap-2">
@@ -342,7 +342,7 @@ function AnalyticsPage() {
 
   // ── Render ──────────────────────────────────────────────────
   return (
-    <div className="min-h-dvh bg-[#FAFAFA]">
+    <div className="min-h-dvh bg-white">
       <Navbar />
       <main className="mx-auto max-w-6xl px-6 py-12 lg:px-8">
         {/* Page Header */}
@@ -395,7 +395,7 @@ function AnalyticsPage() {
           <SectionHeader title="Market Trends" badge="Free" />
           <div className="grid gap-5 lg:grid-cols-2">
             {/* Province chart */}
-            <div className="rounded-3xl border border-[#F0F0F0] bg-white p-6 shadow-sm">
+            <div className="rounded-2xl border border-[#F0F0F0] bg-white p-6 ">
               <h3 className="mb-4 text-sm font-semibold text-[#6B7280] uppercase tracking-wider">Top Provinces by LMIA Activity</h3>
               <svg viewBox={`0 0 400 ${Math.min(data.provinceData.length, 8) * 40 + 20}`} className="w-full">
                 {data.provinceData.slice(0, 8).map((p, i) => {
@@ -414,7 +414,7 @@ function AnalyticsPage() {
               </svg>
             </div>
             {/* Industry chart */}
-            <div className="rounded-3xl border border-[#F0F0F0] bg-white p-6 shadow-sm">
+            <div className="rounded-2xl border border-[#F0F0F0] bg-white p-6 ">
               <h3 className="mb-4 text-sm font-semibold text-[#6B7280] uppercase tracking-wider">Top Industries by Employer Count</h3>
               <svg viewBox={`0 0 400 ${Math.min(data.industryData.length, 8) * 40 + 20}`} className="w-full">
                 {data.industryData.slice(0, 8).map((ind, i) => {
@@ -440,7 +440,7 @@ function AnalyticsPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="mb-10">
           <SectionHeader title="Popular Occupations" badge="Free" />
-          <div className="rounded-3xl border border-[#F0F0F0] bg-white shadow-sm overflow-hidden">
+          <div className="rounded-2xl border border-[#F0F0F0] bg-white  overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
@@ -475,7 +475,7 @@ function AnalyticsPage() {
             ════════════════════════════════════════════════════════════ */}
         {!isPaid && (
           <section className="mb-12">
-            <div className="rounded-3xl bg-[#0A0A0B] p-8 lg:p-12 shadow-lg relative overflow-hidden">
+            <div className="rounded-2xl bg-[#0A0A0B] p-8 lg:p-12 shadow-lg relative overflow-hidden">
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-[-20%] right-[-10%] h-80 w-80 rounded-full bg-[#2563EB] blur-3xl" />
                 <div className="absolute bottom-[-20%] left-[-10%] h-64 w-64 rounded-full bg-[#10B981] blur-3xl" />
@@ -502,17 +502,17 @@ function AnalyticsPage() {
                 <div className="flex flex-col gap-3 min-w-[200px]">
                   <SignedOut>
                     <SignUpButton mode="modal">
-                      <button type="button" className="rounded-xl bg-[#2563EB] px-8 py-3.5 text-base font-semibold text-white transition-all hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 whitespace-nowrap">
+                      <button type="button" className="rounded-xl bg-[#2563EB] px-8 py-3.5 text-base font-semibold text-white hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 whitespace-nowrap">
                         Start Free Trial
                       </button>
                     </SignUpButton>
                   </SignedOut>
                   <SignedIn>
-                    <Link to="/sign-up" className="rounded-xl bg-[#2563EB] px-8 py-3.5 text-base font-semibold text-white text-center transition-all hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 whitespace-nowrap">
+                    <Link to="/sign-up" className="rounded-xl bg-[#2563EB] px-8 py-3.5 text-base font-semibold text-white text-center hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/50 whitespace-nowrap">
                       Start Free Trial
                     </Link>
                   </SignedIn>
-                  <a href="/#pricing" className="rounded-xl border border-[#374151] px-8 py-3.5 text-base font-semibold text-white text-center transition-all hover:bg-white/10 whitespace-nowrap">
+                  <a href="/#pricing" className="rounded-xl border border-[#374151] px-8 py-3.5 text-base font-semibold text-white text-center hover:bg-white/10 whitespace-nowrap">
                     View Pricing
                   </a>
                 </div>
@@ -526,7 +526,7 @@ function AnalyticsPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="mb-10">
           <SectionHeader title="Employer Intelligence Database" badge={isPaid ? "Pro" : "Locked"} />
-          <div className="rounded-3xl border border-[#F0F0F0] bg-white shadow-sm overflow-hidden relative">
+          <div className="rounded-2xl border border-[#F0F0F0] bg-white  overflow-hidden relative">
             {/* Search */}
             <div className="px-6 pt-6 pb-4 border-b border-[#F0F0F0]">
               <input
@@ -587,7 +587,7 @@ function AnalyticsPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="mb-10">
           <SectionHeader title="Occupation Deep Dive" badge={isPaid ? "Pro" : "Locked"} />
-          <div className="rounded-3xl border border-[#F0F0F0] bg-white shadow-sm overflow-hidden relative">
+          <div className="rounded-2xl border border-[#F0F0F0] bg-white  overflow-hidden relative">
             <div className="px-6 pt-6 pb-4 border-b border-[#F0F0F0]">
               <input
                 type="text"
@@ -638,7 +638,7 @@ function AnalyticsPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="mb-10">
           <SectionHeader title="Wage Analytics by Industry" badge={isPaid ? "Pro" : "Locked"} />
-          <div className="rounded-3xl border border-[#F0F0F0] bg-white shadow-sm overflow-hidden relative">
+          <div className="rounded-2xl border border-[#F0F0F0] bg-white  overflow-hidden relative">
             <div className={`overflow-x-auto ${!isPaid ? "max-h-[260px] overflow-hidden" : ""}`}>
               <table className="w-full text-left text-sm">
                 <thead>
@@ -678,7 +678,7 @@ function AnalyticsPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="mb-10">
           <SectionHeader title="Employer Sponsorship Rankings" badge={isPaid ? "Pro" : "Locked"} />
-          <div className="rounded-3xl border border-[#F0F0F0] bg-white shadow-sm overflow-hidden relative">
+          <div className="rounded-2xl border border-[#F0F0F0] bg-white  overflow-hidden relative">
             <div className={`overflow-x-auto ${!isPaid ? "max-h-[340px] overflow-hidden" : ""}`}>
               <table className="w-full text-left text-sm">
                 <thead>
@@ -728,7 +728,7 @@ function AnalyticsPage() {
             ════════════════════════════════════════════════════════════ */}
         <section className="mb-10">
           <SectionHeader title="Hiring Trends & Forecasts" badge={isPaid ? "Pro" : "Locked"} />
-          <div className="rounded-3xl border border-[#F0F0F0] bg-white p-6 shadow-sm relative">
+          <div className="rounded-2xl border border-[#F0F0F0] bg-white p-6  relative">
             {/* Yearly LMIA Approvals Bar Chart */}
             <h3 className="mb-4 text-sm font-semibold text-[#6B7280] uppercase tracking-wider">Yearly LMIA Approvals</h3>
             <div className="overflow-x-auto">
@@ -810,7 +810,7 @@ function AnalyticsPage() {
             DATA TRANSPARENCY FOOTER
             ════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
-          <div className="rounded-3xl border border-[#F0F0F0] bg-white p-6 shadow-sm">
+          <div className="rounded-2xl border border-[#F0F0F0] bg-white p-6 ">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-1">
                 <h3 className="text-sm font-semibold text-[#0A0A0B]">Data Transparency</h3>

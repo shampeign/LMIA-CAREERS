@@ -55,11 +55,11 @@ function OnboardingPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#FAFAFA]">
+      <main className="min-h-dvh bg-white">
         <SignedIn><OnboardingWizard /></SignedIn>
         <SignedOut>
           <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-[#F0F0F0]">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F0F0F0]">
               <svg className="h-8 w-8 text-[#9CA3AF]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
             </div>
             <h2 className="mt-8 text-[28px] font-bold text-[#0A0A0B]">Sign In Required</h2>
@@ -128,7 +128,7 @@ function OnboardingWizard() {
   return (
     <div className="mx-auto max-w-xl px-6 py-16">
       <div className="mb-12 text-center">
-        <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">Profile Setup</span>
+        <span className="text-sm font-semibold uppercase text-[#9CA3AF]">Profile Setup</span>
         <h1 className="mt-3 text-[32px] font-bold tracking-[-0.03em] text-[#0A0A0B]">Complete Your Profile</h1>
         <p className="mt-3 text-[16px] text-[#6B7280]">Help us match you with the best Canadian employers.</p>
       </div>
@@ -142,7 +142,7 @@ function OnboardingWizard() {
             const isDone = stepNum < step;
             return (
               <div key={i} className="flex items-center">
-                <div className={`flex h-12 w-12 items-center justify-center rounded-full text-sm font-semibold transition-all ${isDone ? "bg-[#2563EB] text-white" : isActive ? "bg-[#2563EB] text-white ring-4 ring-[#DBEAFE]" : "bg-[#F0F0F0] text-[#9CA3AF]"}`}>
+                <div className={`flex h-12 w-12 items-center justify-center rounded-full text-sm font-semibold ${isDone ? "bg-[#2563EB] text-white" : isActive ? "bg-[#2563EB] text-white ring-4 ring-[#DBEAFE]" : "bg-[#F0F0F0] text-[#9CA3AF]"}`}>
                   {isDone ? <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg> : stepNum}
                 </div>
                 {i < TOTAL_STEPS - 1 && <div className={`mx-1 h-0.5 w-8 rounded transition-colors sm:w-14 ${stepNum <= step ? "bg-[#2563EB]" : "bg-[#F0F0F0]"}`} />}
@@ -155,7 +155,7 @@ function OnboardingWizard() {
 
       {error && <div className="mb-8 rounded-2xl border border-red-200 bg-red-50/50 px-5 py-4 text-sm text-red-700">{error}</div>}
 
-      <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm sm:p-10">
+      <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8  sm:p-10">
         {/* Step content */}
         {step === 1 && (
           <div className="space-y-6">
@@ -251,7 +251,7 @@ function OnboardingWizard() {
         {step === 4 && (
           <div className="space-y-5">
             <p className="text-[16px] text-[#6B7280]">Review your profile information before saving.</p>
-            <div className="space-y-3 rounded-3xl border border-[#F0F0F0] bg-[#FAFAFA] p-6">
+            <div className="space-y-3 rounded-2xl border border-[#F0F0F0] bg-white p-6">
               {[
                 ["Full Name", data.full_name], ["LinkedIn", data.linkedin_url || "—"], ["Work Authorization", data.work_authorization],
                 ["Education", data.education], ["Experience", `${data.experience} years`],
@@ -270,7 +270,7 @@ function OnboardingWizard() {
                 <span className="text-sm font-bold text-[#1E40AF]">{computeCompleteness(data)}%</span>
               </div>
               <div className="mt-3 h-2 w-full rounded-full bg-[#BFDBFE]">
-                <div className="h-2 rounded-full bg-[#2563EB] transition-all duration-500" style={{ width: `${computeCompleteness(data)}%` }} />
+                <div className="h-2 rounded-full bg-[#2563EB] duration-500" style={{ width: `${computeCompleteness(data)}%` }} />
               </div>
             </div>
           </div>
@@ -286,12 +286,12 @@ function OnboardingWizard() {
           ) : <div />}
 
           {step < TOTAL_STEPS ? (
-            <button type="button" onClick={() => setStep((s) => s + 1)} disabled={!canNext()} className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-6 py-3 text-[16px] font-semibold text-white shadow-sm transition-all hover:bg-[#1D4ED8] disabled:cursor-not-allowed disabled:opacity-50">
+            <button type="button" onClick={() => setStep((s) => s + 1)} disabled={!canNext()} className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-6 py-3 text-[16px] font-semibold text-white  hover:bg-[#1D4ED8] disabled:cursor-not-allowed disabled:opacity-50">
               Next
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
             </button>
           ) : (
-            <button type="button" onClick={handleSave} disabled={saving} className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-6 py-3 text-[16px] font-semibold text-white shadow-sm transition-all hover:bg-[#1D4ED8] disabled:cursor-not-allowed disabled:opacity-50">
+            <button type="button" onClick={handleSave} disabled={saving} className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-6 py-3 text-[16px] font-semibold text-white  hover:bg-[#1D4ED8] disabled:cursor-not-allowed disabled:opacity-50">
               {saving ? <><span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />Saving...</> : "Complete Profile"}
             </button>
           )}

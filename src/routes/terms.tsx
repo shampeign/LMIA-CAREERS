@@ -23,11 +23,11 @@ function TermsOfService() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#FAFAFA]">
+      <main className="min-h-dvh bg-white">
         {/* Header */}
         <section className="bg-white px-6 py-24">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+            <span className="text-sm font-semibold uppercase text-[#9CA3AF]">
               Legal
             </span>
             <h1 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B] sm:text-[48px]">

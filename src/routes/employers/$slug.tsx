@@ -107,7 +107,7 @@ function EmployerProfile() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#FAFAFA]">
+      <main className="min-h-dvh bg-white">
         {/* Back link */}
         <div className="border-b border-[#F0F0F0] bg-white">
           <div className="mx-auto max-w-6xl px-6 py-4 lg:px-8">
@@ -184,7 +184,7 @@ function EmployerProfile() {
                       <span className="text-[32px] font-bold tracking-[-0.03em]" style={{ color: scoreColor }}>
                         {score}
                       </span>
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+                      <span className="text-[11px] font-semibold uppercase text-[#9CA3AF]">
                         Score
                       </span>
                     </div>
@@ -216,14 +216,14 @@ function EmployerProfile() {
                 {lmia ? (
                   <>
                     {/* Tabs */}
-                    <div className="mb-8 flex gap-2 overflow-x-auto rounded-2xl bg-white p-1.5 shadow-sm border border-[#F0F0F0]">
+                    <div className="mb-8 flex gap-2 overflow-x-auto rounded-2xl bg-white p-1.5  border border-[#F0F0F0]">
                       {tabs.map((t) => (
                         <button
                           key={t.key}
                           onClick={() => setActiveTab(t.key)}
-                          className={`shrink-0 rounded-xl px-5 py-2.5 text-[14px] font-semibold transition-all ${
+                          className={`shrink-0 rounded-xl px-5 py-2.5 text-[14px] font-semibold ${
                             activeTab === t.key
-                              ? "bg-[#0A0A0B] text-white shadow-sm"
+                              ? "bg-[#0A0A0B] text-white "
                               : "text-[#6B7280] hover:text-[#0A0A0B]"
                           }`}
                         >
@@ -251,8 +251,8 @@ function EmployerProfile() {
                     </div>
                   </>
                 ) : (
-                  <div className="rounded-3xl border border-[#F0F0F0] bg-white p-10 shadow-sm text-center">
-                    <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FAFAFA]">
+                  <div className="rounded-2xl border border-[#F0F0F0] bg-white p-10  text-center">
+                    <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white">
                       <svg className="h-8 w-8 text-[#D1D5DB]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m6 4.125l2.25 2.25m0 0l2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
                       </svg>
@@ -266,7 +266,7 @@ function EmployerProfile() {
 
                 {/* Score breakdown card (below tabs) */}
                 {lmia && (
-                  <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+                  <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
                     <h3 className="text-[16px] font-bold text-[#0A0A0B]">Sponsorship Score Breakdown</h3>
                     <div className="mt-5 space-y-4">
                       <ScoreBar label="Activity" value={lmia.scoreBreakdown.activity} description="Based on hiring volume" />
@@ -280,8 +280,8 @@ function EmployerProfile() {
 
               {/* Sidebar */}
               <aside className="space-y-6">
-                <div className="rounded-3xl border border-[#F0F0F0] bg-white p-6 shadow-sm">
-                  <h3 className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+                <div className="rounded-2xl border border-[#F0F0F0] bg-white p-6 ">
+                  <h3 className="text-[12px] font-semibold uppercase text-[#9CA3AF]">
                     Company Details
                   </h3>
                   <dl className="mt-5 space-y-4">
@@ -307,8 +307,8 @@ function EmployerProfile() {
                 </div>
 
                 {lmia && (
-                  <div className="rounded-3xl border border-[#F0F0F0] bg-white p-6 shadow-sm">
-                    <h3 className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
+                  <div className="rounded-2xl border border-[#F0F0F0] bg-white p-6 ">
+                    <h3 className="text-[12px] font-semibold uppercase text-[#9CA3AF]">
                       Quick Stats
                     </h3>
                     <dl className="mt-5 space-y-4">
@@ -324,7 +324,7 @@ function EmployerProfile() {
                   href={employer.careerPage}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#2563EB] px-6 py-3.5 text-[15px] font-semibold text-white shadow-sm transition-all hover:bg-[#1D4ED8]"
+                  className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#2563EB] px-6 py-3.5 text-[15px] font-semibold text-white  hover:bg-[#1D4ED8]"
                 >
                   Visit Career Page
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -345,7 +345,7 @@ function EmployerProfile() {
 
 function StatCard({ label, value, trend }: { label: string; value: string; trend?: "up" | "down" }) {
   return (
-    <div className="rounded-2xl border border-[#F0F0F0] bg-[#FAFAFA] p-4">
+    <div className="rounded-2xl border border-[#F0F0F0] bg-white p-4">
       <p className="text-[12px] font-medium text-[#9CA3AF]">{label}</p>
       <div className="mt-1 flex items-baseline gap-1.5">
         <span className="text-[24px] font-bold tracking-[-0.02em] text-[#0A0A0B]">{value}</span>
@@ -377,7 +377,7 @@ function ScoreBar({ label, value, description }: { label: string; value: number;
         <span className="text-[13px] font-bold text-[#0A0A0B]">{value}</span>
       </div>
       <div className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-[#F0F0F0]">
-        <div className={`h-full rounded-full ${color} transition-all duration-500`} style={{ width: `${value}%` }} />
+        <div className={`h-full rounded-full ${color} duration-500`} style={{ width: `${value}%` }} />
       </div>
       <p className="mt-0.5 text-[11px] text-[#9CA3AF]">{description}</p>
     </div>
@@ -415,7 +415,7 @@ function OverviewTab({ lmia, employer }: { lmia: EmployerLMIA; employer: any }) 
   return (
     <div className="space-y-6">
       {/* Program Stream Distribution */}
-      <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+      <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
         <h3 className="text-[18px] font-bold text-[#0A0A0B]">Program Stream Distribution</h3>
         <div className="mt-6 space-y-4">
           {streamEntries.map(([key, value]) => (
@@ -424,7 +424,7 @@ function OverviewTab({ lmia, employer }: { lmia: EmployerLMIA; employer: any }) 
               <div className="flex flex-1 items-center gap-3">
                 <div className="h-6 flex-1 overflow-hidden rounded-full bg-[#F0F0F0]">
                   <div
-                    className="h-full rounded-full bg-[#2563EB] transition-all duration-500"
+                    className="h-full rounded-full bg-[#2563EB] duration-500"
                     style={{ width: `${(value / maxStream) * 100}%` }}
                   />
                 </div>
@@ -437,7 +437,7 @@ function OverviewTab({ lmia, employer }: { lmia: EmployerLMIA; employer: any }) 
 
       {/* Province Distribution */}
       {lmia.hiringProvinces.length > 0 && (
-        <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+        <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
           <h3 className="text-[18px] font-bold text-[#0A0A0B]">Hiring by Province</h3>
           <div className="mt-6 space-y-3">
             {lmia.hiringProvinces.map((p) => (
@@ -446,7 +446,7 @@ function OverviewTab({ lmia, employer }: { lmia: EmployerLMIA; employer: any }) 
                 <div className="flex flex-1 items-center gap-2">
                   <div className="h-5 flex-1 overflow-hidden rounded-full bg-[#F0F0F0]">
                     <div
-                      className="h-full rounded-full bg-[#2563EB]/80 transition-all duration-500"
+                      className="h-full rounded-full bg-[#2563EB]/80 duration-500"
                       style={{ width: `${p.percentage}%` }}
                     />
                   </div>
@@ -459,7 +459,7 @@ function OverviewTab({ lmia, employer }: { lmia: EmployerLMIA; employer: any }) 
       )}
 
       {/* Top Occupations */}
-      <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+      <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
         <h3 className="text-[18px] font-bold text-[#0A0A0B]">Top Occupations</h3>
         <div className="mt-5 overflow-x-auto">
           <table className="w-full text-left text-[14px]">
@@ -492,7 +492,7 @@ function OverviewTab({ lmia, employer }: { lmia: EmployerLMIA; employer: any }) 
       </div>
 
       {/* About */}
-      <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+      <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
         <h3 className="text-[18px] font-bold text-[#0A0A0B]">About {employer.name}</h3>
         <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-[#6B7280]">
           {employer.aiSummary.split("\n\n").map((para: string, i: number) => (
@@ -529,7 +529,7 @@ function OccupationsTab({
   ];
 
   return (
-    <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+    <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <h3 className="text-[18px] font-bold text-[#0A0A0B]">LMIA Occupations</h3>
         <div className="relative">
@@ -607,7 +607,7 @@ function WagesTab({ lmia }: { lmia: EmployerLMIA }) {
   return (
     <div className="space-y-6">
       {/* Wage Range Visualization */}
-      <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+      <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
         <h3 className="text-[18px] font-bold text-[#0A0A0B]">Wage Range</h3>
         <div className="mt-8 px-2">
           <div className="relative h-4">
@@ -628,22 +628,22 @@ function WagesTab({ lmia }: { lmia: EmployerLMIA }) {
             <span>${lmia.wageMax.toFixed(2)}</span>
           </div>
           <div className="mt-6 grid grid-cols-4 gap-4">
-            <div className="rounded-xl bg-[#FAFAFA] p-4 text-center">
+            <div className="rounded-xl bg-white p-4 text-center">
               <p className="text-[12px] font-medium text-[#9CA3AF]">Minimum</p>
               <p className="mt-1 text-[18px] font-bold text-[#0A0A0B]">${lmia.wageMin.toFixed(2)}</p>
               <p className="text-[11px] text-[#9CA3AF]">/hour</p>
             </div>
-            <div className="rounded-xl bg-[#FAFAFA] p-4 text-center">
+            <div className="rounded-xl bg-white p-4 text-center">
               <p className="text-[12px] font-medium text-[#9CA3AF]">Median</p>
               <p className="mt-1 text-[18px] font-bold text-[#0A0A0B]">${lmia.wageMedian.toFixed(2)}</p>
               <p className="text-[11px] text-[#9CA3AF]">/hour</p>
             </div>
-            <div className="rounded-xl bg-[#FAFAFA] p-4 text-center">
+            <div className="rounded-xl bg-white p-4 text-center">
               <p className="text-[12px] font-medium text-[#9CA3AF]">Average</p>
               <p className="mt-1 text-[18px] font-bold text-[#0A0A0B]">${lmia.wageAverage.toFixed(2)}</p>
               <p className="text-[11px] text-[#9CA3AF]">/hour</p>
             </div>
-            <div className="rounded-xl bg-[#FAFAFA] p-4 text-center">
+            <div className="rounded-xl bg-white p-4 text-center">
               <p className="text-[12px] font-medium text-[#9CA3AF]">Maximum</p>
               <p className="mt-1 text-[18px] font-bold text-[#0A0A0B]">${lmia.wageMax.toFixed(2)}</p>
               <p className="text-[11px] text-[#9CA3AF]">/hour</p>
@@ -653,7 +653,7 @@ function WagesTab({ lmia }: { lmia: EmployerLMIA }) {
       </div>
 
       {/* Occupation Wages */}
-      <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+      <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
         <h3 className="text-[18px] font-bold text-[#0A0A0B]">Wages by Occupation</h3>
         <div className="mt-6 space-y-4">
           {lmia.topOccupations.map((occ, i) => {
@@ -690,7 +690,7 @@ function HistoryTab({ lmia }: { lmia: EmployerLMIA }) {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+      <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
         <h3 className="text-[18px] font-bold text-[#0A0A0B]">Yearly LMIA Hiring History</h3>
         <div className="mt-6 overflow-x-auto">
           <table className="w-full text-left text-[14px]">
@@ -759,7 +759,7 @@ function HistoryTab({ lmia }: { lmia: EmployerLMIA }) {
 
 function JobsTab({ employer }: { employer: any }) {
   return (
-    <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+    <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
       <h3 className="text-[18px] font-bold text-[#0A0A0B]">Current Open Positions</h3>
       {employer.openPositions.length === 0 ? (
         <p className="mt-4 text-[14px] text-[#9CA3AF]">No open positions currently listed.</p>
@@ -768,7 +768,7 @@ function JobsTab({ employer }: { employer: any }) {
           {employer.openPositions.map((job: any, i: number) => (
             <div
               key={i}
-              className="flex flex-col gap-3 rounded-2xl border border-[#F0F0F0] bg-[#FAFAFA] p-5 sm:flex-row sm:items-center sm:justify-between"
+              className="flex flex-col gap-3 rounded-2xl border border-[#F0F0F0] bg-white p-5 sm:flex-row sm:items-center sm:justify-between"
             >
               <div>
                 <p className="text-[15px] font-semibold text-[#0A0A0B]">{job.title}</p>
@@ -786,7 +786,7 @@ function JobsTab({ employer }: { employer: any }) {
                   href={employer.careerPage}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-[#2563EB] px-4 py-2 text-[13px] font-semibold text-white transition-all hover:bg-[#1D4ED8]"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-[#2563EB] px-4 py-2 text-[13px] font-semibold text-white hover:bg-[#1D4ED8]"
                 >
                   Apply
                   <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">

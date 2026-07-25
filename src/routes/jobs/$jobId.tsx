@@ -66,7 +66,7 @@ function JobDetailPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#FAFAFA]">
+      <main className="min-h-dvh bg-white">
         {/* Back link */}
         <div className="border-b border-[#F0F0F0] bg-white">
           <div className="mx-auto max-w-6xl px-6 py-4 lg:px-8">
@@ -107,7 +107,7 @@ function JobDetailPage() {
                     </svg>
                     {job.location}
                   </span>
-                  <span className="rounded-full bg-[#FAFAFA] px-4 py-1.5 text-sm font-medium text-[#6B7280]">{job.type}</span>
+                  <span className="rounded-full bg-white px-4 py-1.5 text-sm font-medium text-[#6B7280]">{job.type}</span>
                   {job.remote && (
                     <span className="rounded-full bg-[#F0FDF4] px-4 py-1.5 text-sm font-medium text-[#16A34A]">Remote</span>
                   )}
@@ -122,7 +122,7 @@ function JobDetailPage() {
               <div className="space-y-5">
                 <SignedIn>
                   {match ? (
-                    <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+                    <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
                       <div className="flex items-center gap-4">
                         <MatchScoreBadge score={match.matchScore} size="lg" />
                         <div>
@@ -143,7 +143,7 @@ function JobDetailPage() {
                       )}
                     </div>
                   ) : (
-                    <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
+                    <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
                       <p className="text-sm text-[#6B7280]">
                         Complete your profile with skills and preferences to see your match score.
                       </p>
@@ -160,8 +160,8 @@ function JobDetailPage() {
                   )}
                 </SignedIn>
 
-                <div className="rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm">
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">Job Details</h3>
+                <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
+                  <h3 className="text-sm font-semibold uppercase text-[#9CA3AF]">Job Details</h3>
                   <dl className="mt-6 space-y-5">
                     <div>
                       <dt className="text-sm font-medium text-[#9CA3AF]">Category</dt>
@@ -189,7 +189,7 @@ function JobDetailPage() {
         {/* Job description */}
         <section className="px-6 py-16">
           <div className="mx-auto max-w-6xl">
-            <div className="rounded-3xl border border-[#F0F0F0] bg-white p-10 shadow-sm">
+            <div className="rounded-2xl border border-[#F0F0F0] bg-white p-10 ">
               <h2 className="text-[24px] font-bold text-[#0A0A0B]">Job Description</h2>
               <div className="mt-6 space-y-5 text-[16px] leading-relaxed text-[#6B7280]">
                 {job.description.split("\n\n").map((para: string, i: number) => (
@@ -236,7 +236,7 @@ function JobDetailPage() {
                 href={employer?.careerPage || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white shadow-sm transition-all hover:bg-[#1D4ED8]"
+                className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white  hover:bg-[#1D4ED8]"
               >
                 Apply on Company Site
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">

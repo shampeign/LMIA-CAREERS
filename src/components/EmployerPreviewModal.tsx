@@ -146,7 +146,7 @@ export function EmployerPreviewModal() {
       <div
         ref={modalRef}
         tabIndex={-1}
-        className="relative z-10 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl modal-content focus:outline-none"
+        className="relative z-10 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white shadow-2xl modal-content focus:outline-none"
       >
         {/* Close button */}
         <button
@@ -177,7 +177,7 @@ export function EmployerPreviewModal() {
                 <span className="inline-flex items-center rounded-full bg-[#F0F0F0] px-3 py-1 text-[13px] font-medium text-[#4B5563]">
                   {employer.industry}
                 </span>
-                <span className="inline-flex items-center rounded-full bg-[#FAFAFA] px-3 py-1 text-[13px] font-medium text-[#6B7280]">
+                <span className="inline-flex items-center rounded-full bg-white px-3 py-1 text-[13px] font-medium text-[#6B7280]">
                   {employer.province}
                 </span>
                 {lmia && (

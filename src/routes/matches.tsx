@@ -48,7 +48,7 @@ function MatchesPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#FAFAFA]">
+      <main className="min-h-dvh bg-white">
         <SignedIn><MatchesContent /></SignedIn>
         <SignedOut><Unauthenticated /></SignedOut>
       </main>
@@ -109,7 +109,7 @@ function MatchesContent() {
       </div>
 
       {!hasProfile && (
-        <div className="mb-10 rounded-3xl border border-[#DBEAFE] bg-[#EFF6FF] p-8">
+        <div className="mb-10 rounded-2xl border border-[#DBEAFE] bg-[#EFF6FF] p-8">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h3 className="text-lg font-bold text-[#1E40AF]">Set Up Your Profile to See Matches</h3>
@@ -124,7 +124,7 @@ function MatchesContent() {
       )}
 
       {hasProfile && !hasSkills && (
-        <div className="mb-10 rounded-3xl border border-[#FDE68A] bg-[#FFFBEB] p-8">
+        <div className="mb-10 rounded-2xl border border-[#FDE68A] bg-[#FFFBEB] p-8">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h3 className="text-lg font-bold text-[#92400E]">Add Your Skills for Better Matches</h3>
@@ -147,7 +147,7 @@ function MatchesContent() {
               { label: "Strong Matches (80%+)", value: String(filteredMatches.filter((m) => m.matchScore >= 80).length), color: "text-[#16A34A]" },
               { label: "Top Score", value: filteredMatches.length > 0 ? `${filteredMatches[0].matchScore}%` : "—", color: "text-[#2563EB]" },
             ].map((stat) => (
-              <div key={stat.label} className="rounded-3xl border border-[#F0F0F0] bg-white p-6 shadow-sm">
+              <div key={stat.label} className="rounded-2xl border border-[#F0F0F0] bg-white p-6 ">
                 <p className="text-xs font-medium text-[#9CA3AF]">{stat.label}</p>
                 <p className={`mt-2 text-[28px] font-bold ${stat.color}`}>{stat.value}</p>
               </div>
@@ -189,7 +189,7 @@ function MatchesContent() {
                 const emp = employers.find((e) => e.slug === match.job.employerSlug);
                 const isExpanded = expandedMatch === match.job.id;
                 return (
-                  <div key={match.job.id} className="overflow-hidden rounded-3xl border border-[#F0F0F0] bg-white shadow-sm transition-all">
+                  <div key={match.job.id} className="overflow-hidden rounded-2xl border border-[#F0F0F0] bg-white ">
                     <div className="flex flex-col gap-5 p-8 sm:flex-row sm:items-center sm:justify-between">
                       <div className="flex items-start gap-5">
                         <MatchScoreBadge score={match.matchScore} size="md" />
@@ -225,7 +225,7 @@ function MatchesContent() {
                       </div>
                     </div>
                     {isExpanded && (
-                      <div className="border-t border-[#F0F0F0] bg-[#FAFAFA] p-8">
+                      <div className="border-t border-[#F0F0F0] bg-white p-8">
                         <div className="grid gap-8 lg:grid-cols-2">
                           <div>
                             <h4 className="mb-4 text-sm font-semibold text-[#0A0A0B]">Match Breakdown</h4>
@@ -240,7 +240,7 @@ function MatchesContent() {
                           <div className="space-y-5">
                             {match.matchedSkills.length > 0 && (
                               <div>
-                                <h4 className="mb-2 text-xs font-semibold uppercase tracking-[0.08em] text-[#16A34A]">Matched Skills ({match.matchedSkills.length})</h4>
+                                <h4 className="mb-2 text-xs font-semibold uppercase text-[#16A34A]">Matched Skills ({match.matchedSkills.length})</h4>
                                 <div className="flex flex-wrap gap-1.5">
                                   {match.matchedSkills.map((s, i) => (
                                     <span key={i} className="inline-flex items-center rounded-full bg-[#F0FDF4] px-3 py-1 text-xs font-medium text-[#16A34A]">{s}</span>
@@ -250,7 +250,7 @@ function MatchesContent() {
                             )}
                             {match.missingSkills.length > 0 && (
                               <div>
-                                <h4 className="mb-2 text-xs font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">Skills to Develop ({match.missingSkills.length})</h4>
+                                <h4 className="mb-2 text-xs font-semibold uppercase text-[#9CA3AF]">Skills to Develop ({match.missingSkills.length})</h4>
                                 <div className="flex flex-wrap gap-1.5">
                                   {match.missingSkills.map((s, i) => (
                                     <span key={i} className="inline-flex items-center rounded-full bg-[#F0F0F0] px-3 py-1 text-xs font-medium text-[#6B7280]">{s}</span>
@@ -284,7 +284,7 @@ function MatchesContent() {
 function Unauthenticated() {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
-      <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-[#F0F0F0]">
+      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F0F0F0]">
         <svg className="h-8 w-8 text-[#9CA3AF]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
       </div>
       <h2 className="mt-8 text-[28px] font-bold text-[#0A0A0B]">Sign In Required</h2>
