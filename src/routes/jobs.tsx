@@ -466,13 +466,14 @@ function JobListings() {
                         </h3>
 
                         {employer && (
-                          <Link
-                            to="/employers/$slug"
-                            params={{ slug: employer.slug }}
+                          <a
+                            href={employer.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="mt-1.5 text-[15px] font-medium text-[#2563EB] transition-colors hover:text-[#1D4ED8]"
                           >
                             {employer.name}
-                          </Link>
+                          </a>
                         )}
 
                         <div className="mt-4 flex flex-wrap items-center gap-2">

@@ -1,55 +1,18 @@
 import { Link } from "@tanstack/react-router";
+import { employers as allEmployers } from "~/data/employers";
 
-const employers = [
-  {
-    name: "Maple Leaf Foods",
-    industry: "Food Processing",
-    province: "Ontario",
-    description:
-      "One of Canada's largest food processing companies with multiple facilities across the country.",
-    logo: "ML",
-  },
-  {
-    name: "Suncor Energy",
-    industry: "Oil & Gas",
-    province: "Alberta",
-    description:
-      "Leading integrated energy company with operations in oil sands development and renewable energy.",
-    logo: "SE",
-  },
-  {
-    name: "Shopify",
-    industry: "Technology",
-    province: "Ontario",
-    description:
-      "Global commerce platform headquartered in Ottawa, hiring across engineering, product, and operations.",
-    logo: "SH",
-  },
-  {
-    name: "Ledcor Group",
-    industry: "Construction",
-    province: "British Columbia",
-    description:
-      "Diversified construction company with major infrastructure and building projects across Canada.",
-    logo: "LG",
-  },
-  {
-    name: "Agropur",
-    industry: "Dairy Processing",
-    province: "Quebec",
-    description:
-      "Major dairy cooperative with processing plants and distribution centers nationwide.",
-    logo: "AG",
-  },
-  {
-    name: "Irving Group",
-    industry: "Manufacturing",
-    province: "New Brunswick",
-    description:
-      "Diversified industrial conglomerate with operations in forestry, transportation, and shipbuilding.",
-    logo: "IG",
-  },
+const featuredSlugs = [
+  "maple-leaf-foods",
+  "suncor-energy",
+  "shopify-inc",
+  "ledcor-group",
+  "agropur-cooperative",
+  "jd-irving",
 ];
+
+const featuredEmployers = featuredSlugs
+  .map((slug) => allEmployers.find((e) => e.slug === slug))
+  .filter(Boolean) as typeof allEmployers;
 
 export function FeaturedEmployers() {
   return (
@@ -71,9 +34,16 @@ export function FeaturedEmployers() {
 
         {/* Grid */}
         <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {employers.map((employer) => (
+          {featuredEmployers.map((employer) => {
+            const initials = employer.name
+              .split(" ")
+              .map((w) => w[0])
+              .join("")
+              .slice(0, 2)
+              .toUpperCase();
+            return (
             <div
-              key={employer.name}
+              key={employer.slug}
               className="group rounded-3xl border border-[#F0F0F0] bg-white p-8 shadow-sm transition-all hover:border-[#E5E7EB] hover:shadow-md"
             >
               <div className="flex items-start gap-4">
@@ -82,10 +52,17 @@ export function FeaturedEmployers() {
                   className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[#F0F0F0] text-sm font-bold text-[#4B5563]"
                   aria-hidden="true"
                 >
-                  {employer.logo}
+                  {initials}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-lg font-bold text-[#0A0A0B]">{employer.name}</h3>
+                  <a
+                    href={employer.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-lg font-bold text-[#0A0A0B] transition-colors hover:text-[#2563EB]"
+                  >
+                    {employer.name}
+                  </a>
                   <div className="mt-2 flex flex-wrap items-center gap-2">
                     <span className="rounded-full bg-[#F0F0F0] px-3 py-1 text-xs font-medium text-[#4B5563]">
                       {employer.industry}
@@ -100,7 +77,8 @@ export function FeaturedEmployers() {
                 {employer.description}
               </p>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* View all link */}

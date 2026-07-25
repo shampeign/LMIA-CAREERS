@@ -81,13 +81,14 @@ function JobDetailPage() {
                   {job.title}
                 </h1>
                 {employer && (
-                  <Link
-                    to="/employers/$slug"
-                    params={{ slug: employer.slug }}
+                  <a
+                    href={employer.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="mt-3 inline-block text-[18px] font-medium text-[#2563EB] transition-colors hover:text-[#1D4ED8]"
                   >
                     {employer.name}
-                  </Link>
+                  </a>
                 )}
                 <div className="mt-5 flex flex-wrap items-center gap-3">
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-[#F0F0F0] px-4 py-1.5 text-sm font-medium text-[#4B5563]">

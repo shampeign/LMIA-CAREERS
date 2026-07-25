@@ -909,24 +909,29 @@ function EmployerDirectory() {
                       .toUpperCase();
 
                     return (
-                      <Link
+                      <div
                         key={employer.slug}
-                        to="/employers/$slug"
-                        params={{ slug: employer.slug }}
                         className="group block rounded-3xl border border-[#F0F0F0] bg-white p-6 shadow-sm transition-all hover:border-[#E5E7EB] hover:shadow-md"
                       >
                         {/* Header: logo + name + badges */}
                         <div className="flex items-start gap-4">
-                          <div
-                            className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[#F0F0F0] text-sm font-bold text-[#4B5563]"
+                          <Link
+                            to="/employers/$slug"
+                            params={{ slug: employer.slug }}
+                            className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[#F0F0F0] text-sm font-bold text-[#4B5563] transition-colors hover:bg-[#E5E7EB]"
                             aria-hidden="true"
                           >
                             {initials}
-                          </div>
+                          </Link>
                           <div className="min-w-0 flex-1">
-                            <h3 className="text-lg font-bold text-[#0A0A0B] leading-tight transition-colors group-hover:text-[#2563EB]">
+                            <a
+                              href={employer.website}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-lg font-bold text-[#0A0A0B] leading-tight transition-colors hover:text-[#2563EB]"
+                            >
                               {employer.name}
-                            </h3>
+                            </a>
                             <div className="mt-2 flex flex-wrap items-center gap-2">
                               <span className="inline-flex items-center rounded-full bg-[#F0F0F0] px-2.5 py-0.5 text-[11px] font-medium text-[#4B5563]">
                                 {employer.industry}
@@ -1015,13 +1020,28 @@ function EmployerDirectory() {
                           </div>
                         </div>
 
-                        {/* View profile link */}
+                        {/* Bottom CTAs */}
                         <div className="mt-5 flex items-center justify-between border-t border-[#F0F0F0] pt-4">
-                          <span className="text-sm text-[#2563EB] font-medium group-hover:underline">
-                            View Profile →
-                          </span>
-                          {lmiaData && (
-                            <div className="flex items-center gap-1.5">
+                          <a
+                            href={employer.careerPage}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 rounded-2xl bg-[#2563EB] px-4 py-2.5 text-[14px] font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
+                          >
+                            Visit Career Page
+                            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" aria-hidden="true">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                            </svg>
+                          </a>
+                          <div className="flex items-center gap-3">
+                            <Link
+                              to="/employers/$slug"
+                              params={{ slug: employer.slug }}
+                              className="text-[13px] font-medium text-[#9CA3AF] transition-colors hover:text-[#2563EB]"
+                            >
+                              Details →
+                            </Link>
+                            {lmiaData && (
                               <div
                                 className="h-7 w-7 rounded-full flex items-center justify-center text-[10px] font-bold text-white"
                                 style={{ backgroundColor: scoreColor }}
@@ -1029,10 +1049,10 @@ function EmployerDirectory() {
                               >
                                 {lmiaData.sponsorshipScore}
                               </div>
-                            </div>
-                          )}
+                            )}
+                          </div>
                         </div>
-                      </Link>
+                      </div>
                     );
                   })}
                 </div>

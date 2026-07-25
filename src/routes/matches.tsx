@@ -191,7 +191,7 @@ function MatchesContent() {
                             </Link>
                           )}
                           <div className="mt-2 flex flex-wrap items-center gap-2 text-[15px] text-[#6B7280]">
-                            {emp && <Link to="/employers/$slug" params={{ slug: emp.slug }} className="font-medium text-[#2563EB] hover:text-[#1D4ED8]">{emp.name}</Link>}
+                            {emp && <a href={emp.website} target="_blank" rel="noopener noreferrer" className="font-medium text-[#2563EB] hover:text-[#1D4ED8]">{emp.name}</a>}
                             {emp && <span>·</span>}
                             <span>{match.job.location}</span>
                             <span>·</span>
