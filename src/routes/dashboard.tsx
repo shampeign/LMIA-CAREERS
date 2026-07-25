@@ -4,7 +4,9 @@ import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 import { getProfile } from "~/server/profile";
 import { getJobMatches, type JobMatch } from "~/server/matching";
+import { getSavedJobs } from "~/server/saved-jobs";
 import { employers } from "~/data/employers";
+import { jobs as allJobs } from "~/data/jobs";
 import { useState, useEffect } from "react";
 import type { Profile } from "~/server/profile";
 import { MatchScoreBadge } from "~/components/MatchScoreBadge";
@@ -26,9 +28,11 @@ export const Route = createFileRoute("/dashboard")({
     try {
       const profile = await getProfile();
       let matches: JobMatch[] = [];
+      let savedJobIds: string[] = [];
       if (profile) { try { matches = await getJobMatches(); } catch {} }
-      return { profile, matches };
-    } catch { return { profile: null, matches: [] }; }
+      try { savedJobIds = await getSavedJobs(); } catch {}
+      return { profile, matches, savedJobIds };
+    } catch { return { profile: null, matches: [], savedJobIds: [] as string[] }; }
   },
 });
 
@@ -69,20 +73,23 @@ function DashboardPage() {
 
 function DashboardContent() {
   const { user } = useUser();
-  const { profile: initialProfile, matches: initialMatches } = Route.useLoaderData();
+  const { profile: initialProfile, matches: initialMatches, savedJobIds: initialSaved } = Route.useLoaderData();
   const [profile, setProfile] = useState<Profile | null>(initialProfile);
   const [matches, setMatches] = useState<JobMatch[]>(initialMatches);
+  const [savedJobIds, setSavedJobIds] = useState<string[]>(initialSaved);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  useEffect(() => { setProfile(initialProfile); }, [initialProfile]);
+  useEffect(() => { setMatches(initialMatches); }, [initialMatches]);
+  useEffect(() => { setSavedJobIds(initialSaved); }, [initialSaved]);
+
+  const savedJobsList = allJobs.filter((j) => savedJobIds.includes(j.id));
   const completeness = computeCompleteness(profile);
   const missingText = getMissingFields(profile);
   const hasProfile = !!profile;
   const hasSkills = hasProfile && (profile?.skills?.length ?? 0) > 0;
   const needsOnboarding = !hasProfile || completeness < 30;
   const userName = profile?.full_name || user?.firstName || "there";
-
-  useEffect(() => { setProfile(initialProfile); }, [initialProfile]);
-  useEffect(() => { setMatches(initialMatches); }, [initialMatches]);
 
   const topMatches = matches.slice(0, 5);
   const matchCount = matches.length;
@@ -178,7 +185,7 @@ function DashboardContent() {
             {[
               { label: "Profile Complete", value: `${completeness}%`, icon: <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>, iconBg: "bg-[#DBEAFE] text-[#2563EB]" },
               { label: "Jobs Matched", value: String(matchCount), icon: <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>, iconBg: "bg-[#F0FDF4] text-[#16A34A]" },
-              { label: "Saved Jobs", value: "5", icon: <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" /></svg>, iconBg: "bg-[#F3E8FF] text-[#9333EA]" },
+              { label: "Saved Jobs", value: String(savedJobIds.length), icon: <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" /></svg>, iconBg: "bg-[#F3E8FF] text-[#9333EA]" },
               { label: "Applications", value: "3", icon: <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" /></svg>, iconBg: "bg-[#FFFBEB] text-[#D97706]" },
             ].map((stat) => (
               <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5 p-6 ">
@@ -238,6 +245,37 @@ function DashboardContent() {
                   <div className="py-12 text-center">
                     <svg className="mx-auto h-12 w-12 text-[#E5E7EB]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
                     <p className="mt-4 text-sm text-[#6B7280]">No job matches found. Try adding more skills to your profile.</p>
+                  </div>
+                )}
+              </div>
+
+              {/* Saved Jobs */}
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 ">
+                <div className="mb-6 flex items-center justify-between">
+                  <h2 className="text-xl font-bold text-white">Saved Jobs</h2>
+                  <span className="text-sm text-[#6B7280]">{savedJobsList.length} saved</span>
+                </div>
+                {savedJobsList.length > 0 ? (
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {savedJobsList.slice(0, 6).map((job) => {
+                      const emp = employers.find((e) => e.slug === job.employerSlug);
+                      return (
+                        <Link key={job.id} to="/jobs/$jobId" params={{ jobId: job.id }} className="group block rounded-2xl border border-white/10 bg-white/5 p-5 hover:">
+                          <h3 className="text-sm font-semibold text-white transition-colors group-hover:text-[#2563EB]">{job.title}</h3>
+                          <p className="mt-1 text-xs text-[#6B7280]">{emp?.name || "Employer"} &middot; {job.location}</p>
+                          <div className="mt-2 flex flex-wrap gap-1.5">
+                            <span className="inline-flex items-center rounded-full bg-white/10 px-2.5 py-0.5 text-xs text-[#B0B8C4]">{job.type}</span>
+                            <span className="inline-flex items-center rounded-full bg-white/5 px-2.5 py-0.5 text-xs text-[#6B7280]">{job.salary}</span>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="py-8 text-center">
+                    <svg className="mx-auto h-12 w-12 text-[#E5E7EB]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" /></svg>
+                    <p className="mt-4 text-sm text-[#6B7280]">No saved jobs yet. Browse jobs and bookmark the ones you like.</p>
+                    <Link to="/jobs" className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-[#2563EB] hover:text-[#1D4ED8]">Browse Jobs <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></Link>
                   </div>
                 )}
               </div>
@@ -311,6 +349,30 @@ function DashboardContent() {
                     </li>
                   ))}
                 </ul>
+              </div>
+
+              {/* Job Alerts Placeholder */}
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 ">
+                <div className="mb-4 flex items-center gap-2">
+                  <svg className="h-5 w-5 text-[#2563EB]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                  </svg>
+                  <h2 className="text-sm font-semibold text-white">Job Alerts</h2>
+                </div>
+                <p className="text-sm text-[#6B7280]">
+                  We&apos;ll notify you when new jobs match your profile and preferences.
+                </p>
+                <div className="mt-4">
+                  <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                    <svg className="h-4 w-4 flex-shrink-0 text-[#6B7280]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                    </svg>
+                    <span className="text-sm text-[#6B7280]">{user?.emailAddresses?.[0]?.emailAddress || "your@email.com"}</span>
+                  </div>
+                  <p className="mt-3 text-xs text-[#6B7280]">
+                    Coming soon — we&apos;re building this feature.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

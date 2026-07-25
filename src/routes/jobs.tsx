@@ -8,6 +8,7 @@ import { employers } from "~/data/employers";
 import { getJobMatches, type JobMatch } from "~/server/matching";
 import { getProfile } from "~/server/profile";
 import type { Profile } from "~/server/profile";
+import { getSavedJobs, toggleSavedJob } from "~/server/saved-jobs";
 import { MatchScoreBadge } from "~/components/MatchScoreBadge";
 import { useEmployerPreview } from "~/components/EmployerPreviewContext";
 
@@ -27,6 +28,7 @@ export const Route = createFileRoute("/jobs")({
   loader: async () => {
     let matches: JobMatch[] = [];
     let profile: Profile | null = null;
+    let savedJobIds: string[] = [];
     try {
       matches = await getJobMatches();
     } catch {
@@ -37,7 +39,12 @@ export const Route = createFileRoute("/jobs")({
     } catch {
       // Not signed in
     }
-    return { matches, profile };
+    try {
+      savedJobIds = await getSavedJobs();
+    } catch {
+      // Not signed in
+    }
+    return { matches, profile, savedJobIds };
   },
 });
 
@@ -73,7 +80,7 @@ function parseSalary(salary: string): number {
 }
 
 function JobListings() {
-  const { matches, profile } = Route.useLoaderData();
+  const { matches, profile, savedJobIds: initialSaved } = Route.useLoaderData();
   const { openModal } = useEmployerPreview();
   const isFreeUser = profile?.plan === "free";
   const [search, setSearch] = useState("");
@@ -83,8 +90,12 @@ function JobListings() {
   const [remoteOnly, setRemoteOnly] = useState(false);
   const [selectedSalary, setSelectedSalary] = useState("");
   const [visibleCount, setVisibleCount] = useState(12);
-  const [savedJobs, setSavedJobs] = useState<Set<string>>(new Set());
+  const [savedJobs, setSavedJobs] = useState<Set<string>>(new Set(initialSaved));
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setSavedJobs(new Set(initialSaved));
+  }, [initialSaved]);
 
   const matchMap = useMemo(() => {
     const map = new Map<string, JobMatch>();
@@ -155,7 +166,8 @@ function JobListings() {
   const hasActiveFilters =
     search || selectedProvince || selectedIndustry || selectedType || remoteOnly || selectedSalary;
 
-  const toggleSaveJob = (jobId: string) => {
+  const toggleSaveJob = async (jobId: string) => {
+    // Optimistic toggle
     setSavedJobs((prev) => {
       const next = new Set(prev);
       if (next.has(jobId)) {
@@ -165,6 +177,22 @@ function JobListings() {
       }
       return next;
     });
+
+    // Persist to server
+    try {
+      await toggleSavedJob(jobId);
+    } catch {
+      // Revert on failure
+      setSavedJobs((prev) => {
+        const next = new Set(prev);
+        if (next.has(jobId)) {
+          next.delete(jobId);
+        } else {
+          next.add(jobId);
+        }
+        return next;
+      });
+    }
   };
 
   const getEmployer = (slug: string) => employers.find((e) => e.slug === slug);

@@ -11,6 +11,9 @@ export function WaitlistCTA() {
         <p className="mt-6 text-[18px] leading-relaxed text-[#4B5563]">
           Sign up and get access to our employer directory, AI job matching, and application tools.
         </p>
+        <p className="mt-3 text-[14px] text-[#9CA3AF]">
+          Trusted by job seekers from 40+ countries
+        </p>
         <div className="mt-10">
           <SignedOut>
             <SignUpButton mode="modal">

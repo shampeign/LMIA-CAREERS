@@ -52,6 +52,11 @@ export function Hero() {
           </Link>
         </div>
 
+        {/* Social proof */}
+        <p className="mt-10 text-[15px] text-[#6B7280]">
+          Join 1,200+ job seekers already on the platform
+        </p>
+
         {/* Feature visual — simple icon grid */}
         <div className="mt-20 grid grid-cols-3 gap-8 max-w-2xl mx-auto opacity-60">
           {[

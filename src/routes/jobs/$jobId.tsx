@@ -8,6 +8,7 @@ import { employers } from "~/data/employers";
 import { getProfile } from "~/server/profile";
 import { getJobMatch } from "~/server/matching";
 import type { JobMatch } from "~/server/matching";
+import { getSavedJobs, toggleSavedJob } from "~/server/saved-jobs";
 import { MatchScoreBadge, MatchBreakdownBar } from "~/components/MatchScoreBadge";
 import { useEmployerPreview } from "~/components/EmployerPreviewContext";
 
@@ -39,7 +40,14 @@ export const Route = createFileRoute("/jobs/$jobId")({
       // No match data
     }
 
-    return { job, match, profile };
+    let savedJobIds: string[] = [];
+    try {
+      savedJobIds = await getSavedJobs();
+    } catch {
+      // Not signed in
+    }
+
+    return { job, match, profile, savedJobIds };
   },
   head: ({ loaderData }) => ({
     meta: [
@@ -54,12 +62,28 @@ export const Route = createFileRoute("/jobs/$jobId")({
 });
 
 function JobDetailPage() {
-  const { job, match: initialMatch, profile } = Route.useLoaderData();
+  const { job, match: initialMatch, profile, savedJobIds: initialSaved } = Route.useLoaderData();
   const [match, setMatch] = useState<JobMatch | null>(initialMatch);
+  const [saved, setSaved] = useState(initialSaved.includes(job.id));
+  const { openModal } = useEmployerPreview();
 
   useEffect(() => {
     setMatch(initialMatch);
   }, [initialMatch]);
+
+  useEffect(() => {
+    setSaved(initialSaved.includes(job.id));
+  }, [initialSaved, job.id]);
+
+  const handleToggleSave = async () => {
+    const wasSaved = saved;
+    setSaved(!wasSaved);
+    try {
+      await toggleSavedJob(job.id);
+    } catch {
+      setSaved(wasSaved);
+    }
+  };
 
   const employer = employers.find((e) => e.slug === job.employerSlug);
 
@@ -87,18 +111,37 @@ function JobDetailPage() {
           <div className="mx-auto max-w-6xl">
             <div className="grid gap-10 lg:grid-cols-3">
               <div className="lg:col-span-2">
-                <h1 className="text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B]">
-                  {job.title}
-                </h1>
-                {employer && (
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h1 className="text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B]">
+                      {job.title}
+                    </h1>
+                    {employer && (
+                      <button
+                        type="button"
+                        onClick={() => openModal(employer)}
+                        className="mt-3 inline-block text-left text-[18px] font-medium text-[#2563EB] transition-colors hover:text-[#1D4ED8] cursor-pointer"
+                      >
+                        {employer.name}
+                      </button>
+                    )}
+                  </div>
                   <button
-                    type="button"
-                    onClick={() => openModal(employer)}
-                    className="mt-3 inline-block text-left text-[18px] font-medium text-[#2563EB] transition-colors hover:text-[#1D4ED8] cursor-pointer"
+                    onClick={handleToggleSave}
+                    className="flex-shrink-0 rounded-full p-3 text-[#6B7280] transition-colors hover:bg-white/5 hover:text-[#2563EB]"
+                    aria-label={saved ? "Unsave job" : "Save job"}
                   >
-                    {employer.name}
+                    {saved ? (
+                      <svg className="h-6 w-6 text-[#2563EB]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
+                      </svg>
+                    ) : (
+                      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
+                      </svg>
+                    )}
                   </button>
-                )}
+                </div>
                 <div className="mt-5 flex flex-wrap items-center gap-3">
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-[#F0F0F0] px-4 py-1.5 text-sm font-medium text-[#4B5563]">
                     <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
