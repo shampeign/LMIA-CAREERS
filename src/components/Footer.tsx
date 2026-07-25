@@ -18,7 +18,7 @@ const footerLinks = {
       { label: "About", href: "/about", isRoute: true },
       { label: "How It Works", href: "/how-it-works", isRoute: true },
       { label: "Blog", href: "#" },
-      { label: "Contact", href: "mailto:hello@lmiacareer.ai" },
+      { label: "Contact", href: "mailto:contact@lmiacareersai.com" },
     ],
   },
   legal: {

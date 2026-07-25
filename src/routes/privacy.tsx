@@ -247,10 +247,10 @@ function PrivacyPolicy() {
               </p>
               <p className="mt-3">
                 <a
-                  href="mailto:hello@lmiacareer.ai"
+                  href="mailto:contact@lmiacareersai.com"
                   className="font-medium text-[#2563EB] hover:underline"
                 >
-                  hello@lmiacareer.ai
+                  contact@lmiacareersai.com
                 </a>
               </p>
             </section>
