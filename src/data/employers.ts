@@ -1,3 +1,5 @@
+import { employerLMIAData } from "./employer-lmia";
+
 export interface EmployerLocation {
   city: string;
   province: string;
@@ -2192,6 +2194,13 @@ export const employers: Employer[] = [
       ]
     }
 ];
+
+// Attach LMIA data to matching employers
+for (const employer of employers) {
+  if (employerLMIAData[employer.slug]) {
+    employer.lmia = employerLMIAData[employer.slug];
+  }
+}
 
 export const provinces = [
   "BC",
