@@ -140,6 +140,24 @@ function DashboardContent() {
             </div>
           )}
 
+          {hasProfile && (profile?.plan || "free") === "free" && (
+            <div className="mb-10 rounded-3xl border border-[#DBEAFE] bg-gradient-to-r from-[#EFF6FF] to-[#F8FAFC] p-6 sm:p-8">
+              <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h3 className="text-lg font-bold text-[#1E40AF]">You&apos;re on the Free plan</h3>
+                  <p className="mt-2 text-sm text-[#3B82F6]">Upgrade to unlock application links, AI resume optimization, and premium features.</p>
+                </div>
+                <a
+                  href="/#pricing"
+                  className="inline-flex items-center gap-2 self-start rounded-2xl bg-[#2563EB] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1D4ED8] sm:self-center"
+                >
+                  Upgrade Now
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                </a>
+              </div>
+            </div>
+          )}
+
           <div className="mb-10">
             <h1 className="text-[36px] font-bold tracking-[-0.03em] text-[#0A0A0B]">Welcome back, {userName}!</h1>
             <p className="mt-2 text-[16px] text-[#6B7280]">Here&apos;s an overview of your job search activity.</p>

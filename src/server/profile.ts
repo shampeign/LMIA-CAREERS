@@ -3,6 +3,8 @@ import { getRequest } from "@tanstack/react-start/server";
 import { getAuth } from "@clerk/tanstack-start/server";
 import { sql } from "~/db";
 
+export type PlanTier = "free" | "professional" | "premium";
+
 export interface Profile {
   id: number;
   user_id: string;
@@ -15,6 +17,7 @@ export interface Profile {
   preferred_salary: string | null;
   work_authorization: string | null;
   resume_text: string | null;
+  plan: PlanTier;
   created_at: string;
   updated_at: string;
 }
@@ -29,6 +32,7 @@ export interface ProfileInput {
   preferred_salary?: string;
   work_authorization?: string;
   resume_text?: string;
+  plan?: PlanTier;
 }
 
 export const getProfile = createServerFn().handler(async () => {
@@ -52,9 +56,13 @@ export const getProfile = createServerFn().handler(async () => {
     preferred_salary TEXT,
     work_authorization TEXT,
     resume_text TEXT,
+    plan TEXT NOT NULL DEFAULT 'free',
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
   )`;
+
+  // Auto-migrate: add plan column if it doesn't exist
+  await db`ALTER TABLE profiles ADD COLUMN IF NOT EXISTS plan TEXT NOT NULL DEFAULT 'free'`;
 
   const rows = await db`SELECT * FROM profiles WHERE user_id = ${userId} LIMIT 1`;
 
@@ -99,6 +107,9 @@ export const saveProfile = createServerFn()
     if (data.resume_text !== undefined && typeof data.resume_text !== "string") {
       throw new Error("resume_text must be a string");
     }
+    if (data.plan !== undefined && !["free", "professional", "premium"].includes(data.plan)) {
+      throw new Error("plan must be one of: free, professional, premium");
+    }
     return data;
   })
   .handler(async ({ data }) => {
@@ -121,15 +132,19 @@ export const saveProfile = createServerFn()
       preferred_salary TEXT,
       work_authorization TEXT,
       resume_text TEXT,
+      plan TEXT NOT NULL DEFAULT 'free',
       created_at TIMESTAMPTZ DEFAULT NOW(),
       updated_at TIMESTAMPTZ DEFAULT NOW()
     )`;
+
+    // Auto-migrate: add plan column if it doesn't exist
+    await db`ALTER TABLE profiles ADD COLUMN IF NOT EXISTS plan TEXT NOT NULL DEFAULT 'free'`;
 
     // Upsert profile
     const rows = await db`
       INSERT INTO profiles (
         user_id, full_name, linkedin_url, education, experience,
-        skills, preferred_province, preferred_salary, work_authorization, resume_text
+        skills, preferred_province, preferred_salary, work_authorization, resume_text, plan
       ) VALUES (
         ${userId},
         ${data.full_name ?? null},
@@ -140,7 +155,8 @@ export const saveProfile = createServerFn()
         ${data.preferred_province ?? null},
         ${data.preferred_salary ?? null},
         ${data.work_authorization ?? null},
-        ${data.resume_text ?? null}
+        ${data.resume_text ?? null},
+        ${data.plan ?? "free"}
       )
       ON CONFLICT (user_id)
       DO UPDATE SET
@@ -153,6 +169,7 @@ export const saveProfile = createServerFn()
         preferred_salary = COALESCE(EXCLUDED.preferred_salary, profiles.preferred_salary),
         work_authorization = COALESCE(EXCLUDED.work_authorization, profiles.work_authorization),
         resume_text = COALESCE(EXCLUDED.resume_text, profiles.resume_text),
+        plan = COALESCE(EXCLUDED.plan, profiles.plan),
         updated_at = NOW()
       RETURNING *
     `;
