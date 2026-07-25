@@ -1,17 +1,35 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
 import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 import { employers } from "~/data/employers";
 import { employerLMIAData } from "~/data/employer-lmia";
 import type { EmployerLMIA } from "~/data/employer-lmia";
+import { getProfile } from "~/server/profile";
 
 export const Route = createFileRoute("/employers/$slug")({
-  loader: ({ params }) => {
+  loader: async ({ params }) => {
     const employer = employers.find((e) => e.slug === params.slug);
     if (!employer) throw notFound();
+
+    // Auth & plan check: redirect if not signed in or on free plan
+    let profile = null;
+    try {
+      profile = await getProfile();
+    } catch {
+      // Not signed in
+    }
+
+    if (!profile) {
+      throw redirect({ to: "/sign-in" });
+    }
+
+    if (profile.plan === "free") {
+      throw redirect({ to: "/#pricing" });
+    }
+
     const lmia = employerLMIAData[employer.slug] ?? null;
-    return { employer, lmia };
+    return { employer, lmia, profile };
   },
   component: EmployerProfile,
 });
