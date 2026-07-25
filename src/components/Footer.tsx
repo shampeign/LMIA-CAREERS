@@ -15,7 +15,8 @@ const footerLinks = {
   company: {
     title: "Company",
     links: [
-      { label: "About", href: "#" },
+      { label: "About", href: "/about", isRoute: true },
+      { label: "How It Works", href: "/how-it-works", isRoute: true },
       { label: "Blog", href: "#" },
       { label: "Contact", href: "mailto:hello@lmiacareer.ai" },
     ],
@@ -23,8 +24,9 @@ const footerLinks = {
   legal: {
     title: "Legal",
     links: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
+      { label: "Privacy Policy", href: "/privacy", isRoute: true },
+      { label: "Terms of Service", href: "/terms", isRoute: true },
+      { label: "Disclaimer", href: "/disclaimer", isRoute: true },
     ],
   },
 };
