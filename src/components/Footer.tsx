@@ -5,6 +5,7 @@ const footerLinks = {
     title: "Product",
     links: [
       { label: "Features", href: "#how-it-works" },
+      { label: "Jobs", href: "/jobs", isRoute: true },
       { label: "Employers", href: "/employers", isRoute: true },
       { label: "Pricing", href: "#pricing" },
       { label: "FAQ", href: "#faq" },

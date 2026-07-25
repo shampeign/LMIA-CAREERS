@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 import { employers } from "~/data/employers";
+import { jobs } from "~/data/jobs";
 
 export const Route = createFileRoute("/employers/$slug")({
   loader: ({ params }) => {
@@ -209,108 +210,124 @@ function EmployerProfile() {
                   </div>
                 </div>
 
-                {/* Open Positions */}
+                {/* Open Positions — real jobs from job board */}
                 <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-8">
                   <h2 className="mb-1 text-lg font-bold text-gray-900 dark:text-white">
-                    Open Positions
+                    Current Job Openings
                   </h2>
                   <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">
-                    Current job openings at {employer.name}. Visit their career
-                    page for the full list.
+                    Active job listings at {employer.name}. Visit their career page for the full list.
                   </p>
                   <div className="space-y-4">
-                    {employer.openPositions.map((pos, i) => (
-                      <div
-                        key={i}
-                        className="flex flex-col gap-3 rounded-xl border border-gray-200 bg-gray-50 p-4 transition-colors hover:bg-white dark:border-gray-700 dark:bg-gray-800/50 dark:hover:bg-gray-800 sm:flex-row sm:items-center sm:justify-between"
-                      >
-                        <div>
-                          <h3 className="font-semibold text-gray-900 dark:text-white">
-                            {pos.title}
-                          </h3>
-                          <div className="mt-1 flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
-                            <span className="inline-flex items-center gap-1">
-                              <svg
-                                className="h-3.5 w-3.5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={2}
-                                stroke="currentColor"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-                                />
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-                                />
-                              </svg>
-                              {pos.location}
-                            </span>
-                            <span className="inline-flex items-center gap-1">
-                              <svg
-                                className="h-3.5 w-3.5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={2}
-                                stroke="currentColor"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
-                              </svg>
-                              {pos.type}
-                            </span>
-                            <span className="inline-flex items-center gap-1 font-medium text-green-600 dark:text-green-400">
-                              <svg
-                                className="h-3.5 w-3.5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={2}
-                                stroke="currentColor"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
-                              </svg>
-                              {pos.salary}
-                            </span>
-                          </div>
-                        </div>
-                        <a
-                          href={employer.careerPage}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                    {(() => {
+                      const employerJobs = jobs.filter((j) => j.employerSlug === employer.slug);
+                      if (employerJobs.length === 0) {
+                        return (
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                            No active job listings on LMIA Career AI.{" "}
+                            <a
+                              href={employer.careerPage}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                            >
+                              Visit their career page →
+                            </a>
+                          </p>
+                        );
+                      }
+                      return employerJobs.map((pos) => (
+                        <div
+                          key={pos.id}
+                          className="flex flex-col gap-3 rounded-xl border border-gray-200 bg-gray-50 p-4 transition-colors hover:bg-white dark:border-gray-700 dark:bg-gray-800/50 dark:hover:bg-gray-800 sm:flex-row sm:items-center sm:justify-between"
                         >
-                          Apply
-                          <svg
-                            className="h-4 w-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={2}
-                            stroke="currentColor"
-                            aria-hidden="true"
+                          <div>
+                            <h3 className="font-semibold text-gray-900 dark:text-white">
+                              {pos.title}
+                            </h3>
+                            <div className="mt-1 flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
+                              <span className="inline-flex items-center gap-1">
+                                <svg
+                                  className="h-3.5 w-3.5"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  strokeWidth={2}
+                                  stroke="currentColor"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                                  />
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                                  />
+                                </svg>
+                                {pos.location}
+                              </span>
+                              <span className="inline-flex items-center gap-1">
+                                <svg
+                                  className="h-3.5 w-3.5"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  strokeWidth={2}
+                                  stroke="currentColor"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                  />
+                                </svg>
+                                {pos.type}
+                              </span>
+                              <span className="inline-flex items-center gap-1 font-medium text-green-600 dark:text-green-400">
+                                <svg
+                                  className="h-3.5 w-3.5"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  strokeWidth={2}
+                                  stroke="currentColor"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                  />
+                                </svg>
+                                {pos.salary}
+                              </span>
+                            </div>
+                          </div>
+                          <Link
+                            to="/jobs/$jobId"
+                            params={{ jobId: pos.id }}
+                            className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                            />
-                          </svg>
-                        </a>
-                      </div>
-                    ))}
+                            View Job
+                            <svg
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth={2}
+                              stroke="currentColor"
+                              aria-hidden="true"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                              />
+                            </svg>
+                          </Link>
+                        </div>
+                      ));
+                    })()}
                   </div>
                 </div>
               </div>
