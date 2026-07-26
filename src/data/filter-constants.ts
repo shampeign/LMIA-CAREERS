@@ -76,6 +76,19 @@ export function formatApprovals(n: number | undefined): string {
   return n.toString();
 }
 
+export const provinces = [
+  "AB",
+  "BC",
+  "MB",
+  "NB",
+  "NL",
+  "NS",
+  "ON",
+  "PE",
+  "QC",
+  "SK",
+] as const;
+
 export interface NocCodeEntry {
   code: string;
   name: string;

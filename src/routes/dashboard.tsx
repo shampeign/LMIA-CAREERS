@@ -4,6 +4,8 @@ import { PageLoadingSkeleton } from "~/components/PageLoadingSkeleton";
 import { getProfile } from "~/server/profile";
 import { getJobMatches, type JobMatch } from "~/server/matching";
 import { getSavedJobs } from "~/server/saved-jobs";
+import { getEmployers } from "~/server/employers";
+import { getJobs } from "~/server/jobs";
 
 const DashboardPage = lazy(() => import("./dashboard.lazy"));
 
@@ -31,7 +33,9 @@ export const Route = createFileRoute("/dashboard")({
       let savedJobIds: string[] = [];
       if (profile) { try { matches = await getJobMatches(); } catch {} }
       try { savedJobIds = await getSavedJobs(); } catch {}
-      return { profile, matches, savedJobIds };
-    } catch { return { profile: null, matches: [], savedJobIds: [] as string[] }; }
+      const employers = await getEmployers();
+      const jobs = await getJobs();
+      return { profile, matches, savedJobIds, employers, jobs };
+    } catch { return { profile: null, matches: [], savedJobIds: [] as string[], employers: [], jobs: [] }; }
   },
 });

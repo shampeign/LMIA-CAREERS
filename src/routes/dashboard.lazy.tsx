@@ -2,11 +2,11 @@ import { Link, getRouteApi } from "@tanstack/react-router";
 import { SignedIn, SignedOut, SignInButton, useUser } from "@clerk/tanstack-start";
 import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
-import { employers } from "~/data/employers";
-import { jobs as allJobs } from "~/data/jobs";
 import { useState, useEffect } from "react";
 import type { Profile } from "~/server/profile";
 import type { JobMatch } from "~/server/matching";
+import type { Employer } from "~/data/employers";
+import type { Job } from "~/data/jobs";
 import { MatchScoreBadge } from "~/components/MatchScoreBadge";
 
 function computeCompleteness(profile: Profile | null): number {
@@ -46,7 +46,7 @@ export default function DashboardPage() {
 function DashboardContent() {
   const { user } = useUser();
   const routeApi = getRouteApi("/dashboard");
-  const { profile: initialProfile, matches: initialMatches, savedJobIds: initialSaved } = routeApi.useLoaderData();
+  const { profile: initialProfile, matches: initialMatches, savedJobIds: initialSaved, employers, jobs: allJobs } = routeApi.useLoaderData();
   const [profile, setProfile] = useState<Profile | null>(initialProfile);
   const [matches, setMatches] = useState<JobMatch[]>(initialMatches);
   const [savedJobIds, setSavedJobIds] = useState<string[]>(initialSaved);

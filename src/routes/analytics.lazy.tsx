@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/tanstack-start";
 import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
-import { employerLMIAData } from "~/data/employer-lmia";
-import { employers } from "~/data/employers";
+import { getEmployers } from "~/server/employers";
+import type { Employer } from "~/data/employers";
 import { getProfile } from "~/server/profile";
 import { useMemo, useState, useEffect } from "react";
 
@@ -73,6 +73,7 @@ function StatCard({ label, value, subtitle, trend }: { label: string; value: str
 
 export default function AnalyticsPage() {
   const [isPaid, setIsPaid] = useState(false);
+  const [employers, setEmployers] = useState<Employer[]>([]);
 
   useEffect(() => {
     getProfile()
@@ -81,6 +82,9 @@ export default function AnalyticsPage() {
           setIsPaid(true);
         }
       })
+      .catch(() => {});
+    getEmployers()
+      .then(setEmployers)
       .catch(() => {});
   }, []);
 
@@ -92,20 +96,20 @@ export default function AnalyticsPage() {
 
   // ── All data computations ───────────────────────────────────
   const data = useMemo(() => {
-    const lmiaEntries = Object.entries(employerLMIAData);
-    const count = lmiaEntries.length;
+    const lmiaEmployers = employers.filter((e) => e.lmia);
+    const count = lmiaEmployers.length;
 
     // SECTION 1: Platform Overview
-    const totalApprovals = lmiaEntries.reduce((s, [, d]) => s + d.totalApprovals, 0);
+    const totalApprovals = lmiaEmployers.reduce((s, e) => s + e.lmia!.totalApprovals, 0);
     const avgApprovalRate =
       totalApprovals > 0
-        ? lmiaEntries.reduce((s, [, d]) => s + d.approvalRate * d.totalApprovals, 0) / totalApprovals
+        ? lmiaEmployers.reduce((s, e) => s + e.lmia!.approvalRate * e.lmia!.totalApprovals, 0) / totalApprovals
         : 0;
 
     // Top hiring province
     const provMap: Record<string, number> = {};
-    for (const [, d] of lmiaEntries) {
-      for (const p of d.hiringProvinces) {
+    for (const e of lmiaEmployers) {
+      for (const p of e.lmia!.hiringProvinces) {
         provMap[p.province] = (provMap[p.province] || 0) + p.approvals;
       }
     }
@@ -118,18 +122,18 @@ export default function AnalyticsPage() {
     // SECTION 2: Industry distribution
     const industryMap: Record<string, number> = {};
     for (const emp of employers) {
-      if (!employerLMIAData[emp.slug]) continue;
+      if (!emp.lmia) continue;
       industryMap[emp.industry] = (industryMap[emp.industry] || 0) + 1;
     }
     const industryData = Object.entries(industryMap)
-      .map(([industry, count]) => ({ industry, count }))
+      .map(([industry, cnt]) => ({ industry, count: cnt }))
       .sort((a, b) => b.count - a.count);
     const maxIndustry = industryData.length > 0 ? industryData[0].count : 1;
 
     // SECTION 3: Top Occupations (merge by nocCode)
     const occMap: Record<string, { nocCode: string; nocName: string; teerLevel: number; approvals: number; positions: number; totalWage: number; wageCount: number }> = {};
-    for (const [, d] of lmiaEntries) {
-      for (const o of d.topOccupations) {
+    for (const e of lmiaEmployers) {
+      for (const o of e.lmia!.topOccupations) {
         if (!occMap[o.nocCode]) {
           occMap[o.nocCode] = { nocCode: o.nocCode, nocName: o.nocName, teerLevel: o.teerLevel, approvals: 0, positions: 0, totalWage: 0, wageCount: 0 };
         }
@@ -145,9 +149,9 @@ export default function AnalyticsPage() {
 
     // PAID 1: Employer Intelligence Database
     const employerIntel = employers
-      .filter((e) => employerLMIAData[e.slug])
+      .filter((e) => e.lmia)
       .map((e) => {
-        const lmia = employerLMIAData[e.slug];
+        const lmia = e.lmia!;
         const topOcc = lmia.topOccupations.length > 0 ? lmia.topOccupations[0].nocName : "N/A";
         return {
           slug: e.slug,
@@ -166,13 +170,13 @@ export default function AnalyticsPage() {
     // PAID 2: Occupation Deep Dive (all occupations)
     const allOccupations = Object.values(occMap)
       .map((o) => {
-        const hiringEmployers = lmiaEntries.filter(([, d]) =>
-          d.topOccupations.some((to) => to.nocCode === o.nocCode)
+        const hiringEmployers = lmiaEmployers.filter((e) =>
+          e.lmia!.topOccupations.some((to) => to.nocCode === o.nocCode)
         ).length;
-        const wages = lmiaEntries
-          .filter(([, d]) => d.topOccupations.some((to) => to.nocCode === o.nocCode))
-          .flatMap(([, d]) =>
-            d.topOccupations.filter((to) => to.nocCode === o.nocCode).map((to) => to.avgWage)
+        const wages = lmiaEmployers
+          .filter((e) => e.lmia!.topOccupations.some((to) => to.nocCode === o.nocCode))
+          .flatMap((e) =>
+            e.lmia!.topOccupations.filter((to) => to.nocCode === o.nocCode).map((to) => to.avgWage)
           );
         return {
           ...o,
@@ -187,13 +191,12 @@ export default function AnalyticsPage() {
     // PAID 3: Wage Analytics by Industry
     const indWageMap: Record<string, { employers: number; wages: number[]; totalApprovals: number }> = {};
     for (const emp of employers) {
-      const lmia = employerLMIAData[emp.slug];
-      if (!lmia) continue;
+      if (!emp.lmia) continue;
       const ind = emp.industry;
       if (!indWageMap[ind]) indWageMap[ind] = { employers: 0, wages: [], totalApprovals: 0 };
       indWageMap[ind].employers++;
-      indWageMap[ind].wages.push(lmia.wageMedian);
-      indWageMap[ind].totalApprovals += lmia.totalApprovals;
+      indWageMap[ind].wages.push(emp.lmia.wageMedian);
+      indWageMap[ind].totalApprovals += emp.lmia.totalApprovals;
     }
     const industryWages = Object.entries(indWageMap)
       .map(([industry, v]) => {
@@ -212,9 +215,9 @@ export default function AnalyticsPage() {
 
     // PAID 4: Employer Sponsorship Rankings
     const sponsorshipRankings = employers
-      .filter((e) => employerLMIAData[e.slug])
+      .filter((e) => e.lmia)
       .map((e) => {
-        const lmia = employerLMIAData[e.slug];
+        const lmia = e.lmia!;
         return {
           name: e.name,
           slug: e.slug,
@@ -227,18 +230,18 @@ export default function AnalyticsPage() {
 
     // PAID 5: Yearly Trends
     const yearMap: Record<number, { total: number; highWage: number; lowWage: number; prStream: number; agriculture: number; globalTalent: number; caregiver: number }> = {};
-    for (const [, d] of lmiaEntries) {
-      const streamTotal = d.streams.highWage + d.streams.lowWage + d.streams.prStream + d.streams.agriculture + d.streams.globalTalent + d.streams.caregiver || 1;
-      for (const y of d.yearlyHistory) {
+    for (const e of lmiaEmployers) {
+      const lmia = e.lmia!;
+      for (const y of lmia.yearlyHistory) {
         if (!yearMap[y.year]) yearMap[y.year] = { total: 0, highWage: 0, lowWage: 0, prStream: 0, agriculture: 0, globalTalent: 0, caregiver: 0 };
-        const ratio = y.total / (d.totalApprovals || 1);
+        const ratio = y.total / (lmia.totalApprovals || 1);
         yearMap[y.year].total += y.total;
-        yearMap[y.year].highWage += Math.round(d.streams.highWage * ratio);
-        yearMap[y.year].lowWage += Math.round(d.streams.lowWage * ratio);
-        yearMap[y.year].prStream += Math.round(d.streams.prStream * ratio);
-        yearMap[y.year].agriculture += Math.round(d.streams.agriculture * ratio);
-        yearMap[y.year].globalTalent += Math.round(d.streams.globalTalent * ratio);
-        yearMap[y.year].caregiver += Math.round(d.streams.caregiver * ratio);
+        yearMap[y.year].highWage += Math.round(lmia.streams.highWage * ratio);
+        yearMap[y.year].lowWage += Math.round(lmia.streams.lowWage * ratio);
+        yearMap[y.year].prStream += Math.round(lmia.streams.prStream * ratio);
+        yearMap[y.year].agriculture += Math.round(lmia.streams.agriculture * ratio);
+        yearMap[y.year].globalTalent += Math.round(lmia.streams.globalTalent * ratio);
+        yearMap[y.year].caregiver += Math.round(lmia.streams.caregiver * ratio);
       }
     }
     const yearlyData = Object.entries(yearMap)
@@ -261,7 +264,7 @@ export default function AnalyticsPage() {
       sponsorshipRankings,
       yearlyData,
     };
-  }, []);
+  }, [employers]);
 
   // ── Derived values ──────────────────────────────────────────
   const maxYearlyTotal = data.yearlyData.length > 0 ? Math.max(...data.yearlyData.map((y) => y.total)) : 1;

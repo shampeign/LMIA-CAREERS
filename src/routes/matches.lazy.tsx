@@ -3,11 +3,11 @@ import { SignedIn, SignedOut, SignInButton, useUser } from "@clerk/tanstack-star
 import { useState, useMemo } from "react";
 import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
-import { employers } from "~/data/employers";
-import { provinces } from "~/data/jobs";
+import { provinces } from "~/data/filter-constants";
 import { MatchScoreBadge, MatchBreakdownBar } from "~/components/MatchScoreBadge";
 import { useEmployerPreview } from "~/components/EmployerPreviewContext";
 import type { Profile } from "~/server/profile";
+import type { Employer } from "~/data/employers";
 
 const industries = [
   "Food Processing", "Oil & Gas", "Technology", "Construction",
@@ -32,7 +32,7 @@ function MatchesContent() {
   const { user } = useUser();
   const { openModal } = useEmployerPreview();
   const routeApi = getRouteApi("/matches");
-  const { profile, matches: initialMatches } = routeApi.useLoaderData();
+  const { profile, matches: initialMatches, employers } = routeApi.useLoaderData();
   const isFreeUser = profile?.plan === "free";
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedIndustry, setSelectedIndustry] = useState("");

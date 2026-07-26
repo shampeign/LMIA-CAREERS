@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 import { PageLoadingSkeleton } from "~/components/PageLoadingSkeleton";
 import { getJobMatches, type JobMatch } from "~/server/matching";
 import { getProfile } from "~/server/profile";
+import { getEmployers } from "~/server/employers";
 
 const MatchesPage = lazy(() => import("./matches.lazy"));
 
@@ -30,9 +31,10 @@ export const Route = createFileRoute("/matches")({
       if (profile) {
         try { matches = await getJobMatches(); } catch {}
       }
-      return { profile, matches };
+      const employers = await getEmployers();
+      return { profile, matches, employers };
     } catch {
-      return { profile: null, matches: [] };
+      return { profile: null, matches: [], employers: [] };
     }
   },
 });
