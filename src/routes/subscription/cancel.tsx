@@ -48,7 +48,7 @@ function SubscriptionCancel() {
 
           <div className="mt-10">
             <a
-              href="/#pricing"
+              href="/pricing"
               className="inline-flex items-center gap-2 rounded-full bg-[#2563EB] px-8 py-3.5 text-[16px] font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
             >
               Return to Pricing

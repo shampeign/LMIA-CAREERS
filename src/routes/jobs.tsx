@@ -587,7 +587,7 @@ function JobListings() {
                         <div className="mt-6 flex items-center gap-3">
                           {isFreeUser ? (
                             <a
-                              href="/#pricing"
+                              href="/pricing"
                               className="inline-flex items-center gap-2 rounded-2xl bg-[#2563EB] px-5 py-2.5 text-[15px] font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
                             >
                               View Details
