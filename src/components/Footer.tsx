@@ -8,7 +8,7 @@ const footerLinks = {
       { label: "Jobs", href: "/jobs", isRoute: true },
       { label: "Employers", href: "/employers", isRoute: true },
       { label: "Analytics", href: "/analytics", isRoute: true },
-      { label: "Pricing", href: "#pricing" },
+      { label: "Pricing", href: "/pricing", isRoute: true },
       { label: "FAQ", href: "#faq" },
     ],
   },
