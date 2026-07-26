@@ -18,7 +18,7 @@ export const Route = createFileRoute("/terms")({
 });
 
 function TermsOfService() {
-  const lastUpdated = "July 2025";
+  const lastUpdated = `July ${new Date().getFullYear()}`;
 
   return (
     <>

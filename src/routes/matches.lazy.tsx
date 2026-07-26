@@ -167,7 +167,7 @@ function MatchesContent() {
                         <MatchScoreBadge score={match.matchScore} size="md" />
                         <div>
                           {isFreeUser ? (
-                            <a href="/#pricing" className="text-xl font-bold text-white transition-colors hover:text-[#2563EB]">
+                            <a href="/pricing" className="text-xl font-bold text-white transition-colors hover:text-[#2563EB]">
                               {match.job.title}
                             </a>
                           ) : (
@@ -187,7 +187,7 @@ function MatchesContent() {
                       </div>
                       <div className="flex items-center gap-2">
                         {isFreeUser ? (
-                          <a href="/#pricing" className="rounded-2xl bg-[#2563EB] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1D4ED8]">View Job</a>
+                          <a href="/pricing" className="rounded-2xl bg-[#2563EB] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1D4ED8]">View Job</a>
                         ) : (
                           <Link to="/jobs/$jobId" params={{ jobId: match.job.id }} className="rounded-2xl bg-[#2563EB] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1D4ED8]">View Job</Link>
                         )}

@@ -21,7 +21,7 @@ export const Route = createFileRoute("/employers/$slug")({
       throw redirect({ to: "/sign-in" });
     }
     if (profile.plan === "free") {
-      throw redirect({ to: "/#pricing" });
+      throw redirect({ to: "/pricing" });
     }
 
     const lmia = employer.lmia ?? null;

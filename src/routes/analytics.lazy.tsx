@@ -485,7 +485,7 @@ export default function AnalyticsPage() {
                       Start Free Trial
                     </Link>
                   </SignedIn>
-                  <a href="/#pricing" className="rounded-xl border border-[#374151] px-8 py-3.5 text-base font-semibold text-white text-center hover:bg-white/10 whitespace-nowrap">
+                  <a href="/pricing" className="rounded-xl border border-[#374151] px-8 py-3.5 text-base font-semibold text-white text-center hover:bg-white/10 whitespace-nowrap">
                     View Pricing
                   </a>
                 </div>

@@ -24,7 +24,7 @@ export const Route = createFileRoute("/jobs/$jobId")({
       throw redirect({ to: "/sign-in" });
     }
     if (profile.plan === "free") {
-      throw redirect({ to: "/#pricing" });
+      throw redirect({ to: "/pricing" });
     }
 
     const employer = await getEmployerBySlug(job.employerSlug);
