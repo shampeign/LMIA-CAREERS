@@ -3,14 +3,51 @@ import { SignedIn, SignedOut } from "@clerk/tanstack-start";
 import { useState, useMemo, useEffect } from "react";
 import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
-import { jobs, provinces, jobTypes } from "~/data/jobs";
-import { employers } from "~/data/employers";
+import { getJobs } from "~/server/jobs";
+import { getEmployers } from "~/server/employers";
 import { getJobMatches, type JobMatch } from "~/server/matching";
 import { getProfile } from "~/server/profile";
 import type { Profile } from "~/server/profile";
 import { getSavedJobs, toggleSavedJob } from "~/server/saved-jobs";
 import { MatchScoreBadge } from "~/components/MatchScoreBadge";
 import { useEmployerPreview } from "~/components/EmployerPreviewContext";
+import type { Job } from "~/data/jobs";
+import type { Employer } from "~/data/employers";
+
+const provinces = ["AB", "BC", "MB", "NB", "NL", "NS", "ON", "PE", "QC", "SK"] as const;
+
+const industries = [
+  "Food Processing",
+  "Oil & Gas",
+  "Technology",
+  "Construction",
+  "Agriculture",
+  "Mining",
+  "Manufacturing",
+  "Transportation",
+  "Retail",
+  "Finance",
+  "Telecommunications",
+] as const;
+
+const jobTypes = ["Full-time", "Part-time", "Contract", "Temporary"] as const;
+
+const salaryRanges = [
+  { label: "Under $40,000", min: 0, max: 40000 },
+  { label: "$40,000 - $60,000", min: 40000, max: 60000 },
+  { label: "$60,000 - $80,000", min: 60000, max: 80000 },
+  { label: "$80,000 - $100,000", min: 80000, max: 100000 },
+  { label: "$100,000 - $130,000", min: 100000, max: 130000 },
+  { label: "$130,000+", min: 130000, max: Infinity },
+];
+
+function parseSalary(salary: string): number {
+  const match = salary.match(/\$?([\d,]+)/);
+  if (match) {
+    return parseInt(match[1].replace(/,/g, ""), 10);
+  }
+  return 0;
+}
 
 export const Route = createFileRoute("/jobs")({
   head: () => ({
@@ -48,37 +85,6 @@ export const Route = createFileRoute("/jobs")({
   },
 });
 
-const industries = [
-  "Food Processing",
-  "Oil & Gas",
-  "Technology",
-  "Construction",
-  "Agriculture",
-  "Mining",
-  "Manufacturing",
-  "Transportation",
-  "Retail",
-  "Finance",
-  "Telecommunications",
-] as const;
-
-const salaryRanges = [
-  { label: "Under $40,000", min: 0, max: 40000 },
-  { label: "$40,000 - $60,000", min: 40000, max: 60000 },
-  { label: "$60,000 - $80,000", min: 60000, max: 80000 },
-  { label: "$80,000 - $100,000", min: 80000, max: 100000 },
-  { label: "$100,000 - $130,000", min: 100000, max: 130000 },
-  { label: "$130,000+", min: 130000, max: Infinity },
-];
-
-function parseSalary(salary: string): number {
-  const match = salary.match(/\$?([\d,]+)/);
-  if (match) {
-    return parseInt(match[1].replace(/,/g, ""), 10);
-  }
-  return 0;
-}
-
 function JobListings() {
   const { matches, profile, savedJobIds: initialSaved } = Route.useLoaderData();
   const { openModal } = useEmployerPreview();
@@ -92,6 +98,20 @@ function JobListings() {
   const [visibleCount, setVisibleCount] = useState(12);
   const [savedJobs, setSavedJobs] = useState<Set<string>>(new Set(initialSaved));
   const [loading, setLoading] = useState(true);
+  const [allJobs, setAllJobs] = useState<Job[]>([]);
+  const [allEmployers, setAllEmployers] = useState<Employer[]>([]);
+  const [dataLoading, setDataLoading] = useState(true);
+
+  // Load data from server
+  useEffect(() => {
+    Promise.all([getJobs(), getEmployers()]).then(([jobs, employers]) => {
+      setAllJobs(jobs);
+      setAllEmployers(employers);
+      setDataLoading(false);
+    }).catch(() => {
+      setDataLoading(false);
+    });
+  }, []);
 
   useEffect(() => {
     setSavedJobs(new Set(initialSaved));
@@ -106,14 +126,16 @@ function JobListings() {
   }, [matches]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 300);
-    return () => clearTimeout(timer);
-  }, []);
+    if (!dataLoading) {
+      const timer = setTimeout(() => setLoading(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [dataLoading]);
 
   const filtered = useMemo(() => {
-    return jobs.filter((job) => {
+    return allJobs.filter((job) => {
       const q = search.toLowerCase();
-      const employer = employers.find((e) => e.slug === job.employerSlug);
+      const employer = allEmployers.find((e) => e.slug === job.employerSlug);
       const employerName = employer?.name ?? "";
 
       const matchesSearch =
@@ -149,7 +171,7 @@ function JobListings() {
         matchesSalary
       );
     });
-  }, [search, selectedProvince, selectedIndustry, selectedType, remoteOnly, selectedSalary]);
+  }, [allJobs, allEmployers, search, selectedProvince, selectedIndustry, selectedType, remoteOnly, selectedSalary]);
 
   const displayed = filtered.slice(0, visibleCount);
   const hasMore = visibleCount < filtered.length;
@@ -167,7 +189,6 @@ function JobListings() {
     search || selectedProvince || selectedIndustry || selectedType || remoteOnly || selectedSalary;
 
   const toggleSaveJob = async (jobId: string) => {
-    // Optimistic toggle
     setSavedJobs((prev) => {
       const next = new Set(prev);
       if (next.has(jobId)) {
@@ -178,11 +199,9 @@ function JobListings() {
       return next;
     });
 
-    // Persist to server
     try {
       await toggleSavedJob(jobId);
     } catch {
-      // Revert on failure
       setSavedJobs((prev) => {
         const next = new Set(prev);
         if (next.has(jobId)) {
@@ -195,7 +214,7 @@ function JobListings() {
     }
   };
 
-  const getEmployer = (slug: string) => employers.find((e) => e.slug === slug);
+  const getEmployer = (slug: string) => allEmployers.find((e) => e.slug === slug);
 
   return (
     <>

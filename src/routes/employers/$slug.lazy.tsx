@@ -2,7 +2,6 @@ import { Link, getRouteApi } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
 import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
-import { employers } from "~/data/employers";
 import type { EmployerLMIA } from "~/data/employer-lmia";
 
 type Tab = "overview" | "occupations" | "wages" | "history" | "jobs";

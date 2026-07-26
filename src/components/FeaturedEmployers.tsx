@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { employers as allEmployers } from "~/data/employers";
+import { useState, useEffect } from "react";
+import { getFeaturedEmployers } from "~/server/employers";
+import type { Employer } from "~/data/employers";
 
 const featuredSlugs = [
   "maple-leaf-foods",
@@ -10,11 +12,13 @@ const featuredSlugs = [
   "jd-irving",
 ];
 
-const featuredEmployers = featuredSlugs
-  .map((slug) => allEmployers.find((e) => e.slug === slug))
-  .filter(Boolean) as typeof allEmployers;
-
 export function FeaturedEmployers() {
+  const [featuredEmployers, setFeaturedEmployers] = useState<Employer[]>([]);
+
+  useEffect(() => {
+    getFeaturedEmployers(featuredSlugs).then(setFeaturedEmployers).catch(() => {});
+  }, []);
+
   return (
     <section id="employers" className="bg-[#0B0E14] px-6 py-40">
       <div className="mx-auto max-w-6xl">

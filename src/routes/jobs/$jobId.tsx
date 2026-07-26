@@ -1,91 +1,52 @@
 import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
-import { SignedIn } from "@clerk/tanstack-start";
-import { useState, useEffect } from "react";
+import { SignedIn, SignedOut } from "@clerk/tanstack-start";
 import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
-import { jobs } from "~/data/jobs";
-import { employers } from "~/data/employers";
+import { getJobById } from "~/server/jobs";
+import { getEmployerBySlug } from "~/server/employers";
 import { getProfile } from "~/server/profile";
-import { getJobMatch } from "~/server/matching";
-import type { JobMatch } from "~/server/matching";
-import { getSavedJobs, toggleSavedJob } from "~/server/saved-jobs";
-import { MatchScoreBadge, MatchBreakdownBar } from "~/components/MatchScoreBadge";
-import { useEmployerPreview } from "~/components/EmployerPreviewContext";
+import type { Profile } from "~/server/profile";
+import type { Job } from "~/data/jobs";
+import type { Employer } from "~/data/employers";
 
 export const Route = createFileRoute("/jobs/$jobId")({
   loader: async ({ params }) => {
-    const job = jobs.find((j) => j.id === params.jobId);
+    const job = await getJobById(params.jobId);
     if (!job) throw notFound();
 
-    // Auth & plan check: redirect if not signed in or on free plan
-    let profile = null;
+    let profile: Profile | null = null;
     try {
       profile = await getProfile();
     } catch {
       // Not signed in
     }
-
     if (!profile) {
       throw redirect({ to: "/sign-in" });
     }
-
     if (profile.plan === "free") {
       throw redirect({ to: "/#pricing" });
     }
 
-    let match: JobMatch | null = null;
-    try {
-      match = await getJobMatch(params.jobId);
-    } catch {
-      // No match data
-    }
-
-    let savedJobIds: string[] = [];
-    try {
-      savedJobIds = await getSavedJobs();
-    } catch {
-      // Not signed in
-    }
-
-    return { job, match, profile, savedJobIds };
+    const employer = await getEmployerBySlug(job.employerSlug);
+    return { job, employer, profile };
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData.job.title} — LMIA Career AI` },
+      {
+        title: `${loaderData.job.title} at ${loaderData.employer?.name ?? "Employer"} — LMIA Career AI`,
+      },
       {
         name: "description",
-        content: `${loaderData.job.title} at a Canadian LMIA employer. ${loaderData.job.location}, ${loaderData.job.type}. View match score, requirements, and apply on LMIA Career AI.`,
+        content: `${loaderData.job.title} — ${loaderData.job.type} position in ${loaderData.job.location}. ${loaderData.job.description.slice(0, 150)}...`,
       },
     ],
+    links: [{ rel: "canonical", href: `https://lmiacareersai.com/jobs/${loaderData.job.id}` }],
   }),
   component: JobDetailPage,
 });
 
 function JobDetailPage() {
-  const { job, match: initialMatch, profile, savedJobIds: initialSaved } = Route.useLoaderData();
-  const [match, setMatch] = useState<JobMatch | null>(initialMatch);
-  const [saved, setSaved] = useState(initialSaved.includes(job.id));
-  const { openModal } = useEmployerPreview();
-
-  useEffect(() => {
-    setMatch(initialMatch);
-  }, [initialMatch]);
-
-  useEffect(() => {
-    setSaved(initialSaved.includes(job.id));
-  }, [initialSaved, job.id]);
-
-  const handleToggleSave = async () => {
-    const wasSaved = saved;
-    setSaved(!wasSaved);
-    try {
-      await toggleSavedJob(job.id);
-    } catch {
-      setSaved(wasSaved);
-    }
-  };
-
-  const employer = employers.find((e) => e.slug === job.employerSlug);
+  const { job, employer, profile } = Route.useLoaderData();
 
   return (
     <>
@@ -96,99 +57,80 @@ function JobDetailPage() {
           <div className="mx-auto max-w-6xl px-6 py-4 lg:px-8">
             <Link
               to="/jobs"
-              className="inline-flex items-center gap-2 text-[15px] font-medium text-[#6B7280] transition-colors hover:text-[#0A0A0B]"
+              className="inline-flex items-center gap-1.5 text-[14px] font-medium text-[#6B7280] transition-colors hover:text-[#0A0A0B]"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
               </svg>
               Back to Jobs
             </Link>
           </div>
         </div>
 
-        {/* Job header */}
-        <section className="bg-[#0B0E14] px-6 py-16">
-          <div className="mx-auto max-w-6xl">
-            <div className="grid gap-10 lg:grid-cols-3">
-              <div className="lg:col-span-2">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h1 className="text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#0A0A0B]">
-                      {job.title}
-                    </h1>
-                    {employer && (
-                      <button
-                        type="button"
-                        onClick={() => openModal(employer)}
-                        className="mt-3 inline-block text-left text-[18px] font-medium text-[#2563EB] transition-colors hover:text-[#1D4ED8] cursor-pointer"
-                      >
-                        {employer.name}
-                      </button>
-                    )}
-                  </div>
-                  <button
-                    onClick={handleToggleSave}
-                    className="flex-shrink-0 rounded-full p-3 text-[#6B7280] transition-colors hover:bg-white/5 hover:text-[#2563EB]"
-                    aria-label={saved ? "Unsave job" : "Save job"}
+        {/* Job hero */}
+        <section className="bg-white border-b border-[#F0F0F0]">
+          <div className="mx-auto max-w-6xl px-6 py-10 lg:px-8">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+              <div className="flex-1">
+                <h1 className="text-[28px] font-bold tracking-[-0.03em] text-[#0A0A0B] lg:text-[36px]">
+                  {job.title}
+                </h1>
+                {employer && (
+                  <Link
+                    to="/employers/$slug"
+                    params={{ slug: employer.slug }}
+                    className="mt-2 inline-block text-[18px] font-semibold text-[#2563EB] transition-colors hover:text-[#1D4ED8]"
                   >
-                    {saved ? (
-                      <svg className="h-6 w-6 text-[#2563EB]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
-                      </svg>
-                    ) : (
-                      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
-                      </svg>
-                    )}
-                  </button>
-                </div>
-                <div className="mt-5 flex flex-wrap items-center gap-3">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#F0F0F0] px-4 py-1.5 text-sm font-medium text-[#4B5563]">
-                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                    {employer.name}
+                  </Link>
+                )}
+                <div className="mt-4 flex flex-wrap items-center gap-3">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#F0F0F0] px-4 py-2 text-[14px] font-medium text-[#4B5563]">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                     </svg>
                     {job.location}
                   </span>
-                  <span className="rounded-full bg-white px-4 py-1.5 text-sm font-medium text-[#6B7280]">{job.type}</span>
+                  <span className="inline-flex items-center rounded-full bg-[#F0F0F0] px-4 py-2 text-[14px] font-medium text-[#4B5563]">
+                    {job.type}
+                  </span>
                   {job.remote && (
-                    <span className="rounded-full bg-[#F0FDF4] px-4 py-1.5 text-sm font-medium text-[#16A34A]">Remote</span>
+                    <span className="inline-flex items-center rounded-full bg-[#F0FDF4] px-4 py-2 text-[14px] font-medium text-[#16A34A]">
+                      Remote
+                    </span>
                   )}
-                  <span className="text-lg font-bold text-[#16A34A]">{job.salary}</span>
                 </div>
-                <p className="mt-6 text-sm text-[#9CA3AF]">
-                  Posted {new Date(job.postedDate).toLocaleDateString("en-CA", { month: "long", day: "numeric", year: "numeric" })}
-                </p>
+                <div className="mt-5 flex items-center gap-6">
+                  <span className="text-[24px] font-bold text-[#16A34A]">
+                    {job.salary}
+                  </span>
+                  <span className="text-[15px] text-[#6B7280]">
+                    Posted {new Date(job.postedDate).toLocaleDateString("en-CA", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </span>
+                  {job.deadline && (
+                    <span className="text-[15px] text-[#EF4444]">
+                      Deadline: {new Date(job.deadline).toLocaleDateString("en-CA", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </span>
+                  )}
+                </div>
               </div>
 
-              {/* Sidebar - Match score */}
-              <div className="space-y-5">
+              {/* Sidebar */}
+              <div className="w-full lg:w-72 space-y-4">
                 <SignedIn>
-                  {match ? (
-                    <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
-                      <div className="flex items-center gap-4">
-                        <MatchScoreBadge score={match.matchScore} size="lg" />
-                        <div>
-                          <h3 className="text-lg font-bold text-[#0A0A0B]">Your Match</h3>
-                          <p className="text-sm text-[#6B7280]">
-                            {match.matchScore >= 80 ? "Strong match!" : match.matchScore >= 50 ? "Good potential" : "Below threshold"}
-                          </p>
-                        </div>
-                      </div>
-                      {match.matchScore >= 50 && (
-                        <div className="mt-6 space-y-2.5">
-                          <MatchBreakdownBar label="Skills" score={match.breakdown.skillsScore} max={40} />
-                          <MatchBreakdownBar label="Experience" score={match.breakdown.experienceScore} max={20} />
-                          <MatchBreakdownBar label="Education" score={match.breakdown.educationScore} max={15} />
-                          <MatchBreakdownBar label="Location" score={match.breakdown.locationScore} max={15} />
-                          <MatchBreakdownBar label="Salary" score={match.breakdown.salaryScore} max={10} />
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
-                      <p className="text-sm text-[#6B7280]">
-                        Complete your profile with skills and preferences to see your match score.
+                  {profile && !profile.preferred_province && (
+                    <div className="rounded-2xl border border-[#FEF3C7] bg-[#FFFBEB] p-5">
+                      <p className="text-[14px] font-medium text-[#92400E]">
+                        Complete your profile to get personalized job matches and match scores.
                       </p>
                       <Link
                         to="/onboarding"
@@ -202,7 +144,6 @@ function JobDetailPage() {
                     </div>
                   )}
                 </SignedIn>
-
                 <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
                   <h3 className="text-sm font-semibold uppercase text-[#9CA3AF]">Job Details</h3>
                   <dl className="mt-6 space-y-5">
@@ -239,8 +180,7 @@ function JobDetailPage() {
                   <p key={i}>{para}</p>
                 ))}
               </div>
-
-              {job.requirements && (
+              {job.requirements && job.requirements.length > 0 && (
                 <>
                   <h3 className="mt-10 text-[20px] font-bold text-[#0A0A0B]">Requirements</h3>
                   <ul className="mt-4 space-y-3">
@@ -255,25 +195,8 @@ function JobDetailPage() {
                   </ul>
                 </>
               )}
-
-              {job.responsibilities && (
-                <>
-                  <h3 className="mt-10 text-[20px] font-bold text-[#0A0A0B]">Responsibilities</h3>
-                  <ul className="mt-4 space-y-3">
-                    {job.responsibilities.map((resp: string, i: number) => (
-                      <li key={i} className="flex items-start gap-3 text-[16px] text-[#6B7280]">
-                        <svg className="mt-1 h-5 w-5 flex-shrink-0 text-[#2563EB]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                        {resp}
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              )}
             </div>
-
-            {/* Apply button — all users reaching this page are on a paid plan */}
+            {/* Apply button */}
             <div className="mt-8 text-center">
               <a
                 href={employer?.careerPage || "#"}

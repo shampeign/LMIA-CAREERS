@@ -1,17 +1,16 @@
 import { createFileRoute, notFound, redirect } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
 import { PageLoadingSkeleton } from "~/components/PageLoadingSkeleton";
-import { employers } from "~/data/employers";
-import { employerLMIAData } from "~/data/employer-lmia";
-import type { EmployerLMIA } from "~/data/employer-lmia";
+import { getEmployerBySlug } from "~/server/employers";
 import { getProfile } from "~/server/profile";
 
 const EmployerProfile = lazy(() => import("./$slug.lazy"));
 
 export const Route = createFileRoute("/employers/$slug")({
   loader: async ({ params }) => {
-    const employer = employers.find((e) => e.slug === params.slug);
+    const employer = await getEmployerBySlug(params.slug);
     if (!employer) throw notFound();
+
     let profile = null;
     try {
       profile = await getProfile();
@@ -24,7 +23,8 @@ export const Route = createFileRoute("/employers/$slug")({
     if (profile.plan === "free") {
       throw redirect({ to: "/#pricing" });
     }
-    const lmia = employerLMIAData[employer.slug] ?? null;
+
+    const lmia = employer.lmia ?? null;
     return { employer, lmia, profile };
   },
   head: ({ loaderData }) => ({
