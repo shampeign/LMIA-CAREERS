@@ -12,7 +12,7 @@ const navLinks = [
   { label: "Jobs", href: "/jobs", isRoute: true },
   { label: "Employers", href: "/employers", isRoute: true },
   { label: "Analytics", href: "/analytics", isRoute: true },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Pricing", href: "/pricing", isRoute: true },
 ];
 
 export function Navbar() {
