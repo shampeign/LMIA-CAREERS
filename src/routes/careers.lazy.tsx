@@ -5,14 +5,14 @@ export default function CareersPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#0B0E14]">
+      <main className="min-h-dvh bg-[white]">
         {/* Hero */}
-        <section className="bg-[#0B0E14] px-6 py-32 sm:py-40">
+        <section className="bg-[white] px-6 py-32 sm:py-40">
           <div className="mx-auto max-w-4xl text-center">
             <span className="text-sm font-semibold uppercase text-[#6B7280]">
               Careers
             </span>
-            <h1 className="mt-4 text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-white sm:text-[56px]">
+            <h1 className="mt-4 text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-[#1A1A2E] sm:text-[56px]">
               Help us build the future of{" "}
               <span className="text-[#2563EB]">Canadian employment intelligence</span>
             </h1>
@@ -30,7 +30,7 @@ export default function CareersPage() {
               <span className="text-sm font-semibold uppercase text-[#6B7280]">
                 Why LMIA Career AI
               </span>
-              <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[48px]">
+              <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#1A1A2E] sm:text-[48px]">
                 Build something that{" "}
                 <span className="text-[#2563EB]">matters</span>
               </h2>
@@ -105,10 +105,10 @@ export default function CareersPage() {
               ].map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-8  hover:"
+                  className="rounded-2xl border border-[#E5E7EB] bg-white p-8  hover:"
                 >
                   <div className="text-[#2563EB]">{item.icon}</div>
-                  <h3 className="mt-5 text-[18px] font-bold text-white">{item.title}</h3>
+                  <h3 className="mt-5 text-[18px] font-bold text-[#1A1A2E]">{item.title}</h3>
                   <p className="mt-3 text-[15px] leading-relaxed text-[#6B7280]">{item.description}</p>
                 </div>
               ))}
@@ -117,33 +117,33 @@ export default function CareersPage() {
         </section>
 
         {/* Open Position */}
-        <section className="bg-[#0B0E14] px-6 py-24 sm:py-32">
+        <section className="bg-[white] px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
               <span className="text-sm font-semibold uppercase text-[#6B7280]">
                 Open Position
               </span>
-              <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[48px]">
+              <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#1A1A2E] sm:text-[48px]">
                 Join our{" "}
                 <span className="text-[#2563EB]">technology team</span>
               </h2>
             </div>
 
             {/* Job Card */}
-            <div className="mt-16 mx-auto max-w-3xl rounded-2xl border border-[#2563EB] bg-white/5 p-10  ring-1 ring-[#2563EB]">
+            <div className="mt-16 mx-auto max-w-3xl rounded-2xl border border-[#2563EB] bg-white p-10  ring-1 ring-[#2563EB]">
               <div className="flex items-start gap-4">
                 <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-[#2563EB] text-lg font-bold text-white">
                   FS
                 </div>
                 <div>
-                  <h3 className="text-[24px] font-bold text-white">
+                  <h3 className="text-[24px] font-bold text-[#1A1A2E]">
                     Full-Stack Web Developer & Digital Platform Manager
                   </h3>
                   <div className="mt-3 flex flex-wrap items-center gap-3">
-                    <span className="rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-[#B0B8C4]">
+                    <span className="rounded-full bg-[#F3F4F6] px-4 py-1.5 text-sm font-medium text-[#4B5563]">
                       Remote (Canada)
                     </span>
-                    <span className="rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-[#B0B8C4]">
+                    <span className="rounded-full bg-[#F3F4F6] px-4 py-1.5 text-sm font-medium text-[#4B5563]">
                       Full-Time
                     </span>
                     <span className="rounded-full bg-[#2563EB]/10 px-4 py-1.5 text-sm font-medium text-[#2563EB]">
@@ -157,14 +157,14 @@ export default function CareersPage() {
               <div className="mt-10 space-y-10">
                 {/* Overview */}
                 <div>
-                  <h4 className="text-[17px] font-semibold text-white">Overview</h4>
-                  <p className="mt-3 text-[16px] leading-relaxed text-[#B0B8C4]">
+                  <h4 className="text-[17px] font-semibold text-[#1A1A2E]">Overview</h4>
+                  <p className="mt-3 text-[16px] leading-relaxed text-[#4B5563]">
                     We are looking for a proactive and skilled Full-Stack Web Developer & Digital Platform
                     Manager to build, maintain, optimize, and continuously improve our website and digital
                     platforms. You will work closely with leadership and one other technology team member to
                     ensure the platform remains secure, scalable, reliable, and user-friendly.
                   </p>
-                  <p className="mt-3 text-[16px] leading-relaxed text-[#B0B8C4]">
+                  <p className="mt-3 text-[16px] leading-relaxed text-[#4B5563]">
                     This is a high-ownership technical role where you'll help shape the future of our
                     digital products. You won't just execute tasks — you'll define how we build.
                   </p>
@@ -172,7 +172,7 @@ export default function CareersPage() {
 
                 {/* Responsibilities */}
                 <div>
-                  <h4 className="text-[17px] font-semibold text-white">What You'll Do</h4>
+                  <h4 className="text-[17px] font-semibold text-[#1A1A2E]">What You'll Do</h4>
                   <div className="mt-4 space-y-6">
                     {[
                       {
@@ -233,7 +233,7 @@ export default function CareersPage() {
                               >
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                               </svg>
-                              <span className="text-[15px] text-[#B0B8C4]">{item}</span>
+                              <span className="text-[15px] text-[#4B5563]">{item}</span>
                             </li>
                           ))}
                         </ul>
@@ -244,7 +244,7 @@ export default function CareersPage() {
 
                 {/* Required Skills */}
                 <div>
-                  <h4 className="text-[17px] font-semibold text-white">Required Skills</h4>
+                  <h4 className="text-[17px] font-semibold text-[#1A1A2E]">Required Skills</h4>
                   <ul className="mt-4 space-y-2">
                     {[
                       "Experience developing and maintaining websites or web applications",
@@ -266,7 +266,7 @@ export default function CareersPage() {
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
-                        <span className="text-[15px] text-[#B0B8C4]">{skill}</span>
+                        <span className="text-[15px] text-[#4B5563]">{skill}</span>
                       </li>
                     ))}
                   </ul>
@@ -274,7 +274,7 @@ export default function CareersPage() {
 
                 {/* Preferred Skills */}
                 <div>
-                  <h4 className="text-[17px] font-semibold text-white">Preferred Skills</h4>
+                  <h4 className="text-[17px] font-semibold text-[#1A1A2E]">Preferred Skills</h4>
                   <ul className="mt-4 space-y-2">
                     {[
                       "Startup or small-team experience",
@@ -302,8 +302,8 @@ export default function CareersPage() {
 
                 {/* Ideal Candidate */}
                 <div>
-                  <h4 className="text-[17px] font-semibold text-white">Who You Are</h4>
-                  <p className="mt-3 text-[16px] leading-relaxed text-[#B0B8C4]">
+                  <h4 className="text-[17px] font-semibold text-[#1A1A2E]">Who You Are</h4>
+                  <p className="mt-3 text-[16px] leading-relaxed text-[#4B5563]">
                     We're looking for someone who:
                   </p>
                   <ul className="mt-4 space-y-2">
@@ -325,7 +325,7 @@ export default function CareersPage() {
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
-                        <span className="text-[15px] text-[#B0B8C4]">{trait}</span>
+                        <span className="text-[15px] text-[#4B5563]">{trait}</span>
                       </li>
                     ))}
                   </ul>
@@ -333,7 +333,7 @@ export default function CareersPage() {
 
                 {/* Role Ownership */}
                 <div>
-                  <h4 className="text-[17px] font-semibold text-white">What You'll Own</h4>
+                  <h4 className="text-[17px] font-semibold text-[#1A1A2E]">What You'll Own</h4>
                   <div className="mt-4 grid gap-3 sm:grid-cols-2">
                     {[
                       "Website functionality",
@@ -347,7 +347,7 @@ export default function CareersPage() {
                     ].map((item) => (
                       <div
                         key={item}
-                        className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-3"
+                        className="flex items-center gap-3 rounded-2xl border border-[#E5E7EB] bg-white px-5 py-3"
                       >
                         <svg
                           className="h-5 w-5 flex-shrink-0 text-[#2563EB]"
@@ -358,7 +358,7 @@ export default function CareersPage() {
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
-                        <span className="text-[15px] font-medium text-white">{item}</span>
+                        <span className="text-[15px] font-medium text-[#1A1A2E]">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -366,8 +366,8 @@ export default function CareersPage() {
               </div>
 
               {/* Apply CTA */}
-              <div className="mt-12 rounded-2xl bg-[#0A0A0B] p-8 text-center">
-                <h3 className="text-[24px] font-bold text-white">Ready to build something that matters?</h3>
+              <div className="mt-12 rounded-2xl bg-[#EFF6FF] p-8 text-center">
+                <h3 className="text-[24px] font-bold text-[#1A1A2E]">Ready to build something that matters?</h3>
                 <p className="mt-3 text-[16px] leading-relaxed text-[#6B7280]">
                   Send your CV, portfolio, and any relevant certifications to the email below.
                   We review every application personally.
@@ -383,7 +383,7 @@ export default function CareersPage() {
                     Apply Now
                   </a>
                   <p className="text-sm text-[#6B7280]">
-                    Email: <span className="font-semibold text-white">contact@lmiacareersai.com</span>
+                    Email: <span className="font-semibold text-[#1A1A2E]">contact@lmiacareersai.com</span>
                   </p>
                 </div>
                 <p className="mt-4 text-sm text-[#6B7280]">
@@ -395,12 +395,12 @@ export default function CareersPage() {
         </section>
 
         {/* Team Culture */}
-        <section className="bg-[#0B0E14] px-6 py-24 sm:py-32">
+        <section className="bg-[white] px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-4xl text-center">
             <span className="text-sm font-semibold uppercase text-[#6B7280]">
               Our Culture
             </span>
-            <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[48px]">
+            <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#1A1A2E] sm:text-[48px]">
               A team that{" "}
               <span className="text-[#2563EB]">moves fast</span> and builds with purpose
             </h2>
@@ -415,9 +415,9 @@ export default function CareersPage() {
                 { label: "Work Style", value: "Remote-first, async" },
                 { label: " Values", value: "Ownership, quality, impact" },
               ].map((stat) => (
-                <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5 p-6 ">
+                <div key={stat.label} className="rounded-2xl border border-[#E5E7EB] bg-white p-6 ">
                   <p className="text-sm text-[#6B7280]">{stat.label}</p>
-                  <p className="mt-2 text-[17px] font-semibold text-white">{stat.value}</p>
+                  <p className="mt-2 text-[17px] font-semibold text-[#1A1A2E]">{stat.value}</p>
                 </div>
               ))}
             </div>

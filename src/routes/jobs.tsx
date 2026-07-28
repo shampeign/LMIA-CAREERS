@@ -219,15 +219,15 @@ function JobListings() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#0B0E14]">
+      <main className="min-h-dvh bg-[white]">
         {/* Hero banner */}
-        <section className="bg-[#0B0E14] px-6 py-20">
+        <section className="bg-[white] px-6 py-20">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
               <span className="text-sm font-semibold uppercase text-[#6B7280]">
                 Job Board
               </span>
-              <h1 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[48px]">
+              <h1 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#1A1A2E] sm:text-[48px]">
                 Find Jobs with{" "}
                 <span className="text-[#2563EB]">
                   Verified Employers
@@ -243,7 +243,7 @@ function JobListings() {
         </section>
 
         {/* Search & Filters */}
-        <section className="sticky top-[73px] z-40 border-b border-white/10 bg-[#0B0E14]/90 px-6 py-5 backdrop-blur-xl">
+        <section className="sticky top-[73px] z-40 border-b border-[#E5E7EB] bg-[white]/90 px-6 py-5 backdrop-blur-xl">
           <div className="mx-auto max-w-6xl space-y-3">
             {/* Search bar */}
             <div className="relative">
@@ -269,7 +269,7 @@ function JobListings() {
                   setSearch(e.target.value);
                   setVisibleCount(12);
                 }}
-                className="w-full rounded-2xl border border-white/10 bg-white/5 py-3 pl-11 pr-4 text-[15px] text-white placeholder:text-[#6B7280] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
+                className="w-full rounded-2xl border border-[#E5E7EB] bg-white py-3 pl-11 pr-4 text-[15px] text-[#1A1A2E] placeholder:text-[#6B7280] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
               />
             </div>
 
@@ -281,7 +281,7 @@ function JobListings() {
                   setSelectedProvince(e.target.value);
                   setVisibleCount(12);
                 }}
-                className="rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-[15px] text-white focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
+                className="rounded-2xl border border-[#E5E7EB] bg-white px-4 py-2.5 text-[15px] text-[#1A1A2E] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
                 aria-label="Filter by province"
               >
                 <option value="">All Provinces</option>
@@ -298,7 +298,7 @@ function JobListings() {
                   setSelectedIndustry(e.target.value);
                   setVisibleCount(12);
                 }}
-                className="rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-[15px] text-white focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
+                className="rounded-2xl border border-[#E5E7EB] bg-white px-4 py-2.5 text-[15px] text-[#1A1A2E] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
                 aria-label="Filter by industry"
               >
                 <option value="">All Industries</option>
@@ -315,7 +315,7 @@ function JobListings() {
                   setSelectedType(e.target.value);
                   setVisibleCount(12);
                 }}
-                className="rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-[15px] text-white focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
+                className="rounded-2xl border border-[#E5E7EB] bg-white px-4 py-2.5 text-[15px] text-[#1A1A2E] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
                 aria-label="Filter by job type"
               >
                 <option value="">All Types</option>
@@ -332,7 +332,7 @@ function JobListings() {
                   setSelectedSalary(e.target.value);
                   setVisibleCount(12);
                 }}
-                className="rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-[15px] text-white focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
+                className="rounded-2xl border border-[#E5E7EB] bg-white px-4 py-2.5 text-[15px] text-[#1A1A2E] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/10"
                 aria-label="Filter by salary range"
               >
                 <option value="">All Salaries</option>
@@ -351,7 +351,7 @@ function JobListings() {
                 className={`inline-flex items-center gap-1.5 rounded-2xl border px-4 py-2.5 text-[15px] font-medium transition-colors ${
                   remoteOnly
                     ? "border-[#2563EB] bg-[#EFF6FF] text-[#2563EB]"
-                    : "border-white/10 bg-white/5 text-[#B0B8C4] hover:bg-white/5"
+                    : "border-[#E5E7EB] bg-white text-[#4B5563] hover:bg-white"
                 }`}
               >
                 <svg
@@ -374,7 +374,7 @@ function JobListings() {
               {hasActiveFilters && (
                 <button
                   onClick={clearFilters}
-                  className="rounded-2xl px-4 py-2.5 text-[15px] font-medium text-[#6B7280] transition-colors hover:bg-white/5 hover:text-white"
+                  className="rounded-2xl px-4 py-2.5 text-[15px] font-medium text-[#6B7280] transition-colors hover:bg-white hover:text-[#1A1A2E]"
                 >
                   Clear Filters
                 </button>
@@ -396,11 +396,11 @@ function JobListings() {
                 ) : (
                   <>
                     Showing{" "}
-                    <span className="font-semibold text-white">
+                    <span className="font-semibold text-[#1A1A2E]">
                       {displayed.length}
                     </span>{" "}
                     of{" "}
-                    <span className="font-semibold text-white">
+                    <span className="font-semibold text-[#1A1A2E]">
                       {filtered.length}
                     </span>{" "}
                     jobs
@@ -419,17 +419,17 @@ function JobListings() {
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div
                     key={i}
-                    className="animate-pulse rounded-2xl border border-white/10 bg-white/5 p-8"
+                    className="animate-pulse rounded-2xl border border-[#E5E7EB] bg-white p-8"
                   >
                     <div className="space-y-3">
-                      <div className="h-6 w-3/4 rounded-lg bg-white/10" />
-                      <div className="h-5 w-1/2 rounded-lg bg-white/10" />
+                      <div className="h-6 w-3/4 rounded-lg bg-[#F3F4F6]" />
+                      <div className="h-5 w-1/2 rounded-lg bg-[#F3F4F6]" />
                       <div className="flex gap-2">
-                        <div className="h-6 w-16 rounded-full bg-white/10" />
-                        <div className="h-6 w-20 rounded-full bg-white/10" />
+                        <div className="h-6 w-16 rounded-full bg-[#F3F4F6]" />
+                        <div className="h-6 w-20 rounded-full bg-[#F3F4F6]" />
                       </div>
-                      <div className="h-4 w-full rounded-lg bg-white/10" />
-                      <div className="h-4 w-2/3 rounded-lg bg-white/10" />
+                      <div className="h-4 w-full rounded-lg bg-[#F3F4F6]" />
+                      <div className="h-4 w-2/3 rounded-lg bg-[#F3F4F6]" />
                     </div>
                   </div>
                 ))}
@@ -452,7 +452,7 @@ function JobListings() {
                     d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
                   />
                 </svg>
-                <h3 className="mt-6 text-xl font-bold text-white">
+                <h3 className="mt-6 text-xl font-bold text-[#1A1A2E]">
                   No jobs match your search
                 </h3>
                 <p className="mt-2 text-[15px] text-[#6B7280]">
@@ -478,14 +478,14 @@ function JobListings() {
                     return (
                       <div
                         key={job.id}
-                        className="group relative flex flex-col rounded-2xl border border-white/10 bg-white/5 p-8  hover:"
+                        className="group relative flex flex-col rounded-2xl border border-[#E5E7EB] bg-white p-8  hover:"
                       >
                         <button
                           onClick={(e) => {
                             e.preventDefault();
                             toggleSaveJob(job.id);
                           }}
-                          className="absolute right-6 top-6 rounded-full p-2 text-[#6B7280] transition-colors hover:bg-white/5 hover:text-[#2563EB]"
+                          className="absolute right-6 top-6 rounded-full p-2 text-[#6B7280] transition-colors hover:bg-white hover:text-[#2563EB]"
                           aria-label={isSaved ? "Unsave job" : "Save job"}
                         >
                           {isSaved ? (
@@ -521,7 +521,7 @@ function JobListings() {
                           </div>
                         )}
 
-                        <h3 className="pr-10 text-lg font-bold text-white">
+                        <h3 className="pr-10 text-lg font-bold text-[#1A1A2E]">
                           {job.title}
                         </h3>
 
@@ -536,7 +536,7 @@ function JobListings() {
                         )}
 
                         <div className="mt-4 flex flex-wrap items-center gap-2">
-                          <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-[#B0B8C4]">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-[#F3F4F6] px-3 py-1 text-xs font-medium text-[#4B5563]">
                             <svg
                               className="h-3 w-3"
                               fill="none"
@@ -558,7 +558,7 @@ function JobListings() {
                             </svg>
                             {job.location}
                           </span>
-                          <span className="inline-flex items-center rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-[#6B7280]">
+                          <span className="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-medium text-[#6B7280]">
                             {job.type}
                           </span>
                           {job.remote && (
@@ -639,7 +639,7 @@ function JobListings() {
                   <div className="mt-12 text-center">
                     <button
                       onClick={() => setVisibleCount((c) => c + 12)}
-                      className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-6 py-3.5 text-[16px] font-semibold text-white transition-colors hover:bg-white/5 hover:text-[#2563EB]"
+                      className="inline-flex items-center gap-2 rounded-2xl border border-[#E5E7EB] bg-white px-6 py-3.5 text-[16px] font-semibold text-[#1A1A2E] transition-colors hover:bg-white hover:text-[#2563EB]"
                     >
                       Load More Jobs
                       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
@@ -651,7 +651,7 @@ function JobListings() {
                   <div className="mt-12 text-center">
                     <button
                       onClick={() => setVisibleCount(12)}
-                      className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-6 py-3.5 text-[16px] font-semibold text-white transition-colors hover:bg-white/5"
+                      className="inline-flex items-center gap-2 rounded-2xl border border-[#E5E7EB] bg-white px-6 py-3.5 text-[16px] font-semibold text-[#1A1A2E] transition-colors hover:bg-white"
                     >
                       Show Less
                       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" /></svg>

@@ -7,6 +7,7 @@ import { WaitlistCTA } from "~/components/WaitlistCTA";
 import { Pricing } from "~/components/Pricing";
 import { FAQ } from "~/components/FAQ";
 import { Footer } from "~/components/Footer";
+import { PartnerTrustStrip } from "~/components/PartnerTrustStrip";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,6 +35,7 @@ function Home() {
       <FeaturedEmployers />
       <WaitlistCTA />
       <Pricing />
+      <PartnerTrustStrip />
       <FAQ />
       <Footer />
     </>

@@ -51,7 +51,7 @@ function JobDetailPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#0B0E14]">
+      <main className="min-h-dvh bg-[white]">
         {/* Back link */}
         <div className="border-b border-[#F0F0F0] bg-white">
           <div className="mx-auto max-w-6xl px-6 py-4 lg:px-8">
@@ -145,22 +145,22 @@ function JobDetailPage() {
                   )}
                 </SignedIn>
                 <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
-                  <h3 className="text-sm font-semibold uppercase text-[#9CA3AF]">Job Details</h3>
+                  <h3 className="text-sm font-semibold uppercase text-[#6B7280]">Job Details</h3>
                   <dl className="mt-6 space-y-5">
                     <div>
-                      <dt className="text-sm font-medium text-[#9CA3AF]">Category</dt>
+                      <dt className="text-sm font-medium text-[#6B7280]">Category</dt>
                       <dd className="mt-1 text-[15px] font-semibold text-[#0A0A0B]">{job.category}</dd>
                     </div>
                     <div>
-                      <dt className="text-sm font-medium text-[#9CA3AF]">Job Type</dt>
+                      <dt className="text-sm font-medium text-[#6B7280]">Job Type</dt>
                       <dd className="mt-1 text-[15px] font-semibold text-[#0A0A0B]">{job.type}</dd>
                     </div>
                     <div>
-                      <dt className="text-sm font-medium text-[#9CA3AF]">Location</dt>
+                      <dt className="text-sm font-medium text-[#6B7280]">Location</dt>
                       <dd className="mt-1 text-[15px] font-semibold text-[#0A0A0B]">{job.location}</dd>
                     </div>
                     <div>
-                      <dt className="text-sm font-medium text-[#9CA3AF]">Remote</dt>
+                      <dt className="text-sm font-medium text-[#6B7280]">Remote</dt>
                       <dd className="mt-1 text-[15px] font-semibold text-[#0A0A0B]">{job.remote ? "Yes" : "No"}</dd>
                     </div>
                   </dl>

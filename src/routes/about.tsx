@@ -98,14 +98,14 @@ function About() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#0B0E14]">
+      <main className="min-h-dvh bg-white">
         {/* Hero */}
-        <section className="bg-[#0B0E14] px-6 py-32 sm:py-40">
+        <section className="bg-white px-6 py-32 sm:py-40">
           <div className="mx-auto max-w-4xl text-center">
-            <span className="text-sm font-semibold uppercase text-[#6B7280]">
+            <span className="text-sm font-semibold uppercase tracking-widest text-[#2563EB]">
               About Us
             </span>
-            <h1 className="mt-4 text-[44px] font-bold leading-[1.1] tracking-[-0.03em] text-white sm:text-[56px]">
+            <h1 className="mt-4 text-[44px] font-bold leading-[1.1] tracking-[-0.03em] text-[#1A1A2E] sm:text-[56px]">
               Canada's LMIA Employer{" "}
               <span className="text-[#2563EB]">Intelligence Platform</span>
             </h1>
@@ -117,12 +117,12 @@ function About() {
         </section>
 
         {/* Our Story */}
-        <section className="bg-[#0B0E14] px-6 py-24 sm:py-32">
+        <section className="bg-[#FAFAFA] px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-3xl">
-            <h2 className="text-[32px] font-bold leading-[1.2] tracking-[-0.02em] text-white">
+            <h2 className="text-[32px] font-bold leading-[1.2] tracking-[-0.02em] text-[#1A1A2E]">
               Our Story
             </h2>
-            <div className="mt-8 space-y-5 text-[17px] leading-[1.8] text-[#6B7280]">
+            <div className="mt-8 space-y-5 text-[17px] leading-[1.8] text-[#4B5563]">
               <p>
                 LMIA Career AI was born from a simple frustration: finding Canadian employers who
                 actively hire foreign workers shouldn't feel like detective work. For years, job
@@ -144,13 +144,13 @@ function About() {
         </section>
 
         {/* What We Do */}
-        <section className="bg-[#0B0E14] px-6 py-24 sm:py-32">
+        <section className="bg-white px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
-              <span className="text-sm font-semibold uppercase text-[#6B7280]">
+              <span className="text-sm font-semibold uppercase tracking-widest text-[#2563EB]">
                 What We Do
               </span>
-              <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[48px]">
+              <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#1A1A2E] sm:text-[48px]">
                 Everything you need to{" "}
                 <span className="text-[#2563EB]">land a Canadian job</span>
               </h2>
@@ -159,12 +159,12 @@ function About() {
               {whatWeDo.map((item) => (
                 <div
                   key={item.title}
-                  className="group rounded-2xl border border-white/10 bg-white/5 p-10 "
+                  className="group rounded-2xl border border-[#E5E7EB] bg-white p-10 hover:shadow-md transition-shadow"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#2563EB]/10 text-[#2563EB]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#EFF6FF] text-[#2563EB]">
                     {item.icon}
                   </div>
-                  <h3 className="mt-6 text-[22px] font-bold text-white">
+                  <h3 className="mt-6 text-[22px] font-bold text-[#1A1A2E]">
                     {item.title}
                   </h3>
                   <p className="mt-3 text-[16px] leading-relaxed text-[#6B7280]">
@@ -177,13 +177,13 @@ function About() {
         </section>
 
         {/* Our Values */}
-        <section className="bg-[#0B0E14] px-6 py-24 sm:py-32">
+        <section className="bg-[#FAFAFA] px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
-              <span className="text-sm font-semibold uppercase text-[#6B7280]">
+              <span className="text-sm font-semibold uppercase tracking-widest text-[#2563EB]">
                 Our Values
               </span>
-              <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[48px]">
+              <h2 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#1A1A2E] sm:text-[48px]">
                 What guides{" "}
                 <span className="text-[#2563EB]">everything we build</span>
               </h2>
@@ -192,12 +192,12 @@ function About() {
               {values.map((value) => (
                 <div
                   key={value.title}
-                  className="group rounded-2xl border border-white/10 bg-white/5 p-10 "
+                  className="group rounded-2xl border border-[#E5E7EB] bg-white p-10 hover:shadow-md transition-shadow"
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#2563EB]/10 text-[#2563EB]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#EFF6FF] text-[#2563EB]">
                     {value.icon}
                   </div>
-                  <h3 className="mt-5 text-[20px] font-bold text-white">
+                  <h3 className="mt-5 text-[20px] font-bold text-[#1A1A2E]">
                     {value.title}
                   </h3>
                   <p className="mt-2 text-[16px] leading-relaxed text-[#6B7280]">
@@ -210,7 +210,7 @@ function About() {
         </section>
 
         {/* Team Note */}
-        <section className="bg-[#0B0E14] px-6 py-24 sm:py-32">
+        <section className="bg-white px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-[18px] leading-[1.8] text-[#6B7280]">
               Built by a team passionate about making Canadian employment accessible. We're job
@@ -220,9 +220,9 @@ function About() {
         </section>
 
         {/* CTA */}
-        <section className="bg-[#0A0A0B] px-6 py-24 sm:py-32">
+        <section className="bg-[#EFF6FF] px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-[36px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[44px]">
+            <h2 className="text-[36px] font-bold leading-[1.15] tracking-[-0.03em] text-[#1A1A2E] sm:text-[44px]">
               Ready to explore?
             </h2>
             <p className="mt-5 text-[18px] leading-relaxed text-[#6B7280]">
@@ -241,7 +241,7 @@ function About() {
               </Link>
               <a
                 href="/#waitlist"
-                className="rounded-full border border-white/20 px-8 py-3.5 text-[16px] font-semibold text-white transition-colors hover:border-[#6B7280] hover:bg-white/5"
+                className="rounded-full border-2 border-[#D1D5DB] px-8 py-3.5 text-[16px] font-semibold text-[#1A1A2E] transition-colors hover:border-[#2563EB] hover:text-[#2563EB]"
               >
                 Get Started
               </a>

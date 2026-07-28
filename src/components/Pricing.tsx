@@ -57,13 +57,16 @@ const tiers = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="bg-[#0B0E14] px-6 py-40">
+    <section id="pricing" className="bg-[#FAFAFA] px-6 py-32 sm:py-40">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-white">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#2563EB]">
+            Pricing
+          </p>
+          <h2 className="mt-4 text-[44px] font-bold leading-[1.1] tracking-[-0.03em] text-[#1A1A2E] sm:text-[52px]">
             Plans for every stage of your career journey
           </h2>
-          <p className="mt-6 text-[18px] leading-relaxed text-[#9CA3AF]">
+          <p className="mt-5 text-[18px] leading-relaxed text-[#6B7280]">
             Start free, upgrade when you're ready to accelerate.
           </p>
         </div>
@@ -74,8 +77,8 @@ export function Pricing() {
               key={tier.name}
               className={`flex flex-col rounded-2xl border p-10 ${
                 tier.featured
-                  ? "border-[#2563EB] bg-[#2563EB]/5"
-                  : "border-white/10 bg-white/5"
+                  ? "border-[#2563EB] bg-[#EFF6FF] shadow-lg shadow-[#2563EB]/10"
+                  : "border-[#E5E7EB] bg-white hover:shadow-md transition-shadow"
               }`}
             >
               {tier.featured && (
@@ -84,11 +87,11 @@ export function Pricing() {
                 </span>
               )}
 
-              <h3 className="text-xl font-bold text-white">{tier.name}</h3>
-              <p className="mt-2 text-[15px] text-[#9CA3AF]">{tier.description}</p>
+              <h3 className="text-xl font-bold text-[#1A1A2E]">{tier.name}</h3>
+              <p className="mt-2 text-[15px] text-[#6B7280]">{tier.description}</p>
 
               <div className="mt-8">
-                <span className="text-5xl font-bold text-white">
+                <span className="text-5xl font-bold text-[#1A1A2E]">
                   {tier.price}
                 </span>
                 <span className="text-[15px] text-[#9CA3AF]">{tier.period}</span>
@@ -107,7 +110,7 @@ export function Pricing() {
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-[15px] text-[#B0B8C4]">{feature}</span>
+                    <span className="text-[15px] text-[#4B5563]">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -120,7 +123,7 @@ export function Pricing() {
                   className={`mt-10 block rounded-full px-8 py-4 text-center text-[16px] font-semibold transition-colors ${
                     tier.featured
                       ? "bg-[#2563EB] text-white hover:bg-[#1D4ED8]"
-                      : "border border-white/20 text-white hover:bg-white/5"
+                      : "border-2 border-[#E5E7EB] text-[#1A1A2E] hover:border-[#2563EB] hover:text-[#2563EB]"
                   }`}
                 >
                   {tier.cta}
@@ -131,7 +134,7 @@ export function Pricing() {
                   className={`mt-10 block rounded-full px-8 py-4 text-center text-[16px] font-semibold transition-colors ${
                     tier.featured
                       ? "bg-[#2563EB] text-white hover:bg-[#1D4ED8]"
-                      : "border border-white/20 text-white hover:bg-white/5"
+                      : "border-2 border-[#E5E7EB] text-[#1A1A2E] hover:border-[#2563EB] hover:text-[#2563EB]"
                   }`}
                 >
                   {tier.cta}

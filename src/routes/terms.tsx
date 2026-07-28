@@ -23,14 +23,14 @@ function TermsOfService() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#0B0E14]">
+      <main className="min-h-dvh bg-[white]">
         {/* Header */}
-        <section className="bg-[#0B0E14] px-6 py-24">
+        <section className="bg-[white] px-6 py-24">
           <div className="mx-auto max-w-3xl text-center">
             <span className="text-sm font-semibold uppercase text-[#6B7280]">
               Legal
             </span>
-            <h1 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[48px]">
+            <h1 className="mt-4 text-[40px] font-bold leading-[1.15] tracking-[-0.03em] text-[#1A1A2E] sm:text-[48px]">
               Terms of Service
             </h1>
             <p className="mt-4 text-[15px] text-[#6B7280]">
@@ -41,10 +41,10 @@ function TermsOfService() {
 
         {/* Content */}
         <section className="px-6 py-16">
-          <div className="mx-auto max-w-3xl space-y-12 text-[16px] leading-[1.8] text-[#B0B8C4]">
+          <div className="mx-auto max-w-3xl space-y-12 text-[16px] leading-[1.8] text-[#4B5563]">
             {/* 1. Acceptance */}
             <section>
-              <h2 className="text-[22px] font-bold text-white mb-4">
+              <h2 className="text-[22px] font-bold text-[#1A1A2E] mb-4">
                 1. Acceptance of Terms
               </h2>
               <p>
@@ -58,7 +58,7 @@ function TermsOfService() {
 
             {/* 2. Description of Service */}
             <section>
-              <h2 className="text-[22px] font-bold text-white mb-4">
+              <h2 className="text-[22px] font-bold text-[#1A1A2E] mb-4">
                 2. Description of Service
               </h2>
               <p>
@@ -79,7 +79,7 @@ function TermsOfService() {
 
             {/* 3. User Accounts */}
             <section>
-              <h2 className="text-[22px] font-bold text-white mb-4">
+              <h2 className="text-[22px] font-bold text-[#1A1A2E] mb-4">
                 3. User Accounts and Responsibilities
               </h2>
               <p>
@@ -93,7 +93,7 @@ function TermsOfService() {
 
             {/* 4. Subscription and Payment */}
             <section>
-              <h2 className="text-[22px] font-bold text-white mb-4">
+              <h2 className="text-[22px] font-bold text-[#1A1A2E] mb-4">
                 4. Subscription and Payment Terms
               </h2>
               <p>
@@ -108,7 +108,7 @@ function TermsOfService() {
 
             {/* 5. Intellectual Property */}
             <section>
-              <h2 className="text-[22px] font-bold text-white mb-4">
+              <h2 className="text-[22px] font-bold text-[#1A1A2E] mb-4">
                 5. Intellectual Property
               </h2>
               <p>
@@ -126,7 +126,7 @@ function TermsOfService() {
 
             {/* 6. Third-Party Links */}
             <section>
-              <h2 className="text-[22px] font-bold text-white mb-4">
+              <h2 className="text-[22px] font-bold text-[#1A1A2E] mb-4">
                 6. Third-Party Links
               </h2>
               <p>
@@ -139,7 +139,7 @@ function TermsOfService() {
 
             {/* 7. Disclaimer of Warranties */}
             <section>
-              <h2 className="text-[22px] font-bold text-white mb-4">
+              <h2 className="text-[22px] font-bold text-[#1A1A2E] mb-4">
                 7. Disclaimer of Warranties
               </h2>
               <p>
@@ -153,7 +153,7 @@ function TermsOfService() {
 
             {/* 8. Limitation of Liability */}
             <section>
-              <h2 className="text-[22px] font-bold text-white mb-4">
+              <h2 className="text-[22px] font-bold text-[#1A1A2E] mb-4">
                 8. Limitation of Liability
               </h2>
               <p>
@@ -167,7 +167,7 @@ function TermsOfService() {
 
             {/* 9. Governing Law */}
             <section>
-              <h2 className="text-[22px] font-bold text-white mb-4">
+              <h2 className="text-[22px] font-bold text-[#1A1A2E] mb-4">
                 9. Governing Law
               </h2>
               <p>
@@ -179,7 +179,7 @@ function TermsOfService() {
 
             {/* 10. Contact */}
             <section>
-              <h2 className="text-[22px] font-bold text-white mb-4">
+              <h2 className="text-[22px] font-bold text-[#1A1A2E] mb-4">
                 10. Contact Information
               </h2>
               <p>

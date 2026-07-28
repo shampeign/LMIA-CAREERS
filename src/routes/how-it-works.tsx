@@ -93,14 +93,14 @@ function HowItWorksPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#0B0E14]">
+      <main className="min-h-dvh bg-[white]">
         {/* Hero */}
-        <section className="bg-[#0B0E14] px-6 py-32 sm:py-40">
+        <section className="bg-[white] px-6 py-32 sm:py-40">
           <div className="mx-auto max-w-4xl text-center">
             <span className="text-sm font-semibold uppercase text-[#6B7280]">
               How It Works
             </span>
-            <h1 className="mt-4 text-[44px] font-bold leading-[1.1] tracking-[-0.03em] text-white sm:text-[56px]">
+            <h1 className="mt-4 text-[44px] font-bold leading-[1.1] tracking-[-0.03em] text-[#1A1A2E] sm:text-[56px]">
               Your path to a Canadian job,{" "}
               <span className="text-[#2563EB]">step by step</span>
             </h1>
@@ -112,7 +112,7 @@ function HowItWorksPage() {
         </section>
 
         {/* Steps */}
-        <section className="bg-[#0B0E14] px-6 py-24 sm:py-32">
+        <section className="bg-[white] px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-4xl">
             <div className="space-y-16">
               {steps.map((step, i) => (
@@ -132,10 +132,10 @@ function HowItWorksPage() {
                   {/* Content */}
                   <div className="flex-1">
                     <div className="flex items-center gap-4">
-                      <span className="text-5xl font-bold text-white/10 select-none">
+                      <span className="text-5xl font-bold text-[#1A1A2E]/10 select-none">
                         {step.number}
                       </span>
-                      <h2 className="text-[28px] font-bold text-white">
+                      <h2 className="text-[28px] font-bold text-[#1A1A2E]">
                         {step.title}
                       </h2>
                     </div>
@@ -146,7 +146,7 @@ function HowItWorksPage() {
                       {step.details.map((detail) => (
                         <li
                           key={detail}
-                          className="flex items-start gap-3 text-[15px] text-[#B0B8C4]"
+                          className="flex items-start gap-3 text-[15px] text-[#4B5563]"
                         >
                           <svg
                             className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#2563EB]"
@@ -174,9 +174,9 @@ function HowItWorksPage() {
         </section>
 
         {/* CTA */}
-        <section className="bg-[#0A0A0B] px-6 py-24 sm:py-32">
+        <section className="bg-[#EFF6FF] px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-[36px] font-bold leading-[1.15] tracking-[-0.03em] text-white sm:text-[44px]">
+            <h2 className="text-[36px] font-bold leading-[1.15] tracking-[-0.03em] text-[#1A1A2E] sm:text-[44px]">
               Ready to get started?
             </h2>
             <p className="mt-5 text-[18px] leading-relaxed text-[#6B7280]">
@@ -194,7 +194,7 @@ function HowItWorksPage() {
               </Link>
               <a
                 href="/#waitlist"
-                className="rounded-full border border-white/20 px-8 py-3.5 text-[16px] font-semibold text-white transition-colors hover:border-[#6B7280] hover:bg-white/5"
+                className="rounded-full border border-[#D1D5DB] px-8 py-3.5 text-[16px] font-semibold text-[#1A1A2E] transition-colors hover:border-[#6B7280] hover:bg-white"
               >
                 Get Started
               </a>
