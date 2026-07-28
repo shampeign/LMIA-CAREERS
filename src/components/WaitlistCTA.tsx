@@ -3,12 +3,12 @@ import { SignedIn, SignedOut, SignUpButton } from "@clerk/tanstack-start";
 
 export function WaitlistCTA() {
   return (
-    <section className="bg-white px-6 py-40">
+    <section className="bg-white px-6 py-32 sm:py-40">
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-[#0A0A0B]">
+        <h2 className="text-[44px] font-bold leading-[1.1] tracking-[-0.03em] text-[#1A1A2E] sm:text-[52px]">
           Ready to start your Canadian career?
         </h2>
-        <p className="mt-6 text-[18px] leading-relaxed text-[#4B5563]">
+        <p className="mt-5 text-[18px] leading-relaxed text-[#6B7280]">
           Sign up and get access to our employer directory, AI job matching, and application tools.
         </p>
         <p className="mt-3 text-[14px] text-[#9CA3AF]">
@@ -19,7 +19,7 @@ export function WaitlistCTA() {
             <SignUpButton mode="modal">
               <button
                 type="button"
-                className="inline-flex items-center gap-2 rounded-full bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white hover:bg-[#1D4ED8] transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white hover:bg-[#1D4ED8] shadow-lg shadow-[#2563EB]/20 transition-all"
               >
                 Get Started
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -31,7 +31,7 @@ export function WaitlistCTA() {
           <SignedIn>
             <Link
               to="/dashboard"
-              className="inline-flex items-center gap-2 rounded-full bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white hover:bg-[#1D4ED8] transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-[#2563EB] px-8 py-4 text-[16px] font-semibold text-white hover:bg-[#1D4ED8] shadow-lg shadow-[#2563EB]/20 transition-all"
             >
               Go to Dashboard
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">

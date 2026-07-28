@@ -22,7 +22,7 @@ export const Route = createRootRoute({
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: DEFAULT_TITLE },
       { name: "description", content: DEFAULT_DESCRIPTION },
-      { name: "theme-color", content: "#0B0E14" },
+      { name: "theme-color", content: "#FFFFFF" },
       { name: "robots", content: "index, follow" },
       // Open Graph
       { property: "og:title", content: DEFAULT_TITLE },
@@ -49,12 +49,12 @@ export const Route = createRootRoute({
     ],
   }),
   notFoundComponent: () => (
-    <div className="flex min-h-dvh items-center justify-center bg-[#0B0E14]">
+    <div className="flex min-h-dvh items-center justify-center bg-white">
       <div className="text-center">
-        <h1 className="text-7xl font-bold text-white">
+        <h1 className="text-7xl font-bold text-[#1A1A2E]">
           404
         </h1>
-        <p className="mt-4 text-lg text-[#9CA3AF]">
+        <p className="mt-4 text-lg text-[#6B7280]">
           Page not found
         </p>
       </div>

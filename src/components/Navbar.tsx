@@ -21,14 +21,14 @@ export function Navbar() {
 
   return (
     <nav
-      className="sticky top-0 z-50 bg-[#0B0E14]/95 backdrop-blur-md"
+      className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-[#E5E7EB]"
       aria-label="Main navigation"
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5 lg:px-8">
         {/* Logo */}
         <Link
           to="/"
-          className="flex items-center gap-2.5 text-lg font-bold text-white tracking-[-0.02em]"
+          className="flex items-center gap-2.5 text-lg font-bold text-[#1A1A2E] tracking-[-0.02em]"
         >
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#2563EB] text-white">
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
@@ -44,7 +44,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 to={link.href}
-                className="text-[14px] font-medium text-[#9CA3AF] hover:text-white transition-colors"
+                className="text-[14px] font-medium text-[#6B7280] hover:text-[#1A1A2E] transition-colors"
               >
                 {link.label}
               </Link>
@@ -52,7 +52,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[14px] font-medium text-[#9CA3AF] hover:text-white transition-colors"
+                className="text-[14px] font-medium text-[#6B7280] hover:text-[#1A1A2E] transition-colors"
               >
                 {link.label}
               </a>
@@ -66,7 +66,7 @@ export function Navbar() {
             <SignInButton mode="modal">
               <button
                 type="button"
-                className="rounded-full px-5 py-2 text-[14px] font-medium text-[#9CA3AF] hover:text-white transition-colors"
+                className="rounded-full px-5 py-2 text-[14px] font-medium text-[#6B7280] hover:text-[#1A1A2E] transition-colors"
               >
                 Sign In
               </button>
@@ -83,13 +83,13 @@ export function Navbar() {
           <SignedIn>
             <Link
               to="/dashboard"
-              className="rounded-full px-4 py-2 text-[14px] font-medium text-[#9CA3AF] hover:text-white transition-colors"
+              className="rounded-full px-4 py-2 text-[14px] font-medium text-[#6B7280] hover:text-[#1A1A2E] transition-colors"
             >
               Dashboard
             </Link>
             <Link
               to="/onboarding"
-              className="rounded-full px-4 py-2 text-[14px] font-medium text-[#9CA3AF] hover:text-white transition-colors"
+              className="rounded-full px-4 py-2 text-[14px] font-medium text-[#6B7280] hover:text-[#1A1A2E] transition-colors"
             >
               Profile
             </Link>
@@ -107,7 +107,7 @@ export function Navbar() {
         {/* Mobile hamburger */}
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-full p-2 text-[#9CA3AF] hover:text-white md:hidden"
+          className="inline-flex items-center justify-center rounded-full p-2 text-[#6B7280] hover:text-[#1A1A2E] md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-expanded={mobileOpen}
           aria-label="Toggle navigation menu"
@@ -148,7 +148,7 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 top-[65px] z-40 bg-[#0B0E14] md:hidden">
+        <div className="fixed inset-0 top-[61px] z-40 bg-white md:hidden">
           <div className="flex flex-col px-6 pt-6">
             {navLinks.map((link) =>
               link.isRoute ? (
@@ -156,7 +156,7 @@ export function Navbar() {
                   key={link.href}
                   to={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="rounded-xl px-4 py-4 text-lg font-medium text-white hover:bg-white/5"
+                  className="rounded-xl px-4 py-4 text-lg font-medium text-[#1A1A2E] hover:bg-[#F3F4F6]"
                 >
                   {link.label}
                 </Link>
@@ -165,20 +165,20 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="rounded-xl px-4 py-4 text-lg font-medium text-white hover:bg-white/5"
+                  className="rounded-xl px-4 py-4 text-lg font-medium text-[#1A1A2E] hover:bg-[#F3F4F6]"
                 >
                   {link.label}
                 </a>
               ),
             )}
 
-            <div className="mt-6 space-y-3 border-t border-white/10 pt-6">
+            <div className="mt-6 space-y-3 border-t border-[#E5E7EB] pt-6">
               <SignedOut>
                 <SignInButton mode="modal">
                   <button
                     type="button"
                     onClick={() => setMobileOpen(false)}
-                    className="block w-full rounded-xl px-4 py-4 text-left text-lg font-medium text-[#9CA3AF] hover:bg-white/5"
+                    className="block w-full rounded-xl px-4 py-4 text-left text-lg font-medium text-[#6B7280] hover:bg-[#F3F4F6]"
                   >
                     Sign In
                   </button>
@@ -197,14 +197,14 @@ export function Navbar() {
                 <Link
                   to="/dashboard"
                   onClick={() => setMobileOpen(false)}
-                  className="block rounded-xl px-4 py-4 text-lg font-medium text-[#9CA3AF] hover:bg-white/5"
+                  className="block rounded-xl px-4 py-4 text-lg font-medium text-[#6B7280] hover:bg-[#F3F4F6]"
                 >
                   Dashboard
                 </Link>
                 <Link
                   to="/onboarding"
                   onClick={() => setMobileOpen(false)}
-                  className="block rounded-xl px-4 py-4 text-lg font-medium text-[#9CA3AF] hover:bg-white/5"
+                  className="block rounded-xl px-4 py-4 text-lg font-medium text-[#6B7280] hover:bg-[#F3F4F6]"
                 >
                   Profile
                 </Link>

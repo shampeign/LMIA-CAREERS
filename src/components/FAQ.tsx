@@ -31,10 +31,13 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="bg-white px-6 py-40">
+    <section id="faq" className="bg-white px-6 py-32 sm:py-40">
       <div className="mx-auto max-w-3xl">
         <div className="text-center">
-          <h2 className="text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-[#0A0A0B]">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#2563EB]">
+            FAQ
+          </p>
+          <h2 className="mt-4 text-[44px] font-bold leading-[1.1] tracking-[-0.03em] text-[#1A1A2E] sm:text-[52px]">
             Frequently asked questions
           </h2>
         </div>
@@ -54,11 +57,11 @@ export function FAQ() {
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${idx}`}
                 >
-                  <span className="pr-4 text-[17px] font-semibold text-[#0A0A0B]">
+                  <span className="pr-4 text-[17px] font-semibold text-[#1A1A2E]">
                     {faq.question}
                   </span>
                   <svg
-                    className={`h-5 w-5 flex-shrink-0 text-[#9CA3AF] ${isOpen ? "rotate-180" : ""}`}
+                    className={`h-5 w-5 flex-shrink-0 text-[#9CA3AF] transition-transform ${isOpen ? "rotate-180" : ""}`}
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={2}
@@ -71,12 +74,12 @@ export function FAQ() {
                 <div
                   id={`faq-answer-${idx}`}
                   role="region"
-                  className={`grid ${
+                  className={`grid transition-all duration-200 ${
                     isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="pb-6 text-[16px] leading-relaxed text-[#4B5563]">
+                    <p className="pb-6 text-[16px] leading-relaxed text-[#6B7280]">
                       {faq.answer}
                     </p>
                   </div>

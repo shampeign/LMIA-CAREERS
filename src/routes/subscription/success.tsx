@@ -21,7 +21,7 @@ function SubscriptionSuccess() {
   return (
     <>
       <Navbar />
-      <main className="flex min-h-[calc(100dvh-73px)] items-center justify-center bg-[#0B0E14] px-6 py-16">
+      <main className="flex min-h-[calc(100dvh-73px)] items-center justify-center bg-[white] px-6 py-16">
         <div className="w-full max-w-md text-center">
           <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-[#16A34A]/10">
             <svg
@@ -39,11 +39,11 @@ function SubscriptionSuccess() {
             </svg>
           </div>
 
-          <h1 className="text-[36px] font-bold tracking-[-0.03em] text-white">
+          <h1 className="text-[36px] font-bold tracking-[-0.03em] text-[#1A1A2E]">
             Payment Successful! 🎉
           </h1>
 
-          <p className="mt-4 text-[16px] leading-relaxed text-[#9CA3AF]">
+          <p className="mt-4 text-[16px] leading-relaxed text-[#6B7280]">
             Your Professional/Premium plan is being activated. You'll have full
             access shortly.
           </p>

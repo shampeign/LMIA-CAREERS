@@ -69,7 +69,7 @@ export default function EmployerProfile() {
   return (
     <>
       <Navbar />
-      <main className="min-h-dvh bg-[#0B0E14]">
+      <main className="min-h-dvh bg-[white]">
         {/* Back link */}
         <div className="border-b border-[#F0F0F0] bg-white">
           <div className="mx-auto max-w-6xl px-6 py-4 lg:px-8">
@@ -146,7 +146,7 @@ export default function EmployerProfile() {
                       <span className="text-[32px] font-bold tracking-[-0.03em]" style={{ color: scoreColor }}>
                         {score}
                       </span>
-                      <span className="text-[11px] font-semibold uppercase text-[#9CA3AF]">
+                      <span className="text-[11px] font-semibold uppercase text-[#6B7280]">
                         Score
                       </span>
                     </div>
@@ -185,7 +185,7 @@ export default function EmployerProfile() {
                           onClick={() => setActiveTab(t.key)}
                           className={`shrink-0 rounded-xl px-5 py-2.5 text-[14px] font-semibold ${
                             activeTab === t.key
-                              ? "bg-[#0A0A0B] text-white "
+                              ? "bg-[#EFF6FF] text-[#1A1A2E] "
                               : "text-[#6B7280] hover:text-[#0A0A0B]"
                           }`}
                         >
@@ -243,7 +243,7 @@ export default function EmployerProfile() {
               {/* Sidebar */}
               <aside className="space-y-6">
                 <div className="rounded-2xl border border-[#F0F0F0] bg-white p-6 ">
-                  <h3 className="text-[12px] font-semibold uppercase text-[#9CA3AF]">
+                  <h3 className="text-[12px] font-semibold uppercase text-[#6B7280]">
                     Company Details
                   </h3>
                   <dl className="mt-5 space-y-4">
@@ -253,7 +253,7 @@ export default function EmployerProfile() {
                     <DetailRow label="Founded" value={employer.founded} />
                     <DetailRow label="Employees" value={employer.employeeCount} />
                     <div>
-                      <dt className="text-[12px] font-medium text-[#9CA3AF]">Website</dt>
+                      <dt className="text-[12px] font-medium text-[#6B7280]">Website</dt>
                       <dd className="mt-1">
                         <a
                           href={employer.website}
@@ -270,7 +270,7 @@ export default function EmployerProfile() {
 
                 {lmia && (
                   <div className="rounded-2xl border border-[#F0F0F0] bg-white p-6 ">
-                    <h3 className="text-[12px] font-semibold uppercase text-[#9CA3AF]">
+                    <h3 className="text-[12px] font-semibold uppercase text-[#6B7280]">
                       Quick Stats
                     </h3>
                     <dl className="mt-5 space-y-4">
@@ -308,7 +308,7 @@ export default function EmployerProfile() {
 function StatCard({ label, value, trend }: { label: string; value: string; trend?: "up" | "down" }) {
   return (
     <div className="rounded-2xl border border-[#F0F0F0] bg-white p-4">
-      <p className="text-[12px] font-medium text-[#9CA3AF]">{label}</p>
+      <p className="text-[12px] font-medium text-[#6B7280]">{label}</p>
       <div className="mt-1 flex items-baseline gap-1.5">
         <span className="text-[24px] font-bold tracking-[-0.02em] text-[#0A0A0B]">{value}</span>
         {trend === "up" && (
@@ -324,7 +324,7 @@ function StatCard({ label, value, trend }: { label: string; value: string; trend
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="text-[12px] font-medium text-[#9CA3AF]">{label}</dt>
+      <dt className="text-[12px] font-medium text-[#6B7280]">{label}</dt>
       <dd className="mt-0.5 text-[14px] font-semibold text-[#0A0A0B]">{value}</dd>
     </div>
   );
@@ -341,7 +341,7 @@ function ScoreBar({ label, value, description }: { label: string; value: number;
       <div className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-[#F0F0F0]">
         <div className={`h-full rounded-full ${color} duration-500`} style={{ width: `${value}%` }} />
       </div>
-      <p className="mt-0.5 text-[11px] text-[#9CA3AF]">{description}</p>
+      <p className="mt-0.5 text-[11px] text-[#6B7280]">{description}</p>
     </div>
   );
 }
@@ -427,11 +427,11 @@ function OverviewTab({ lmia, employer }: { lmia: EmployerLMIA; employer: any }) 
           <table className="w-full text-left text-[14px]">
             <thead>
               <tr className="border-b border-[#F0F0F0]">
-                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#9CA3AF]">NOC</th>
-                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#9CA3AF]">Occupation</th>
-                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#9CA3AF]">TEER</th>
-                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#9CA3AF]">Approvals</th>
-                <th className="pb-3 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#9CA3AF]">Avg Wage</th>
+                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#6B7280]">NOC</th>
+                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#6B7280]">Occupation</th>
+                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#6B7280]">TEER</th>
+                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#6B7280]">Approvals</th>
+                <th className="pb-3 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#6B7280]">Avg Wage</th>
               </tr>
             </thead>
             <tbody>
@@ -495,7 +495,7 @@ function OccupationsTab({
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <h3 className="text-[18px] font-bold text-[#0A0A0B]">LMIA Occupations</h3>
         <div className="relative">
-          <svg className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#9CA3AF]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+          <svg className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#6B7280]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
           </svg>
           <input
@@ -503,7 +503,7 @@ function OccupationsTab({
             placeholder="Search by NOC or name..."
             value={occSearch}
             onChange={(e) => setOccSearch(e.target.value)}
-            className="w-64 rounded-xl border border-[#F0F0F0] bg-white py-2 pl-10 pr-4 text-[14px] text-[#0A0A0B] placeholder:text-[#9CA3AF] focus:border-[#2563EB] focus:outline-none focus:ring-1 focus:ring-[#2563EB]/20"
+            className="w-64 rounded-xl border border-[#F0F0F0] bg-white py-2 pl-10 pr-4 text-[14px] text-[#0A0A0B] placeholder:text-[#6B7280] focus:border-[#2563EB] focus:outline-none focus:ring-1 focus:ring-[#2563EB]/20"
           />
         </div>
       </div>
@@ -515,7 +515,7 @@ function OccupationsTab({
                 <th
                   key={h.key}
                   onClick={() => handleSort(h.key)}
-                  className="cursor-pointer select-none pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#9CA3AF] transition-colors hover:text-[#4B5563]"
+                  className="cursor-pointer select-none pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#6B7280] transition-colors hover:text-[#4B5563]"
                 >
                   <span className="inline-flex items-center gap-1">
                     {h.label}
@@ -530,7 +530,7 @@ function OccupationsTab({
           <tbody>
             {occupations.length === 0 ? (
               <tr>
-                <td colSpan={6} className="py-8 text-center text-[14px] text-[#9CA3AF]">
+                <td colSpan={6} className="py-8 text-center text-[14px] text-[#6B7280]">
                   No occupations match your search.
                 </td>
               </tr>
@@ -591,24 +591,24 @@ function WagesTab({ lmia }: { lmia: EmployerLMIA }) {
           </div>
           <div className="mt-6 grid grid-cols-4 gap-4">
             <div className="rounded-xl bg-white p-4 text-center">
-              <p className="text-[12px] font-medium text-[#9CA3AF]">Minimum</p>
+              <p className="text-[12px] font-medium text-[#6B7280]">Minimum</p>
               <p className="mt-1 text-[18px] font-bold text-[#0A0A0B]">${lmia.wageMin.toFixed(2)}</p>
-              <p className="text-[11px] text-[#9CA3AF]">/hour</p>
+              <p className="text-[11px] text-[#6B7280]">/hour</p>
             </div>
             <div className="rounded-xl bg-white p-4 text-center">
-              <p className="text-[12px] font-medium text-[#9CA3AF]">Median</p>
+              <p className="text-[12px] font-medium text-[#6B7280]">Median</p>
               <p className="mt-1 text-[18px] font-bold text-[#0A0A0B]">${lmia.wageMedian.toFixed(2)}</p>
-              <p className="text-[11px] text-[#9CA3AF]">/hour</p>
+              <p className="text-[11px] text-[#6B7280]">/hour</p>
             </div>
             <div className="rounded-xl bg-white p-4 text-center">
-              <p className="text-[12px] font-medium text-[#9CA3AF]">Average</p>
+              <p className="text-[12px] font-medium text-[#6B7280]">Average</p>
               <p className="mt-1 text-[18px] font-bold text-[#0A0A0B]">${lmia.wageAverage.toFixed(2)}</p>
-              <p className="text-[11px] text-[#9CA3AF]">/hour</p>
+              <p className="text-[11px] text-[#6B7280]">/hour</p>
             </div>
             <div className="rounded-xl bg-white p-4 text-center">
-              <p className="text-[12px] font-medium text-[#9CA3AF]">Maximum</p>
+              <p className="text-[12px] font-medium text-[#6B7280]">Maximum</p>
               <p className="mt-1 text-[18px] font-bold text-[#0A0A0B]">${lmia.wageMax.toFixed(2)}</p>
-              <p className="text-[11px] text-[#9CA3AF]">/hour</p>
+              <p className="text-[11px] text-[#6B7280]">/hour</p>
             </div>
           </div>
         </div>
@@ -658,14 +658,14 @@ function HistoryTab({ lmia }: { lmia: EmployerLMIA }) {
           <table className="w-full text-left text-[14px]">
             <thead>
               <tr className="border-b border-[#F0F0F0]">
-                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#9CA3AF]">Year</th>
-                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#9CA3AF]">Q1</th>
-                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#9CA3AF]">Q2</th>
-                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#9CA3AF]">Q3</th>
-                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#9CA3AF]">Q4</th>
-                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#9CA3AF]">Total</th>
-                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#9CA3AF]">Rate</th>
-                <th className="pb-3 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#9CA3AF]">Trend</th>
+                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#6B7280]">Year</th>
+                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#6B7280]">Q1</th>
+                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#6B7280]">Q2</th>
+                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#6B7280]">Q3</th>
+                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#6B7280]">Q4</th>
+                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#6B7280]">Total</th>
+                <th className="pb-3 pr-4 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#6B7280]">Rate</th>
+                <th className="pb-3 text-[12px] font-semibold uppercase tracking-[0.06em] text-[#6B7280]">Trend</th>
               </tr>
             </thead>
             <tbody>
@@ -724,7 +724,7 @@ function JobsTab({ employer }: { employer: any }) {
     <div className="rounded-2xl border border-[#F0F0F0] bg-white p-8 ">
       <h3 className="text-[18px] font-bold text-[#0A0A0B]">Current Open Positions</h3>
       {employer.openPositions.length === 0 ? (
-        <p className="mt-4 text-[14px] text-[#9CA3AF]">No open positions currently listed.</p>
+        <p className="mt-4 text-[14px] text-[#6B7280]">No open positions currently listed.</p>
       ) : (
         <div className="mt-6 space-y-4">
           {employer.openPositions.map((job: any, i: number) => (

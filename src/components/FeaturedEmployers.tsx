@@ -20,13 +20,16 @@ export function FeaturedEmployers() {
   }, []);
 
   return (
-    <section id="employers" className="bg-[#0B0E14] px-6 py-40">
+    <section id="employers" className="bg-[#FAFAFA] px-6 py-32 sm:py-40">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-white">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#2563EB]">
+            Featured Employers
+          </p>
+          <h2 className="mt-4 text-[44px] font-bold leading-[1.1] tracking-[-0.03em] text-[#1A1A2E] sm:text-[52px]">
             Employers who have hired through TFWP
           </h2>
-          <p className="mt-6 text-[18px] leading-relaxed text-[#9CA3AF]">
+          <p className="mt-5 text-[18px] leading-relaxed text-[#6B7280]">
             Browse employers with publicly documented hiring history. More added weekly.
           </p>
         </div>
@@ -44,16 +47,16 @@ export function FeaturedEmployers() {
                 key={employer.slug}
                 to="/employers/$slug"
                 params={{ slug: employer.slug }}
-                className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-6 py-5 hover:border-white/20 hover:bg-white/10 transition-colors"
+                className="flex items-center gap-4 rounded-2xl border border-[#E5E7EB] bg-white px-6 py-5 hover:border-[#2563EB]/30 hover:shadow-md transition-all"
               >
                 <div
-                  className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-white/10 text-sm font-bold text-white"
+                  className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#EFF6FF] text-sm font-bold text-[#2563EB]"
                   aria-hidden="true"
                 >
                   {initials}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <div className="text-[16px] font-semibold text-white truncate">
+                  <div className="text-[16px] font-semibold text-[#1A1A2E] truncate">
                     {employer.name}
                   </div>
                   <div className="text-[14px] text-[#9CA3AF]">
@@ -68,7 +71,7 @@ export function FeaturedEmployers() {
         <div className="mt-14 text-center">
           <Link
             to="/employers"
-            className="inline-flex items-center gap-2 text-[16px] font-semibold text-[#2563EB] hover:text-[#3B82F6] transition-colors"
+            className="inline-flex items-center gap-2 text-[16px] font-semibold text-[#2563EB] hover:text-[#1D4ED8] transition-colors"
           >
             View All Employers
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
